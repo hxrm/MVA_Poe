@@ -32,18 +32,18 @@ namespace MVA_Poe
         }
 
         // Start: MenuLeft PopupButton //
-        private void btnHome_MouseEnter(object sender, MouseEventArgs e)
+        private void btnCreateReport_MouseEnter(object sender, MouseEventArgs e)
         {
             if (Tg_Btn.IsChecked == false)
             {
-                Popup.PlacementTarget = btnHome;
+                Popup.PlacementTarget = btnCreateReport;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Home";
+                Header.PopupText.Text = "Create Report";
             }
         }
 
-        private void btnHome_MouseLeave(object sender, MouseEventArgs e)
+        private void btnCreateReport_MouseLeave(object sender, MouseEventArgs e)
         {
             Popup.Visibility = Visibility.Collapsed;
             Popup.IsOpen = false;
@@ -205,14 +205,16 @@ namespace MVA_Poe
         }
         // End: Button Close | Restore | Minimize
 
-        private void btnHome_Click(object sender, RoutedEventArgs e)
+        private void btnReport_Click(object sender, RoutedEventArgs e)
         {
-            fContainer.Navigate(new System.Uri("Pages/Home.xaml", UriKind.RelativeOrAbsolute));
+            fContainer.Navigate(new System.Uri("Pages/CreateReport.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void btnDashboard_Click(object sender, RoutedEventArgs e)
         {
-            fContainer.Navigate(new System.Uri("Pages/Dashboard.xaml", UriKind.RelativeOrAbsolute));
+            //fContainer.Navigate(new System.Uri("Dashboard.xaml", UriKind.RelativeOrAbsolute));
+            ViewReport viewReportWindow = new ViewReport();
+            viewReportWindow.Show();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using MVA_poe;
 using MVA_Poe.Classes;
 using MVA_Poe.Data;
 using System;
@@ -27,6 +28,10 @@ namespace WPFModernVerticalMenu.Pages
     public partial class CreateReport : Page
     {
         AppDbContext context;// = new AppDbContext();
+        bool validReport, validAttachment;
+        List<Attachment> attachments = new List<Attachment>();
+        Report report ;
+
         public CreateReport()
         {
             InitializeComponent();
@@ -48,13 +53,42 @@ namespace WPFModernVerticalMenu.Pages
             string description;
             string location;
 
+
             title = txtTitle.Text;
             category = ReportCategory.StreetLight;
             description = txtDescrip.Text;
             location = txtLocation.Text;
-            AddReport(title, category, description, location);
-            SetLanguage("af");
+           
+            //create report object 
+            report = AddReport(title, category, description, location);
 
+            SaveToDB();
+          
+          
+        }
+        public void SaveToDB()
+        {
+           
+            if (validReport && validAttachment)
+            {
+                // Save the report to the database
+                context.Reports.Add(report);
+                context.SaveChanges();
+
+                // Save the attachments to the database
+                foreach (var attachment in attachments)
+                {
+                    attachment.Id = attachment.Id;
+                    context.Attachments.Add(attachment);
+                }
+                context.SaveChanges();
+
+                MessageBox.Show("Report submitted successfully!");
+            }
+            else
+            {
+                MessageBox.Show("Please fill in all the required fields.");
+            }
         }
         private void SetLanguage(string cultureCode)
         {
@@ -73,11 +107,11 @@ namespace WPFModernVerticalMenu.Pages
         }
 
 
-        private void AddReport(string t, ReportCategory c, string d, string l)
+        private Report AddReport(string t, ReportCategory c, string d, string l)
         {
             var newReport = new Report
             {
-
+                userId = DBHelper.userID,
                 reportName = t,
                 reportCat = c,
                 reportDesc = d,
@@ -85,9 +119,10 @@ namespace WPFModernVerticalMenu.Pages
                 reportLoc = l
             };
 
-            context.Reports.Add(newReport);
-            context.SaveChanges();
-
+            validReport = true;
+           //context.Reports.Add(newReport);
+           // context.SaveChanges();
+           return newReport;
         }
 
         private void LoadReports()
@@ -152,7 +187,7 @@ namespace WPFModernVerticalMenu.Pages
 
                     string destination = @"C:\Users\User\source\repos\ReportPOE\ReportPOE\SaveFile\" + System.IO.Path.GetFileName(files[i]);
 
-                    fileInfo.CopyTo(destination);
+                    //fileInfo.CopyTo(destination);
                     //Upload to database and make file object
                     var fileDetail = new Attachment
                     {
@@ -160,9 +195,9 @@ namespace WPFModernVerticalMenu.Pages
                         FileSize = fileInfo.Length / 1.049e+6, // Convert bytes to MB
                         FileContent = fileContent
                     };
-                    //add to db
-                    context.Attachments.Add(fileDetail);
-                    context.SaveChanges();
+                    attachments.Add(fileDetail);
+
+                    validAttachment = true;
                     MessageBox.Show("Files uploaded successfully DEAD ASS!");
 
                 }

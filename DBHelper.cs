@@ -10,7 +10,7 @@ namespace MVA_poe
     public class DBHelper
     {
         // VARIABLES
-        static int userID;
+        public static int userID;
         // Default constructor
         public DBHelper() { }
 

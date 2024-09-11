@@ -52,7 +52,7 @@
 
                     <!-- Start: MenuItem -->
                     <StackPanel Grid.Row="1" Margin="-1 40 0 20">
-                        <Button x:Name="btnHome" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnHome_MouseEnter" MouseLeave="btnHome_MouseLeave" Click="btnHome_Click">
+                        <Button x:Name="btnCreateReport" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnCreateReport_MouseEnter" MouseLeave="btnCreateReport_MouseLeave" Click="btnReport_Click">
                             <Button.Content>
                                 <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource home}" IconWidth="16" Text="Home" VerticalAlignment="Center"/>
                             </Button.Content>

@@ -1,8 +1,63 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Buttons -->
     <sys:String x:Key="Submit">Indien</sys:String>
     <sys:String x:Key="Load">Laai</sys:String>
     <sys:String x:Key="Upload">Oplaai</sys:String>
+    <sys:String x:Key="Cancel">Kanselleer</sys:String>
+    <sys:String x:Key="Edit">Wysig</sys:String>
+    <sys:String x:Key="Delete">Verwyder</sys:String>
+    <sys:String x:Key="Save">Stoor</sys:String>
+    <sys:String x:Key="Report">Rapporteer</sys:String>
+    <sys:String x:Key="Close">Maak toe</sys:String>
+    <sys:String x:Key="Register">Registreer</sys:String>
+    <sys:String x:Key="Login">Teken in</sys:String>
+    <sys:String x:Key="ForgotGmail">Vergeet Gmail?</sys:String>
+
+    <!-- Prompts -->
+    <sys:String x:Key="EnterName">Voer jou naam in</sys:String>
+    <sys:String x:Key="EnterPassword">Voer jou wagwoord in</sys:String>
+    <sys:String x:Key="EnterEmail">Voer jou e-pos adres in</sys:String>
+    <sys:String x:Key="EnterLocation">Voer ligging in</sys:String>
+    <sys:String x:Key="EnterDescription">Voer beskrywing in</sys:String>
+
+    <!-- Newly Added Prompts -->
+    <sys:String x:Key="EnterFirstName">Voer jou voornaam in</sys:String>
+    <sys:String x:Key="EnterLastName">Voer jou van in</sys:String>
+    <sys:String x:Key="EnterIDNumber">Voer jou ID nommer in</sys:String>
+
+
+    <!-- Labels -->
+    <sys:String x:Key="FirstName">Voornaam</sys:String>
+    <sys:String x:Key="LastName">Van</sys:String>
+    <sys:String x:Key="IDNumber"> ID nommer</sys:String>
+    <sys:String x:Key="UserName">Gebruikersnaam</sys:String>
+    <sys:String x:Key="Password">Wagwoord</sys:String>
+    <sys:String x:Key="ConfirmPassword">Bevestig Wagwoord</sys:String>
+    <sys:String x:Key="Email">E-pos</sys:String>
+    <sys:String x:Key="Location">Ligging</sys:String>
+    <sys:String x:Key="Description">Beskrywing</sys:String>
+    <sys:String x:Key="Category">Kategorie</sys:String>
+    <sys:String x:Key="Date">Datum</sys:String>
+    <sys:String x:Key="IssueDetails">Probleem Besonderhede</sys:String>
+
+    <!-- Error Messages -->
+    <sys:String x:Key="ErrorEmptyFields">Vul asseblief alle velde in</sys:String>
+    <sys:String x:Key="ErrorInvalidCredentials">Ongeldige geloofsbriewe</sys:String>
+    <sys:String x:Key="ErrorConnection">Verbindingsfout</sys:String>
+    <sys:String x:Key="ErrorEmailRequired">E-pos adres is verpligtend</sys:String>
+    <sys:String x:Key="ErrorEmailInvalid">Ongeldige e-pos adres</sys:String>
+
+    <!-- Miscellaneous -->
+    <sys:String x:Key="WelcomeMessage">Welkom by die munisipale aansoek</sys:String>
+    <sys:String x:Key="ReportingIssue">Rapportering van 'n probleem</sys:String>
+    <sys:String x:Key="Attachments">Aanhangsels</sys:String>
+    <sys:String x:Key="ReportSubmitted">Probleem gerapporteer</sys:String>
+    <sys:String x:Key="LanguagePreference">Taalvoorkeur</sys:String>
+    <sys:String x:Key="ForgotPassword">Vergeet Wagwoord?</sys:String>
+    <sys:String x:Key="AlreadyHaveAccount">Reeds 'n rekening?</sys:String>
+    <sys:String x:Key="CreateNewAccount">Skep nuwe rekening</sys:String>
 
 </ResourceDictionary>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVA_poe;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,9 +19,11 @@ namespace MVA_Poe
 {
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        DBHelper dBHelper;
+        public MainWindow(DBHelper db)
         {
             InitializeComponent();
+            this.dBHelper = db;
         }
 
         private void BG_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -204,7 +207,7 @@ namespace MVA_Poe
 
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
-            fContainer.Navigate(new System.Uri("Pages/CreateReport.xaml", UriKind.RelativeOrAbsolute));
+            fContainer.Navigate(new System.Uri("Pages/Home.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void btnDashboard_Click(object sender, RoutedEventArgs e)

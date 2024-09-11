@@ -19,14 +19,22 @@ namespace MVA_Poe.Classes
         public DbSet<Report> Reports { get; set; }
         public DbSet<Attachment> Attachments { get; set; }
 
-        // Commented out code that shows alternative ways to define the database path and connection string.     
-        //Actual path to the database file
-        static string relativePath = "|DataDirectory|\\MVA_Database.mdf";
-        // static string dbFilePath = @"C:\Users\User\source\DB\muniDB.mdf";
+        // // Commented out code that shows alternative ways to define the database path and connection string.     
+        // //Actual path to the database file
+        // static string relativePath = "|DataDirectory|\\MVA_Database.mdf";
+        // // static string dbFilePath = @"C:\Users\User\source\DB\muniDB.mdf";
 
-        // Define the connection string using the database file path.
-        static string theDB = $"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename={relativePath};Integrated Security=True;Connect Timeout=30";
-       //static string theDB = $"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MVC_Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
+        // // Define the connection string using the database file path.
+        // static string theDB = $"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename={relativePath};Integrated Security=True;Connect Timeout=30";
+        ////static string theDB = $"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MVC_Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
+        /// <summary>
+        ///  // Define the actual path to the database file
+        static string dbFilePath = @"C:\Users\User\source\DB\MVA_poe\bin\Debug\MVC_Database.mdf";
+
+        // Define the connection string using the database file path
+        static string theDB = $"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename={dbFilePath};Integrated Security=True;Connect Timeout=30";
+
+        /// </summary>
 
         // Constructor for the AppDbContext class. It calls the base class constructor with a connection string.
         public AppDbContext() : base(theDB)

@@ -1,12 +1,123 @@
-﻿<Window x:Class="WPFModernVerticalMenu.Auth"
+﻿<Window xmlns:Controls="clr-namespace:MVA_poe.Controls"  x:Class="MVA_poe.Auth"
+        xmlns:ctls="clr-namespace:MVA_Poe.Controls" 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPFModernVerticalMenu"
+        xmlns:local="clr-namespace:MVA_poe"
         mc:Ignorable="d"
-        Title="Auth" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Auth" Height="650" Width="1300"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        Background="Transparent" AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip" FontFamily="Poppins">
+    
+    <Border Background="{DynamicResource PrimaryBackgroundColor}"
+            CornerRadius="8">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0"
+                    Background="{DynamicResource SecundaryBackgroundColor}"
+                    CornerRadius="8 0 0 8" Height="650" VerticalAlignment="Bottom">
+                <Grid x:Name="GridNav" Width="250">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+
+
+                    <Grid Grid.Row="0">
+                        <Border 
+                              Margin="14 0 0 0"
+                              Width="32" Height="24"
+                              HorizontalAlignment="Left">
+                            <Border.Background>
+                                <ImageBrush ImageSource="Resources/logo.png" Stretch="Uniform"/>
+                            </Border.Background>
+                        </Border>
+
+                        <Label Content="Poppins"
+                               Foreground="{DynamicResource PrimaryTextColor}"
+                               FontWeight="Bold"
+                               FontSize="16"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Margin="60 0 0 0"/>
+                    </Grid>
+
+                    <!-- Start: MenuItem -->
+                    <StackPanel Grid.Row="1" Margin="-1 40 0 20">
+                        <Button x:Name="btnRegister" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnRegister_MouseEnter" MouseLeave="btnRegister_MouseLeave" Click="btnRegister_Click">
+                            <Button.Content>
+                                <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource users}" IconWidth="16" Text="{DynamicResource Register}" VerticalAlignment="Center"/>
+                            </Button.Content>
+                        </Button>
+                        <Button x:Name="btnLogin" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnLogin_MouseEnter" MouseLeave="btnLogin_MouseLeave" Click="btnLogin_Click">
+                            <Button.Content>
+                                <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource users}" IconWidth="16" Text="{DynamicResource Login}" VerticalAlignment="Center"/>
+                            </Button.Content>
+                        </Button>
+
+                    </StackPanel>
+
+
+                    <!-- Start: Popup User Control -->
+                    <Popup x:Name="Popup" AllowsTransparency="True" HorizontalOffset="0" VerticalOffset="10">
+                        <Popup.Child>
+                            <ctls:UserPopup x:Name="Header" Foreground="{DynamicResource PrimaryTextColor}"/>
+                        </Popup.Child>
+                    </Popup>
+
+                    <!-- End: Popup User Control -->
+
+                </Grid>
+            </Border>
+
+
+           
+
+          
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="83*"/>
+                    <RowDefinition Height="507*"/>
+                </Grid.RowDefinitions>
+
+                
+
+                <!-- Start: Button Close | Restore | Minimize -->
+                <StackPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Height="30" Orientation="Horizontal" FlowDirection="RightToLeft">
+                    <Button x:Name="btnClose" Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource close}" Click="btnClose_Click" Tag="IsCloseButton"/>
+                    <Button x:Name="btnRestore" Margin="5,0" Click="btnRestore_Click">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource IconButtonsStyle}">
+                                <Setter Property="Content" Value="{DynamicResource maximize}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=home, Path=WindowState}" Value="Maximized">
+                                        <Setter Property="Content" Value="{DynamicResource restore}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="btnMinimize" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource minimize}" Click="btnMinimize_Click"/>
+                </StackPanel>
+            
+
+                <!-- End: Button Close | Restore | Minimize -->
+
+                <Frame Grid.Row="1"
+                       Name="fContainer"
+                       Margin="20,20,20,20"
+                       NavigationUIVisibility="Hidden" Grid.RowSpan="2">
+                </Frame>
+            </Grid>
+        </Grid>
+    </Border>
 </Window>

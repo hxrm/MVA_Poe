@@ -1,0 +1,53 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Buttons -->
+    <sys:String x:Key="Submit">Thumela</sys:String>
+    <sys:String x:Key="Load">Layisha</sys:String>
+    <sys:String x:Key="Upload">Layisha phezulu</sys:String>
+    <sys:String x:Key="Cancel">Rhoxisa</sys:String>
+    <sys:String x:Key="Edit">Hlela</sys:String>
+    <sys:String x:Key="Delete">Cima</sys:String>
+    <sys:String x:Key="Save">Gcina</sys:String>
+    <sys:String x:Key="Report">Xela</sys:String>
+    <sys:String x:Key="Close">Vala</sys:String>
+    <sys:String x:Key="Register">Bhalisa</sys:String>
+    <sys:String x:Key="Login">Ngena</sys:String>
+    <sys:String x:Key="ForgotGmail">Ukulibala iGmail?</sys:String>
+
+    <!-- Labels -->
+    <sys:String x:Key="UserName">Igama lomsebenzisi</sys:String>
+    <sys:String x:Key="Password">Iphasiwedi</sys:String>
+    <sys:String x:Key="Email">Imeyile</sys:String>
+    <sys:String x:Key="Location">Indawo</sys:String>
+    <sys:String x:Key="Description">Inkcazo</sys:String>
+    <sys:String x:Key="Category">Udidi</sys:String>
+    <sys:String x:Key="Date">Umhla</sys:String>
+    <sys:String x:Key="IssueDetails">Iinkcukacha zengxaki</sys:String>
+
+    <!-- Prompts -->
+    <sys:String x:Key="EnterName">Ngenisa igama lakho</sys:String>
+    <sys:String x:Key="EnterPassword">Ngenisa iphasiwedi yakho</sys:String>
+    <sys:String x:Key="EnterEmail">Ngenisa idilesi yemeyile yakho</sys:String>
+    <sys:String x:Key="EnterLocation">Ngenisa indawo yakho</sys:String>
+    <sys:String x:Key="EnterDescription">Ngenisa inkcazo</sys:String>
+
+    <!-- Error Messages -->
+    <sys:String x:Key="ErrorEmptyFields">Nceda ugcwalise onke amacandelo</sys:String>
+    <sys:String x:Key="ErrorInvalidCredentials">Iinkcukacha azichanekanga</sys:String>
+    <sys:String x:Key="ErrorConnection">Imposiso yonxibelelwano</sys:String>
+    <sys:String x:Key="ErrorEmailRequired">Imeyile iyafuneka</sys:String>
+    <sys:String x:Key="ErrorEmailInvalid">Idilesi yemeyile ayichanekanga</sys:String>
+
+    <!-- Miscellaneous -->
+    <sys:String x:Key="WelcomeMessage">Wamkelekile kwisicelo sikamasipala</sys:String>
+    <sys:String x:Key="ReportingIssue">Ukuxela ingxaki</sys:String>
+    <sys:String x:Key="Attachments">Izifaki</sys:String>
+    <sys:String x:Key="ReportSubmitted">Ingxaki ixeliwe</sys:String>
+    <sys:String x:Key="LanguagePreference">Ulwimi olukhethiweyo</sys:String>
+    <sys:String x:Key="ForgotPassword">Ukulibala iphasiwedi?</sys:String>
+    <sys:String x:Key="AlreadyHaveAccount">Ngaba uneakhawunti?</sys:String>
+    <sys:String x:Key="CreateNewAccount">Yenza iakhawunti entsha</sys:String>
+
+</ResourceDictionary>

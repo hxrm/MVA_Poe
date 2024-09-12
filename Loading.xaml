@@ -10,30 +10,37 @@
         WindowStartupLocation="CenterScreen">
     <!--Background="{x:Null}">-->
 
-    <Grid>
+    <Grid Margin="50 50 100 0">
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="350"/>
-            <ColumnDefinition Width="400"/>
-            <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="500"/>            
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50 0 0 0">
-
-            <WrapPanel>
+        <StackPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="120,0,0,0" Height="362" Width="378">
+            <TextBlock Text="LOADING USER CREDENTIALS. . . " Grid.Row="2"  FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Center" Foreground="Black" Margin="0"></TextBlock>
+            <Image Source="Resources/3.png" Height="300" Width="424" ></Image>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                
+                <ProgressBar  Grid.Row="1"  Name="progressBar" Value="0" Height="7" Width="300" IsIndeterminate="True"/>
+            </Grid>           
+            <!--<WrapPanel>
                 <Image Source="Resources/1.png" HorizontalAlignment="Left" Height="50" Width="50"></Image>
                 <TextBlock Text="Civic Connect" FontSize="28" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15 0 0 0">
                     
                 </TextBlock>
-            </WrapPanel>
+            </WrapPanel>-->
 
-            <TextBlock Text="Loading User Data. .. " FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="0 30 0 15"></TextBlock>
-
-            <ProgressBar Name="progressBar" Value="0" Height="5" Width="280" IsIndeterminate="True"/>
+            
         </StackPanel>
 
-            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="320" Width="320">
-            <Image Source="Resources/3.png" ></Image>
-            </StackPanel>
+          
     </Grid>
 
    

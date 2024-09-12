@@ -21,9 +21,9 @@ namespace MVA_poe
     /// </summary>
     public partial class Loading : Window
     {
-        DBHelper dbHelper;
+       
         public static int progress = 0;
-        public Loading(DBHelper db)
+        public Loading()
         {
             InitializeComponent();
             UpdateProgress(progress);
@@ -52,13 +52,7 @@ namespace MVA_poe
         {
 
             progressBar.Value = e.ProgressPercentage;
-            if (progressBar.Value == 100)
-            {
-                MainWindow mainWindow = new MainWindow(dbHelper);
-                mainWindow.Show();
-               Window.GetWindow(this).Close(); 
-            }
-
+           
 
         }
         public void UpdateProgress(int value)

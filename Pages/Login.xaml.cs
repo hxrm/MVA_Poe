@@ -32,13 +32,19 @@ namespace MVA_poe.Pages
         AppDbContext context;
         DBHelper dbHelper;
         string hpWord;
-        Loading load;
+        private Loading load;
+        private Thread loadingThread;
         public Login()
         {
-            SetLanguage("en");
-            InitializeComponent();
-           load = new Loading(dbHelper);
-           //load.UpdateProgress(0);
+           SetLanguage("en");
+           InitializeComponent();
+            loadingThread = new Thread(() =>
+            {
+               load = new Loading();
+               load.ShowDialog();
+            });
+            loadingThread.SetApartmentState(ApartmentState.STA); // Set the thread to STA (Single Threaded Apartment)
+           
 
         }
         private void SetLanguage(string cultureCode)
@@ -62,9 +68,9 @@ namespace MVA_poe.Pages
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             String p = txtPas.Password;
-           
-            load.Show();
-           
+
+            loadingThread.Start();
+
 
             // Checking if the email field is empty
             if (string.IsNullOrWhiteSpace(txtEmail.Text))
@@ -93,15 +99,17 @@ namespace MVA_poe.Pages
                 mainWindow.Show();
 
                 Thread.Sleep(30);
-                { 
-
+                {
+                    load.Dispatcher.Invoke(() => load.Close());
                     Window.GetWindow(this).Close();
                 }
                 
             }
             else
             {
+                load.Dispatcher.Invoke(() => load.Close());
                 MessageBox.Show("Failed to login. Please check your email and password.");
+
             }
         }
         // method to hash password 

@@ -91,8 +91,10 @@ namespace MVA_poe.Pages
               
                 MainWindow mainWindow = new MainWindow(dbHelper);
                 mainWindow.Show();
-               
-                Thread.Sleep(3050e();
+
+                Thread.Sleep(30);
+                { 
+
                     Window.GetWindow(this).Close();
                 }
                 

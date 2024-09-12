@@ -36,7 +36,7 @@
                               Width="32" Height="24"
                               HorizontalAlignment="Left">
                             <Border.Background>
-                                <ImageBrush ImageSource="Resources/logo.png" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="Resources/1.png" Stretch="Uniform"/>
                             </Border.Background>
                         </Border>
 
@@ -53,12 +53,12 @@
                     <StackPanel Grid.Row="1" Margin="-1 40 0 20">
                         <Button x:Name="btnRegister" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnRegister_MouseEnter" MouseLeave="btnRegister_MouseLeave" Click="btnRegister_Click">
                             <Button.Content>
-                                <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource users}" IconWidth="16" Text="{DynamicResource Register}" VerticalAlignment="Center"/>
+                                <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource users}" IconWidth="16" Text="Register" VerticalAlignment="Center"/>
                             </Button.Content>
                         </Button>
                         <Button x:Name="btnLogin" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnLogin_MouseEnter" MouseLeave="btnLogin_MouseLeave" Click="btnLogin_Click">
                             <Button.Content>
-                                <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource users}" IconWidth="16" Text="{DynamicResource Login}" VerticalAlignment="Center"/>
+                                <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource users}" IconWidth="16" Text="Login" VerticalAlignment="Center"/>
                             </Button.Content>
                         </Button>
 

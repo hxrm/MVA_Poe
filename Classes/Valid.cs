@@ -12,56 +12,28 @@ namespace MVA_poe.Classes
 
         // Declare a public boolean variable named 'valid' and initialize it to 'false'
         public bool valid = false;
-        public DateTime validDate;
 
-        // Method: TryDate
-        // Validates if a given input is a valid date
-        public bool TryDate(string input, out string errorMessage, out DateTime date)
+
+        public bool TryReceiveID(string id, out string idErrorMessage)
         {
-            errorMessage = "";
+            idErrorMessage = string.Empty;
 
-            // Check if the input is null or empty
-            if (string.IsNullOrWhiteSpace(input))
+            // Check if ID is exactly 13 characters
+            if (id.Length != 13)
             {
-                errorMessage = "Missing Input";
-                date = DateTime.MinValue; // Set date to a default value
+                idErrorMessage = "The ID number must be exactly 13 characters long.";
                 return false;
             }
 
-            // Try to parse the input as a DateTime
-            if (!DateTime.TryParse(input, out date))
+            // Optional: Check if the ID contains only digits
+            if (!System.Text.RegularExpressions.Regex.IsMatch(id, @"^\d{13}$"))
             {
-                errorMessage = "Input is not a valid date";
-                return false;
-            }
-            this.validDate = date;
-            return true;
-        }
-
-        // Method: TryReceiveModuleCode
-        // Validates if a given input is a valid module code in the format "CLDV6233"        
-        public bool TryReceiveModuleCode(string input, out string errorMessage)
-        {
-            string pattern = @"^[A-Za-z]{4}\d{4}$";
-            errorMessage = "";
-
-            // Check if the input is null or empty
-            if (string.IsNullOrWhiteSpace(input))
-            {
-                errorMessage = "Missing Input ";
-                return false;
-            }
-
-            // Use a regular expression to validate the input against the specified pattern
-            if (!System.Text.RegularExpressions.Regex.IsMatch(input, pattern))
-            {
-                errorMessage = " Code format follows CLDV6233 ";
+                idErrorMessage = "The ID number must contain only numeric digits.";
                 return false;
             }
 
             return true;
         }
-
         // Method: TryReceiveString
         // Validates if a given input is a non-empty string
         public bool TryReceiveString(string input, out string errorMessage)

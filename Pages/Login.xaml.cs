@@ -3,10 +3,13 @@ using MVA_Poe;
 using MVA_Poe.Classes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,38 +32,70 @@ namespace MVA_poe.Pages
         AppDbContext context;
         DBHelper dbHelper;
         string hpWord;
+        Loading load;
         public Login()
         {
+            SetLanguage("en");
             InitializeComponent();
-        }
+           load = new Loading(dbHelper);
+           //load.UpdateProgress(0);
 
+        }
+        private void SetLanguage(string cultureCode)
+        {
+            CultureInfo.CurrentUICulture = new CultureInfo(cultureCode);
+            ResourceDictionary dict = new ResourceDictionary();
+            switch (cultureCode)
+            {
+                case "af":
+                    dict.Source = new Uri("Resources/Strings.af.xaml", UriKind.Relative);
+                    break;
+                case "isx":
+                    dict.Source = new Uri("Resources/Strings.isx.xaml", UriKind.Relative);
+                    break;
+                default:
+                    dict.Source = new Uri("Resources/Strings.en.xaml", UriKind.Relative);
+                    break;
+            }
+            this.Resources.MergedDictionaries.Add(dict);
+        }
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
+            String p = txtPas.Password;
+           
+            load.Show();
+           
+
             // Checking if the email field is empty
             if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
                 MessageBox.Show("Please enter your email.");
                 return;
+
             }
-            String p = txtPas.Password;          
-            // Checking if the password field is empty
+            
+           // Checking if the password field is empty
             if ((string.IsNullOrWhiteSpace(p)))
             {
                 MessageBox.Show("Please enter your password.");
                 return;
             }
-
             // Hash the password for comparison
             hpWord = HashPassword(ReturnBytes(SecurePasswordBox.GetPassword(txtPas)));
 
             // Check if the user exists in the database
             bool userExists = PullData();
+
             if (userExists)
             {
-                // If the user exists, display the MainWindow
+              
                 MainWindow mainWindow = new MainWindow(dbHelper);
                 mainWindow.Show();
-                Window.GetWindow(this).Close(); // Close the current window
+               
+                Thread.Sleep(3050e();
+                    Window.GetWindow(this).Close();
+                }
+                
             }
             else
             {

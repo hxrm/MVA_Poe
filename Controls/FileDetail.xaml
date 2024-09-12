@@ -26,104 +26,100 @@
      7.375 21.738281 7.761719L16.496094 13L21.734375 18.242188C22.121094
      18.628906 22.121094 19.253906 21.734375 19.640625Z"/>
     </UserControl.Resources>
-    <Grid
-        Margin="20">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="60"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Path
-            Data="{StaticResource DocIcon}" 
-            Fill="Silver" 
-            VerticalAlignment="Top"
-            HorizontalAlignment="Left"
-            Width="25"
-            Stretch="Uniform"/>
+    
+    <Border CornerRadius="10" Background="White">
+        <Grid Margin="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Path
+                Data="{StaticResource DocIcon}" 
+                Fill="Silver" 
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Width="25"
+                Stretch="Uniform"/>
 
-        <Grid
-            Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition />
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <!--Filename and size -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition />
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--Filename and size -->
+                <Grid Margin="10 6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-                <TextBlock
-                    TextTrimming="CharacterEllipsis"
-                    MaxHeight="100"
-                    FontWeight="Bold"
-                    Text="{Binding FileName, ElementName=this,
-                    FallbackValue=FileName,TargetNullValue=FileName}"/>
+                    <TextBlock
+                        TextTrimming="CharacterEllipsis"
+                        MaxHeight="100"
+                        FontWeight="Bold"
+                        Text="{Binding FileName, ElementName=this,
+                        FallbackValue=FileName,TargetNullValue=FileName}"/>
 
-                <TextBlock
-                    Grid.Column="1"
-                    Padding="5,0"
-                    Text="{Binding FileSize, ElementName=this,
-                    FallbackValue=FileSizeInMb, TargetNullValue=FileSizeInMb}"/>
+                    <TextBlock
+                        Grid.Column="1"
+                        Padding="5,0"
+                        Text="{Binding FileSize, ElementName=this,
+                        FallbackValue=FileSizeInMb, TargetNullValue=FileSizeInMb}"/>
+                </Grid>
+                <!--Cancel Btn-->
+                <Button 
+                    BorderThickness="0"
+                    Margin="4,5,15,7"
+                    Background="Transparent"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center">
+                    <Path 
+                          Data="{StaticResource CloseIcon}" 
+                          Fill="Silver" 
+                          Height="10"
+                          Stretch="Uniform"/>
+                </Button>
 
+                <ProgressBar
+                    Name="pb"
+                    Grid.Row="1"   
+                    Height="8" 
+                    Foreground="#47BDfF"
+                    Value="{Binding UploadProgress, ElementName=this}"/>
+                <!--Progress Text-->
+                <TextBlock Grid.Row="2">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Text" Value="{Binding Value,
+                                ElementName=pb, StringFormat={}{0:##.0}% done}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Value,
+                                    ElementName=pb}" Value="100">
+                                    <Setter Property="Text" Value="Upload Complete"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <TextBlock Grid.Row="2" HorizontalAlignment="Right">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Text" Value="{Binding UploadSpeed,
+                                ElementName=this, StringFormat={}{0}Kb/sec}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding FallbackValue,
+                                    ElementName=pb}" Value="100">
+                                    <Setter Property="Text" Value=""/>
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
             </Grid>
-            <!--Cancel Btn-->
-            <Button 
-                BorderThickness="0"
-                Background="Transparent"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center">
-                <Path 
-                      Data="{StaticResource CloseIcon}" 
-                      Fill="Silver" 
-                      Height="10"
-                      Stretch="Uniform"/>
-            </Button>
-
-            <ProgressBar
-                Name="pb"
-                Grid.Row="1"   
-                Height="8" 
-                Foreground="#47BDfF"
-                Value="{Binding UploadProgress, ElementName=this}"/>
-            <!--Progress Text-->
-            <TextBlock
-                Grid.Row="2">
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Text" Value="{Binding Value,
-                            ElementName=pb, StringFormat={}{0:##.0}% done}"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Value,
-                                ElementName=pb}" Value="100">
-                                <Setter Property="Text" Value="Upload Complete"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
-
-
-            <TextBlock
-                Grid.Row="2"
-                HorizontalAlignment="Right">
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Text" Value="{Binding UploadSpeed,
-                            ElementName=this, StringFormat={}{0}Kb/sec}"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding FallbackValue,
-                                ElementName=pb}" Value="100">
-                                <Setter Property="Text" Value=""/>
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
-
         </Grid>
-    </Grid>
+    </Border>
 </UserControl>

@@ -42,6 +42,9 @@
     <sys:String x:Key="Category">Kategorie</sys:String>
     <sys:String x:Key="Date">Datum</sys:String>
     <sys:String x:Key="IssueDetails">Probleem Besonderhede</sys:String>
+    <sys:String x:Key="ReportTitle">Report Titel</sys:String>
+
+
 
     <!-- Error Messages -->
     <sys:String x:Key="ErrorEmptyFields">Vul asseblief alle velde in</sys:String>
@@ -49,6 +52,9 @@
     <sys:String x:Key="ErrorConnection">Verbindingsfout</sys:String>
     <sys:String x:Key="ErrorEmailRequired">E-pos adres is verpligtend</sys:String>
     <sys:String x:Key="ErrorEmailInvalid">Ongeldige e-pos adres</sys:String>
+    <sys:String x:Key="ErrorInvalidPasswordFormat">Ongeldige wagwoordformaat</sys:String>
+    <sys:String x:Key="ErrorPasswordsDoNotMatch">Wagwoorde stem nie ooreen nie</sys:String>
+    <sys:String x:Key="ErrorInvalidIDNumber">Ongeldige ID-nommer</sys:String>
 
     <!-- Miscellaneous -->
     <sys:String x:Key="WelcomeMessage">Welkom by die munisipale aansoek</sys:String>

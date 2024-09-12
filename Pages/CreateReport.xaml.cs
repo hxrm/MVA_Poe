@@ -22,6 +22,7 @@ using MVA_Poe.Controls;
 using System.Collections.ObjectModel;
 using System.Collections;
 using System.Runtime.InteropServices.ComTypes;
+using MVA_poe.Classes;
 
 namespace MVA_Poe.Pages
 {
@@ -35,6 +36,12 @@ namespace MVA_Poe.Pages
         public ObservableCollection<FileDetail> AttachListItems { get; set; }
         List<Attachment> attachments = new List<Attachment>();
         Report report ;
+
+
+        Valid v = new Valid();
+        bool validPWord, validEMail, validFName, validTitle, validID, validLoc;
+        // Error messages for various fields and Validation instance
+        string tErrorMessage;
 
         public CreateReport()
         {
@@ -78,10 +85,31 @@ namespace MVA_Poe.Pages
             string description = txtDescrip.Text;
             string location = txtLocation.Text;
 
+            if (InputCheck(title, description, location))
+            {
+                MessageBox.Show("Please fill in all the required fields.");
+                return;
+            }
+
+            validTitle = v.TryReceiveString(title, out tErrorMessage);
+            reporTitleError.Text = tErrorMessage;
+            reporTitleError.Visibility = Visibility.Visible;
+     
             // Create report object
             report = AddReport(title, category, description, location);
 
             SaveToDB();
+        }
+        private bool InputCheck(params string[] fields)
+        {
+            foreach (var field in fields)
+            {
+                if (string.IsNullOrEmpty(field))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         public void SaveToDB()
         {

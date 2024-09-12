@@ -5,31 +5,31 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MVA_poe.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1000"
       Title="{DynamicResource Register}">
 
     <Grid>
-        
+
         <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
             <Grid>
-                
+
                 <!--Right Side-->
 
                 <Border Grid.Column="1" Background="AliceBlue" CornerRadius="0 0 0 5" >
-                    <Grid VerticalAlignment="Center" Margin="0" Width="750">
+                    <Grid VerticalAlignment="Center" Margin="0" Width="800">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="61*"/>
                             <RowDefinition Height="389*"/>
                         </Grid.RowDefinitions>
 
                         <!--Main Layer -->
-                        <Border CornerRadius="7" Background="White" Margin="3,3,3,3" Grid.RowSpan="2" Width="750">
+                        <Border CornerRadius="7" Background="White" Margin="-82,-18,-78,-21" Grid.RowSpan="2">
                             <Border.Effect>
                                 <DropShadowEffect BlurRadius="30" ShadowDepth="5" Direction="-130" Opacity="0.1"/>
                             </Border.Effect>
                         </Border>
 
-                        <Grid Margin="4,0,4,0" Width="750" Grid.RowSpan="2" Grid.ColumnSpan="5">
+                        <Grid Margin="-50,-5,-50,-14" Grid.RowSpan="2" >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
@@ -49,27 +49,80 @@
                             <StackPanel Orientation="Horizontal" Margin="10 10 10 -6">
                                 <TextBlock Text="{DynamicResource Register}"  FontSize="30" FontWeight="Bold" Foreground="{DynamicResource TextSecundaryColor}" Margin="15 0 0 0" VerticalAlignment="Top"/>
                             </StackPanel>
-                            <Separator Grid.Row="1" Grid.ColumnSpan="2" Height="0.7" Margin="-20 20" Background="Silver"/>
+                            <Separator Grid.Row="1" Grid.ColumnSpan="2" Height="0.7" Margin="-20 30" Background="Silver"/>
 
                             <!--Input-->
-                            <Controls:MyTextBox x:Name="txtName" Grid.Column="0" Grid.Row="2" Caption="{DynamicResource FirstName}" Hint="{DynamicResource EnterName}"/>
-                            <Controls:MyTextBox x:Name="txtLastName" Grid.Column="0" Grid.Row="3" Caption="{DynamicResource LastName}"  Hint="{DynamicResource EnterLastName}"/>
-                            <Controls:MyTextBox x:Name="txtEmail" Grid.Column="0" Grid.Row="4" Caption="{DynamicResource Email}"  Hint="{DynamicResource EnterEmail}"/>
-                            <Controls:MyTextBox x:Name="txtxID" Grid.Column="0" Grid.Row="5" Caption="{DynamicResource IDNumber}"  Hint="{DynamicResource EnterIDNumber}"/>
 
-                            <Controls:MyTextBox  x:Name="txtLoc" Grid.Column="1" Grid.Row="2" Caption="{DynamicResource Location}"  Hint="{DynamicResource EnterLocation}"/>
+                            <Grid Grid.Column="0" Grid.Row="2" Margin="15,5,15,5" Grid.ColumnSpan="1">
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource FirstName}" FontWeight="Bold" Margin="2,-5,6,20" Foreground="#97a5b4"  FontSize="14" />
+                                    <TextBlock x:Name="fNameError" Visibility="Hidden" Text="" FontWeight="Light" Margin="0,-5,0,5" Foreground="Red"  FontSize="13"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtName" VerticalAlignment="Center" Margin="0,20,0,0"/>
 
-                            <StackPanel Grid.Column="1" Grid.Row="5">
-                                <TextBlock Text="Languages" FontWeight="Bold" Margin="0,0,0,5" />
-                                <ComboBox x:Name="cbLang" Width="150" Height="30" SelectedIndex="0" Margin="10">
-                                    <ComboBoxItem Content="English" />
-                                    <ComboBoxItem Content="Afrikaans" />
-                                    <ComboBoxItem Content="IsiXhosa" />
-                                </ComboBox>
-                            </StackPanel>
-                            <Controls:MyPasswordBox x:Name="txtPas" Grid.Column="1" Grid.Row="3" PCaption="{DynamicResource Password}"  PHint="{DynamicResource EnterPassword}"/>
-                            <Controls:MyPasswordBox x:Name="txtConPas" Grid.Column="1" Grid.Row="4" PCaption="{DynamicResource ConfirmPassword}" PHint="{DynamicResource EnterPassword}"/>
-                        
+                            </Grid>
+                            <Grid Grid.Column="0" Grid.Row="3" Margin="15,5,15,5" Grid.ColumnSpan="1">
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource LastName}" FontWeight="Bold" Margin="2,-5,6,20" Foreground="#97a5b4"  FontSize="14" />
+                                    <TextBlock  x:Name="sNameError" Visibility="Hidden"  Text="" FontWeight="Light" Margin="0,-5,0,5" Foreground="Red"  FontSize="13"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtLastName" VerticalAlignment="Center" Margin="0,20,0,0"/>
+
+                            </Grid>
+                            <Grid Grid.Column="0" Grid.Row="4" Margin="15,5,15,5" Grid.ColumnSpan="1">
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Email}" FontWeight="Bold" Margin="2,-5,6,20" Foreground="#97a5b4"  FontSize="14" />
+                                    <TextBlock x:Name="emailError" Visibility="Hidden"  Text="" FontWeight="Light" Margin="0,-5,0,5" Foreground="Red"  FontSize="14"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtEmail" VerticalAlignment="Center" Margin="0,20,0,0"/>
+
+                            </Grid>
+                            <Grid Grid.Column="0" Grid.Row="5" Margin="15,5,15,5" Grid.ColumnSpan="1">
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource IDNumber}" FontWeight="Bold" Margin="2,-5,6,20" Foreground="#97a5b4"  FontSize="14" />
+                                    <TextBlock  x:Name="idError" Visibility="Hidden"  FontWeight="Light"   Text="" Margin="0,-5,0,5" Foreground="Red"  FontSize="13"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtID" VerticalAlignment="Center" Margin="0,20,0,0"/>
+                            </Grid>
+
+                            <Grid Grid.Column="1" Grid.Row="2" Margin="15,5,15,5" Grid.ColumnSpan="1">
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Location}" FontWeight="Bold" Margin="2,-5,6,20" Foreground="#97a5b4"  FontSize="14" />
+                                    <TextBlock  x:Name="locError"  Visibility="Hidden" FontWeight="Light" Text="" Margin="0,-5,0,5" Foreground="Red"  FontSize="13"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtLoc" VerticalAlignment="Center" Margin="0,20,0,0"/>
+                            </Grid>
+
+                            <Grid Grid.Column="1" Grid.Row="5" Margin="15,5,15,5" Grid.ColumnSpan="1">
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Category}" FontWeight="Bold" Margin="2,-5,6,20" Foreground="#97a5b4"  FontSize="14" />
+                                    <TextBlock x:Name="catError"  Visibility="Hidden"  FontWeight="Light" Margin="0,-5,0,5" Foreground="Red"  FontSize="13"/>
+                                    <ComboBox x:Name="cbLang" Width="150" Height="30" SelectedIndex="0" Margin="0,20,0,0">
+                                        <ComboBoxItem Content="English" />
+                                        <ComboBoxItem Content="Afrikaans" />
+                                        <ComboBoxItem Content="IsiXhosa" />
+                                    </ComboBox>
+                                </StackPanel>
+
+
+                            </Grid>
+                            <Grid Grid.Column="1" Grid.Row="3" Margin="15,5,15,5" Grid.ColumnSpan="1">
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Password}" FontWeight="Bold" Margin="2,-5,6,20" Foreground="#97a5b4"  FontSize="14" />
+                                    <TextBlock  x:Name="passError" Visibility="Hidden"  Text="" FontWeight="Light" Margin="0,-5,0,5" Foreground="Red"  FontSize="13"/>
+                                </StackPanel>
+                                <PasswordBox x:Name="txtPas" VerticalAlignment="Center" Margin="0,20,0,0"/>
+                            </Grid>
+
+                            <Grid Grid.Column="1" Grid.Row="4" Margin="15,5,15,5" Grid.ColumnSpan="1">
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource ConfirmPassword}" FontWeight="Bold" Margin="2,-5,6,20" Foreground="#97a5b4"  FontSize="14" />
+                                    <TextBlock  x:Name="conPError"  Visibility="Hidden" Text="" FontWeight="Light" Margin="0,-5,0,5" Foreground="Red"  FontSize="13"/>
+                                </StackPanel>
+                                <PasswordBox x:Name="txtCPas" VerticalAlignment="Center" Margin="0,20,0,0"/>
+                            </Grid>
+
+
                             <Border Grid.Column="1" Grid.Row="6" CornerRadius="0 0 10 10">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                     <Button x:Name="btnSubmit" Content="{DynamicResource Submit}" Width="150" Margin="15,15,15,15" Click="btnSubmit_Click">

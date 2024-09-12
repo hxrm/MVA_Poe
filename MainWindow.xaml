@@ -38,7 +38,7 @@
                               Width="32" Height="24"
                               HorizontalAlignment="Left">
                             <Border.Background>
-                                <ImageBrush ImageSource="Resources/logo.png" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="Resources/1.png" Stretch="Uniform"/>
                             </Border.Background>
                         </Border>
 

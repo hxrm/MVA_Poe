@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVA_Poe.Controls"
              mc:Ignorable="d" 
-                        Background="White"
+             x:Name="this"
+             Background="White"
              d:DesignHeight="150" d:DesignWidth="350">
 
     <UserControl.Resources>
@@ -26,7 +27,7 @@
      18.628906 22.121094 19.253906 21.734375 19.640625Z"/>
     </UserControl.Resources>
     <Grid
-        Margin="0,15">
+        Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"/>
             <ColumnDefinition/>

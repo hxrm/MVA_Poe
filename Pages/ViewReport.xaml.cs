@@ -68,7 +68,6 @@ namespace MVA_poe.Pages
                         // Create Image control and set its source
                         Image imagePreview = new Image();
                         imagePreview.Source = image;
-
                         // Add the Image control to the collection
                         ImageListItems.Add(imagePreview);
 

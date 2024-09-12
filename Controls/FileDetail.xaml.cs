@@ -26,7 +26,6 @@ namespace MVA_Poe.Controls
             InitializeComponent();
         }
 
-
         public string FileName
         {
             get { return (string)GetValue(FileNameProperty); }
@@ -45,7 +44,6 @@ namespace MVA_Poe.Controls
             set { SetValue(FileSizeProperty, value); }
 
         }
-
 
         // Using a DependencyProperty as the backing store for FileSize. This enables animation, styling, binding, etc ...
         public static readonly DependencyProperty FileSizeProperty =
@@ -72,5 +70,3 @@ namespace MVA_Poe.Controls
             DependencyProperty.Register("UploadSpeed", typeof(int), typeof(FileDetail));
     }
 }
-
-

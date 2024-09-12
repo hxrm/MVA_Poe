@@ -116,8 +116,7 @@
                 </Setter>
             </Style>
 
-            
-            
+
 
             <SolidColorBrush x:Key="ProgressBar.Progress" Color="#FF06B025"/>
             <SolidColorBrush x:Key="ProgressBar.Background" Color="#FFE6E6E6"/>
@@ -197,4 +196,3 @@
         </ResourceDictionary>
     </Application.Resources>
 </Application>
-

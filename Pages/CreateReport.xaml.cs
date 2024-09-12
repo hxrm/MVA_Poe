@@ -19,6 +19,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MVA_Poe.Controls;
+using System.Collections.ObjectModel;
+using System.Collections;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace MVA_Poe.Pages
 {
@@ -29,12 +32,15 @@ namespace MVA_Poe.Pages
     {
         AppDbContext context;// = new AppDbContext();
         bool validReport, validAttachment;
+        public ObservableCollection<FileDetail> AttachListItems { get; set; }
         List<Attachment> attachments = new List<Attachment>();
         Report report ;
 
         public CreateReport()
         {
             InitializeComponent();
+            PopulateCategoryComboBox();
+            AttachListItems = new ObservableCollection<FileDetail>();
 
             SetLanguage("en"); // Set default language
 
@@ -46,25 +52,36 @@ namespace MVA_Poe.Pages
             //ImagePrevire.Source = image;
             context = new AppDbContext();
         }
+        private void PopulateCategoryComboBox()
+        {
+            foreach (var category in Enum.GetValues(typeof(ReportCategory)))
+            {
+                string catItem = System.Text.RegularExpressions.Regex.Replace(category.ToString(), "(\\B[A-Z])", " $1");
+                cmbCategory.Items.Add(catItem);
+            }
+        }
+
+        private ReportCategory GetSelectedCategory()
+        {
+            if (cmbCategory.SelectedItem != null)
+            {
+                string selectedCategory = cmbCategory.SelectedItem.ToString().Replace(" ", "");
+                return (ReportCategory)Enum.Parse(typeof(ReportCategory), selectedCategory);
+            }
+            return ReportCategory.Other;
+        }
+
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            string title;
-            ReportCategory category;
-            string description;
-            string location;
+            string title = txtTitle.Text;
+            ReportCategory category = GetSelectedCategory();
+            string description = txtDescrip.Text;
+            string location = txtLocation.Text;
 
-
-            title = txtTitle.Text;
-            category = ReportCategory.StreetLight;
-            description = txtDescrip.Text;
-            location = txtLocation.Text;
-           
-            //create report object 
+            // Create report object
             report = AddReport(title, category, description, location);
 
             SaveToDB();
-          
-          
         }
         public void SaveToDB()
         {
@@ -177,17 +194,8 @@ namespace MVA_Poe.Pages
                         UploadProgress = 100
 
                     });
-                    // Display image if it's an image file
-                    if (filename.EndsWith(".png") || filename.EndsWith(".jpeg") || filename.EndsWith(".jpg"))
-                    {
-                        BitmapImage image = new BitmapImage(new Uri(files[i]));
-                        //  ImagePrevire.Source = image;
-                    }
-                    //Save to File in app 
 
-                    string destination = @"C:\Users\User\source\repos\ReportPOE\ReportPOE\SaveFile\" + System.IO.Path.GetFileName(files[i]);
-
-                    //fileInfo.CopyTo(destination);
+                  
                     //Upload to database and make file object
                     var fileDetail = new Attachment
                     {
@@ -198,28 +206,9 @@ namespace MVA_Poe.Pages
                     attachments.Add(fileDetail);
 
                     validAttachment = true;
-                    MessageBox.Show("Files uploaded successfully DEAD ASS!");
+                 
 
                 }
-
-                //try
-                //{
-
-                //    BitmapImage image = new BitmapImage(new Uri(openFile.FileName));
-                //    ImagePrevire.Source = image;
-                //    byte[] imageData = File.ReadAllBytes(openFile.FileName);
-
-                //}
-                //catch (Exception ex)
-                //{
-
-                //    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                //}
-
-
-
-
 
             }
         }

@@ -47,7 +47,8 @@
             <TextBox x:Name="txtLocation" Grid.Column="4" Grid.Row="3" Margin="15,5,15,5" Grid.ColumnSpan="2"/>
 
             <TextBlock Grid.Column="2" Grid.Row="4" Text="Category" FontWeight="SemiBold" Margin="5,5,5,5" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="txtCategory" Grid.Column="4" Grid.Row="4" Margin="15,5,15,5" Grid.ColumnSpan="2"/>
+            <ComboBox x:Name="cmbCategory" Grid.Column="4" Grid.Row="4" Margin="15,5,15,5" Grid.ColumnSpan="2"/>
+
 
             <TextBlock Grid.Column="2" Grid.Row="5" Text="Description" FontWeight="SemiBold" Margin="5,5,5,5" Grid.ColumnSpan="2"/>
             <TextBox x:Name="txtDescrip" Grid.Column="4" Grid.Row="5" Height="50" Margin="15,5,15,5" Grid.ColumnSpan="2" Grid.RowSpan="2" AcceptsReturn="True" TextWrapping="Wrap"/>
@@ -60,16 +61,16 @@
                 <Button x:Name="btnUpload" Content="{DynamicResource Upload}" Width="100" 
             HorizontalAlignment="Right" VerticalAlignment="Center" 
             Margin="0,0,5,0" Click="btnUpload_Click"/>
-            </Grid>            
+            </Grid>
 
             <Button x:Name="btnSubmit" Content="{DynamicResource Submit}" Width="150" Grid.Column="7" Grid.Row="11" Margin="32,1,19,8" Click="btnSubmit_Click" Grid.RowSpan="2"/>
             <Button x:Name="btnLoad" Content="{DynamicResource Load}" Width="150" Grid.Column="4" Grid.Row="8" Grid.ColumnSpan="1" Margin="15,15,15,15" Click="btnLoad_Click"/>
             <Button x:Name="btnU" Content="{DynamicResource Upload}" Width="150" Grid.Column="5" Grid.Row="8" Grid.ColumnSpan="1" Margin="15,15,15,15" Click="btnUpload_Click"/>
 
-            <ScrollViewer Grid.Column="6" Margin="0,25,789,17" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden" Grid.RowSpan="7" Grid.Row="1" Grid.ColumnSpan="2">
+            <ScrollViewer Grid.Column="6" Margin="0,25,26,17" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden" Grid.RowSpan="7" Grid.Row="1" Grid.ColumnSpan="2">
                 <Grid>
-                    <ItemsControl x:Name="UploadingFilesList" Margin="0,0,902,35">
-                        <TextBlock Text="Uploading files," FontSize="20" FontWeight="SemiBold"/>
+                    <ItemsControl x:Name="UploadingFilesList" Margin="0,0,3,35" Foreground="Black">
+                        <TextBlock Text="{DynamicResource Attachments}" FontSize="20" FontWeight="SemiBold"/>
                     </ItemsControl>
                 </Grid>
             </ScrollViewer>

@@ -87,15 +87,15 @@
                             <Button.Content>
                                 <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource car}" IconWidth="16" Text="Point Of Sale" VerticalAlignment="Center"/>
                             </Button.Content>
-                        </Button>
-                        <Button x:Name="btnSecurity" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnSecurity_MouseEnter" MouseLeave="btnSecurity_MouseLeave">
-                            <Button.Content>
-                                <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource lock}" IconWidth="16" Text="Security" VerticalAlignment="Center"/>
-                            </Button.Content>
-                        </Button>
-                        <Button x:Name="btnSetting" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnSetting_MouseEnter" MouseLeave="btnSetting_MouseLeave">
+                        </Button>                     
+                        <Button x:Name="btnSetting" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnSetting_MouseEnter" MouseLeave="btnSetting_MouseLeave" Click="btnSetting_Click">
                             <Button.Content>
                                 <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource settings}" IconWidth="16" Text="Setting" VerticalAlignment="Center"/>
+                            </Button.Content>
+                        </Button>
+                        <Button x:Name="btnLogout" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnLogout_MouseEnter" MouseLeave="btnLogout_MouseLeave" Click="btnLogout_Click">
+                            <Button.Content>
+                                <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource lock}" IconWidth="16" Text="Security" VerticalAlignment="Center"/>
                             </Button.Content>
                         </Button>
                     </StackPanel>

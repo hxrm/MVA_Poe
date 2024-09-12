@@ -152,18 +152,18 @@ namespace MVA_Poe
             Popup.IsOpen = false;
         }
 
-        private void btnSecurity_MouseEnter(object sender, MouseEventArgs e)
+        private void btnLogout_MouseEnter(object sender, MouseEventArgs e)
         {
             if (Tg_Btn.IsChecked == false)
             {
-                Popup.PlacementTarget = btnSecurity;
+                Popup.PlacementTarget = btnLogout;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Security";
+                Header.PopupText.Text = "Logout";
             }
         }
 
-        private void btnSecurity_MouseLeave(object sender, MouseEventArgs e)
+        private void btnLogout_MouseLeave(object sender, MouseEventArgs e)
         {
             Popup.Visibility = Visibility.Collapsed;
             Popup.IsOpen = false;
@@ -228,6 +228,19 @@ namespace MVA_Poe
             //ViewReport viewReportWindow = new ViewReport(dBHelper);
             //  viewReportWindow.Show();
             //Window.GetWindow(this).Close();
+        }
+
+        private void btnSetting_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            DBHelper.userID = 0;
+            Auth auth = new Auth();
+            auth.Show();
+            Window.GetWindow(this).Close(); // Close the current window
         }
     }
 }

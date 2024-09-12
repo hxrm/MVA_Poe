@@ -59,5 +59,9 @@
     <sys:String x:Key="ForgotPassword">Vergeet Wagwoord?</sys:String>
     <sys:String x:Key="AlreadyHaveAccount">Reeds 'n rekening?</sys:String>
     <sys:String x:Key="CreateNewAccount">Skep nuwe rekening</sys:String>
+    <sys:String x:Key="CreateNewReport">Skep nuwe verslag</sys:String>
+    <sys:String x:Key="Reports">Verslae</sys:String>
+    <sys:String x:Key="LocalEventsAndAnnouncements">Plaaslike geleenthede en aankondigings</sys:String>
+    <sys:String x:Key="ServiceRequestStatus">Diensversoekstatus</sys:String>
 
 </ResourceDictionary>

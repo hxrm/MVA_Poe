@@ -41,6 +41,7 @@ namespace MVA_Poe
                 Popup.IsOpen = true;
                 Header.PopupText.Text = "Create Report";
             }
+           
         }
 
         private void btnCreateReport_MouseLeave(object sender, MouseEventArgs e)
@@ -49,7 +50,7 @@ namespace MVA_Poe
             Popup.IsOpen = false;
         }
 
-        private void btnDashboard_MouseEnter(object sender, MouseEventArgs e)
+        private void btnViewReport_MouseEnter(object sender, MouseEventArgs e)
         {
             if (Tg_Btn.IsChecked == false)
             {
@@ -60,7 +61,7 @@ namespace MVA_Poe
             }
         }
 
-        private void btnDashboard_MouseLeave(object sender, MouseEventArgs e)
+        private void btnViewReport_MouseLeave(object sender, MouseEventArgs e)
         {
             Popup.Visibility = Visibility.Collapsed;
             Popup.IsOpen = false;
@@ -207,14 +208,26 @@ namespace MVA_Poe
 
         private void btnReport_Click(object sender, RoutedEventArgs e)
         {
-            fContainer.Navigate(new System.Uri("Pages/CreateReport.xaml", UriKind.RelativeOrAbsolute));
+            // Check if the current page is not the CreateReport page
+            if (fContainer.CurrentSource == null || !fContainer.CurrentSource.OriginalString.EndsWith("CreateReport.xaml"))
+            {
+                // Navigate to the CreateReport page
+                fContainer.Navigate(new System.Uri("Pages/CreateReport.xaml", UriKind.Relative));
+            }
+           // fContainer.Navigate(new System.Uri("Pages/CreateReport.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        private void btnDashboard_Click(object sender, RoutedEventArgs e)
+        private void btnViewReport_Click(object sender, RoutedEventArgs e)
         {
-            //fContainer.Navigate(new System.Uri("Dashboard.xaml", UriKind.RelativeOrAbsolute));
-            ViewReport viewReportWindow = new ViewReport();
-            viewReportWindow.Show();
+            // Check if the current page is not the CreateReport page
+            if (fContainer.CurrentSource == null || !fContainer.CurrentSource.OriginalString.EndsWith("ViewReport.xaml"))
+            {
+                // Navigate to the CreateReport page
+                fContainer.Navigate(new System.Uri("Pages/ViewReport.xaml", UriKind.Relative));
+            }
+            //ViewReport viewReportWindow = new ViewReport(dBHelper);
+            //  viewReportWindow.Show();
+            //Window.GetWindow(this).Close();
         }
     }
 }

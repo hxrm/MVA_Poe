@@ -18,7 +18,9 @@ namespace MVA_Poe.Classes
         public string reportDesc { get; set; }
         public DateTime reportDate { get; set; }
         public string reportLoc { get; set; }
-        public ReportCategory reportCat { get; set; } // Navigation property for Category
+        public ReportCategory reportCat { get; set; }
+
+        public ICollection<Attachment> Attachments { get; set; } = null;
 
         // Foreign Key for User
         public int userId { get; set; }

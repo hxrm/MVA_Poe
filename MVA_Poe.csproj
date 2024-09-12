@@ -65,9 +65,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewReport.xaml.cs">
-      <DependentUpon>ViewReport.xaml</DependentUpon>
-    </Compile>
     <Page Include="Assets\Icons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -154,6 +151,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\ViewReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Strings.af.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,19 +175,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ViewReport.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202409110023349_first.cs" />
-    <Compile Include="Migrations\202409110023349_first.Designer.cs">
-      <DependentUpon>202409110023349_first.cs</DependentUpon>
+    <Compile Include="Migrations\202409112108403_one.cs" />
+    <Compile Include="Migrations\202409112108403_one.Designer.cs">
+      <DependentUpon>202409112108403_one.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202409111257207_Alter.cs" />
-    <Compile Include="Migrations\202409111257207_Alter.Designer.cs">
-      <DependentUpon>202409111257207_Alter.cs</DependentUpon>
+    <Compile Include="Migrations\202409112117589_two.cs" />
+    <Compile Include="Migrations\202409112117589_two.Designer.cs">
+      <DependentUpon>202409112117589_two.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409112123079_tree.cs" />
+    <Compile Include="Migrations\202409112123079_tree.Designer.cs">
+      <DependentUpon>202409112123079_tree.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pages\CreateReport.xaml.cs">
@@ -204,6 +205,9 @@
     <Compile Include="Pages\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ViewReport.xaml.cs">
+      <DependentUpon>ViewReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -217,11 +221,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202409110023349_first.resx">
-      <DependentUpon>202409110023349_first.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202409112108403_one.resx">
+      <DependentUpon>202409112108403_one.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202409111257207_Alter.resx">
-      <DependentUpon>202409111257207_Alter.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202409112117589_two.resx">
+      <DependentUpon>202409112117589_two.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409112123079_tree.resx">
+      <DependentUpon>202409112123079_tree.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1,4 +1,4 @@
-﻿namespace WPFModernVerticalMenu.Migrations
+﻿namespace MVA_Poe.Migrations
 {
     using System;
     using System.Data.Entity;

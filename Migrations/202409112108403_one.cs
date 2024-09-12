@@ -1,9 +1,9 @@
-﻿namespace WPFModernVerticalMenu.Migrations
+﻿namespace MVA_Poe.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class first : DbMigration
+    public partial class one : DbMigration
     {
         public override void Up()
         {
@@ -15,8 +15,11 @@
                         FileName = c.String(),
                         FileSize = c.Double(nullable: false),
                         FileContent = c.Binary(),
+                        reportID = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Reports", t => t.reportID, cascadeDelete: true)
+                .Index(t => t.reportID);
             
             CreateTable(
                 "dbo.Reports",
@@ -41,6 +44,8 @@
                         UserId = c.Int(nullable: false, identity: true),
                         uName = c.String(),
                         pWord = c.String(),
+                        fName = c.String(),
+                        lName = c.String(),
                         email = c.String(),
                         ID = c.String(),
                         address = c.String(),
@@ -53,7 +58,9 @@
         public override void Down()
         {
             DropForeignKey("dbo.Reports", "userId", "dbo.Users");
+            DropForeignKey("dbo.Attachments", "reportID", "dbo.Reports");
             DropIndex("dbo.Reports", new[] { "userId" });
+            DropIndex("dbo.Attachments", new[] { "reportID" });
             DropTable("dbo.Users");
             DropTable("dbo.Reports");
             DropTable("dbo.Attachments");

@@ -16,5 +16,8 @@ namespace MVA_Poe.Classes
         public string FileName { get; set; }
         public double FileSize { get; set; }
         public byte[] FileContent { get; set; }
+
+        // Foreign Key for User
+        public int reportID { get; set; }
     }
 }

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFModernVerticalMenu.Controls
+namespace MVA_Poe.Controls
 {
     /// <summary>
     /// Interaction logic for FileDetail.xaml

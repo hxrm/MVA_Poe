@@ -11,6 +11,7 @@
         Background="Transparent" AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip" FontFamily="Poppins">
 
+
     <!-- By Jeyderht 
         Subscribe: https://www.youtube.com/channel/UC9di50E_9m9pQcZPxzFqYUA/about
         -->
@@ -57,7 +58,7 @@
                                 <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource home}" IconWidth="16" Text="Home" VerticalAlignment="Center"/>
                             </Button.Content>
                         </Button>
-                        <Button x:Name="btnDashboard" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnDashboard_MouseEnter" MouseLeave="btnDashboard_MouseLeave" Click="btnDashboard_Click">
+                        <Button x:Name="btnDashboard" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnViewReport_MouseEnter" MouseLeave="btnViewReport_MouseLeave" Click="btnViewReport_Click">
                             <Button.Content>
                                 <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource dashboard}" IconWidth="16" Text="Dashboard" VerticalAlignment="Center"/>
                             </Button.Content>

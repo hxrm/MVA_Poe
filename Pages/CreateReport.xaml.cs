@@ -18,9 +18,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPFModernVerticalMenu.Controls;
+using MVA_Poe.Controls;
 
-namespace WPFModernVerticalMenu.Pages
+namespace MVA_Poe.Pages
 {
     /// <summary>
     /// Interaction logic for CreateReport.xaml
@@ -68,17 +68,16 @@ namespace WPFModernVerticalMenu.Pages
         }
         public void SaveToDB()
         {
-           
             if (validReport && validAttachment)
             {
                 // Save the report to the database
                 context.Reports.Add(report);
                 context.SaveChanges();
 
-                // Save the attachments to the database
+                // Set the reportID for each attachment and save them to the database
                 foreach (var attachment in attachments)
                 {
-                    attachment.Id = attachment.Id;
+                    attachment.reportID = report.reportID; // Set the foreign key
                     context.Attachments.Add(attachment);
                 }
                 context.SaveChanges();
@@ -90,6 +89,7 @@ namespace WPFModernVerticalMenu.Pages
                 MessageBox.Show("Please fill in all the required fields.");
             }
         }
+
         private void SetLanguage(string cultureCode)
         {
             CultureInfo.CurrentUICulture = new CultureInfo(cultureCode);

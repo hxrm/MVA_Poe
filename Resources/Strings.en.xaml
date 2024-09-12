@@ -63,7 +63,12 @@
     <sys:String x:Key="CreateNewAccount">Create new account</sys:String>
     <sys:String x:Key="CreateNewReport">Create new report</sys:String>
     <sys:String x:Key="Reports">Reports</sys:String>
+    <sys:String x:Key="LocalEvents">Local Events</sys:String>
     <sys:String x:Key="LocalEventsAndAnnouncements">Local Events and Announcements</sys:String>
     <sys:String x:Key="ServiceRequestStatus">Service Request Status</sys:String>
+    <sys:String x:Key="ServiceRequest">Service Request</sys:String>
+
+    <sys:String x:Key="Set">Settings</sys:String>
+    <sys:String x:Key="Logout">Logout</sys:String>
 
 </ResourceDictionary>

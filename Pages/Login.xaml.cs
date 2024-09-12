@@ -107,9 +107,8 @@ namespace MVA_poe.Pages
             }
             else
             {
-                load.Dispatcher.Invoke(() => load.Close());
+                load.Dispatcher.Invoke(() => load.Visibility = Visibility.Hidden);
                 MessageBox.Show("Failed to login. Please check your email and password.");
-
             }
         }
         // method to hash password 

@@ -30,17 +30,17 @@
 
 
 
-                    <Grid Grid.Row="0">
+                    <Grid Grid.Row="0" Margin="2 10 0 0">
                         <Border 
-                              Margin="14 0 0 0"
-                              Width="32" Height="24"
-                              HorizontalAlignment="Left">
+                            Margin="4 0 0 0"
+                            Width="50" Height="50"
+                            HorizontalAlignment="Left">
                             <Border.Background>
                                 <ImageBrush ImageSource="Resources/1.png" Stretch="Uniform"/>
                             </Border.Background>
                         </Border>
 
-                        <Label Content="Poppins"
+                        <Label Content="Civic Connect"
                                Foreground="{DynamicResource PrimaryTextColor}"
                                FontWeight="Bold"
                                FontSize="16"
@@ -53,7 +53,7 @@
                     <StackPanel Grid.Row="1" Margin="-1 40 0 20">
                         <Button x:Name="btnRegister" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnRegister_MouseEnter" MouseLeave="btnRegister_MouseLeave" Click="btnRegister_Click">
                             <Button.Content>
-                                <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource users}" IconWidth="16" Text="Register" VerticalAlignment="Center"/>
+                                <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource plus}" IconWidth="16" Text="Register" VerticalAlignment="Center"/>
                             </Button.Content>
                         </Button>
                         <Button x:Name="btnLogin" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnLogin_MouseEnter" MouseLeave="btnLogin_MouseLeave" Click="btnLogin_Click">

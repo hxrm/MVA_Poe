@@ -45,25 +45,25 @@
                             </Grid.ColumnDefinitions>
 
                             <!--Title-->
-                            <StackPanel Orientation="Horizontal" Margin="10 10 10 -6">
+                            <StackPanel Orientation="Horizontal" Margin="30 15 15 -6">
                                 <TextBlock Text="{DynamicResource Login}"  FontSize="30" FontWeight="Bold" Foreground="{DynamicResource TextSecundaryColor}" Margin="15 0 0 0" VerticalAlignment="Top"/>
                             </StackPanel>
-                            <Separator Grid.Row="1" Grid.ColumnSpan="2" Height="0.7" Margin="-20 30" Background="Silver"/>
+                            <Separator Grid.Row="1" Grid.ColumnSpan="2" Height="0.7" Margin="30 15 30 20" Background="Silver"/>
 
 
-                            <Grid Grid.Column="0" Grid.Row="3" Margin="15,5,15,5" Grid.ColumnSpan="2">
+                            <Grid Grid.Column="0" Grid.Row="3" Margin="30,5,30,5" Grid.ColumnSpan="2">
                                 <StackPanel  Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource Email}" FontWeight="Bold" Margin="2,-5,6,20" Foreground="#97a5b4"  FontSize="14" />
                                     <TextBlock x:Name="emailError" Visibility="Hidden" Text="" FontWeight="Light" Margin="0,-5,0,5" Foreground="Red"  FontSize="13"/>
                                 </StackPanel>
-                                <TextBox x:Name="txtEmail" VerticalAlignment="Center" Margin="8,20,8,0"/>
+                                <TextBox x:Name="txtEmail" VerticalAlignment="Center" Margin="8,20,40,0"/>
                             </Grid>
-                            <Grid Grid.Column="0" Grid.Row="4" Margin="15,5,15,5" Grid.ColumnSpan="2">
+                            <Grid Grid.Column="0" Grid.Row="4" Margin="30,15,30,5" Grid.ColumnSpan="2">
                                 <StackPanel  Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource Password}" FontWeight="Bold" Margin="2,-5,6,20" Foreground="#97a5b4"  FontSize="14" />
                                     <TextBlock x:Name="passError" Visibility="Hidden" Text="" FontWeight="Light" Margin="0,-5,0,5" Foreground="Red"  FontSize="13"/>
                                 </StackPanel>
-                                <PasswordBox x:Name="txtPas" VerticalAlignment="Center" Margin="8,20,8,20"/>                           </Grid>
+                                <PasswordBox x:Name="txtPas" VerticalAlignment="Center" Margin="8,20,40,20"/>                           </Grid>
 
                                          
                             <Border Grid.Column="1" Grid.Row="6" CornerRadius="0 0 10 10" Margin="15,0,15,20">

@@ -9,7 +9,16 @@
       Title="Home">
 
     <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
-        <TextBlock Text="Home" FontSize="30" Foreground="{DynamicResource PrimaryTextColor}" FontWeight="Bold"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="{DynamicResource WelcomeMessage}"   Grid.Row="0" FontSize="35" Foreground="{DynamicResource PrimaryTextColor}" FontWeight="Bold"
+                    VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,30,0,0"/>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="467" Width="990">
+                <Image Source="C:\Users\User\source\DB\MVA_poe\Resources\bc.png" Height="380" Width="767" />
+            </StackPanel>
+        </Grid>
     </Border>
 </Page>

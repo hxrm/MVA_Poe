@@ -20,15 +20,15 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="120,0,0,0" Height="362" Width="378">
-            <TextBlock Text="LOADING USER CREDENTIALS. . . " Grid.Row="2"  FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Center" Foreground="Black" Margin="0"></TextBlock>
-            <Image Source="Resources/3.png" Height="300" Width="424" ></Image>
+            <TextBlock Text="LOADING USER CREDENTIALS. . . " Grid.Row="2"  FontSize="20" FontWeight="Thin" HorizontalAlignment="Center" Foreground="Black" Margin="20 0 0 0"></TextBlock>
+            <Image Source="Resources/3.png" Margin="0 -2 0 0" Height="300" Width="424" ></Image>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 
-                <ProgressBar  Grid.Row="1"  Name="progressBar" Value="0" Height="7" Width="300" IsIndeterminate="True"/>
+                <ProgressBar  Grid.Row="0"  Name="progressBar" Value="0" Height="7" Width="300" IsIndeterminate="True"/>
             </Grid>           
             <!--<WrapPanel>
                 <Image Source="Resources/1.png" HorizontalAlignment="Left" Height="50" Width="50"></Image>

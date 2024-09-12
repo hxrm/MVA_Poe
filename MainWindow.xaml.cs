@@ -24,8 +24,12 @@ namespace MVA_Poe
         public MainWindow(DBHelper db)
         {
             InitializeComponent();
-            SetLanguage("en");
+            SetLanguage("en");            
             this.dBHelper = db;
+            if (fContainer.CurrentSource == null)
+            {
+                fContainer.Navigate(new System.Uri("Pages/Home.xaml", UriKind.Relative));
+            }
         }
         private void SetLanguage(string cultureCode)
         {
@@ -74,10 +78,10 @@ namespace MVA_Poe
         {
             if (Tg_Btn.IsChecked == false)
             {
-                Popup.PlacementTarget = btnDashboard;
+                Popup.PlacementTarget = btnViewReport;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Dashboard";
+                Header.PopupText.Text = "View Reports";
             }
         }
 
@@ -87,84 +91,41 @@ namespace MVA_Poe
             Popup.IsOpen = false;
         }
 
-        private void btnProducts_MouseEnter(object sender, MouseEventArgs e)
+        private void btnLocal_MouseEnter(object sender, MouseEventArgs e)
         {
             if (Tg_Btn.IsChecked == false)
             {
-                Popup.PlacementTarget = btnProducts;
+                Popup.PlacementTarget = btnLocal;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Products";
+                Header.PopupText.Text = "Local Events";
             }
         }
 
-        private void btnProducts_MouseLeave(object sender, MouseEventArgs e)
+        private void btnServiceRequest_MouseLeave(object sender, MouseEventArgs e)
         {
             Popup.Visibility = Visibility.Collapsed;
             Popup.IsOpen = false;
         }
 
-        private void btnProductStock_MouseEnter(object sender, MouseEventArgs e)
+        private void btnServiceRequest_MouseEnter(object sender, MouseEventArgs e)
         {
             if (Tg_Btn.IsChecked == false)
             {
-                Popup.PlacementTarget = btnProductStock;
+                Popup.PlacementTarget = btnServiceRequest;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Product Stock";
+                Header.PopupText.Text = "Service";
             }
         }
 
-        private void btnProductStock_MouseLeave(object sender, MouseEventArgs e)
+        private void btnLocal_MouseLeave(object sender, MouseEventArgs e)
         {
             Popup.Visibility = Visibility.Collapsed;
             Popup.IsOpen = false;
         }
 
-        private void btnOrderList_MouseEnter(object sender, MouseEventArgs e)
-        {
-            if (Tg_Btn.IsChecked == false)
-            {
-                Popup.PlacementTarget = btnOrderList;
-                Popup.Placement = PlacementMode.Right;
-                Popup.IsOpen = true;
-                Header.PopupText.Text = "Order List";
-            }
-        }
-
-        private void btnOrderList_MouseLeave(object sender, MouseEventArgs e)
-        {
-            Popup.Visibility = Visibility.Collapsed;
-            Popup.IsOpen = false;
-        }
-
-        private void btnBilling_MouseEnter(object sender, MouseEventArgs e)
-        {
-            if (Tg_Btn.IsChecked == false)
-            {
-                Popup.PlacementTarget = btnBilling;
-                Popup.Placement = PlacementMode.Right;
-                Popup.IsOpen = true;
-                Header.PopupText.Text = "Billing";
-            }
-        }
-
-        private void btnBilling_MouseLeave(object sender, MouseEventArgs e)
-        {
-            Popup.Visibility = Visibility.Collapsed;
-            Popup.IsOpen = false;
-        }
-
-        private void btnPointOfSale_MouseEnter(object sender, MouseEventArgs e)
-        {
-            if (Tg_Btn.IsChecked == false)
-            {
-                Popup.PlacementTarget = btnPointOfSale;
-                Popup.Placement = PlacementMode.Right;
-                Popup.IsOpen = true;
-                Header.PopupText.Text = "Poin Of Sale";
-            }
-        }
+        
 
         private void btnPointOfSale_MouseLeave(object sender, MouseEventArgs e)
         {
@@ -234,7 +195,10 @@ namespace MVA_Poe
                 // Navigate to the CreateReport page
                 fContainer.Navigate(new System.Uri("Pages/CreateReport.xaml", UriKind.Relative));
             }
-           // fContainer.Navigate(new System.Uri("Pages/CreateReport.xaml", UriKind.RelativeOrAbsolute));
+            else if (fContainer.CurrentSource.OriginalString.EndsWith("CreateReport.xaml"))
+            {
+                fContainer.Navigate(new System.Uri("Pages/Home.xaml", UriKind.Relative));
+            }
         }
 
         private void btnViewReport_Click(object sender, RoutedEventArgs e)
@@ -245,9 +209,11 @@ namespace MVA_Poe
                 // Navigate to the CreateReport page
                 fContainer.Navigate(new System.Uri("Pages/ViewReport.xaml", UriKind.Relative));
             }
-            //ViewReport viewReportWindow = new ViewReport(dBHelper);
-            //  viewReportWindow.Show();
-            //Window.GetWindow(this).Close();
+            else if (fContainer.CurrentSource.OriginalString.EndsWith("ViewReport.xaml"))
+            {
+                fContainer.Navigate(new System.Uri("Pages/Home.xaml", UriKind.Relative));
+            }
+
         }
 
         private void btnSetting_Click(object sender, RoutedEventArgs e)

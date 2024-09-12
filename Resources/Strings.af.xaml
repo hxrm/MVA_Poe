@@ -67,7 +67,14 @@
     <sys:String x:Key="CreateNewAccount">Skep nuwe rekening</sys:String>
     <sys:String x:Key="CreateNewReport">Skep nuwe verslag</sys:String>
     <sys:String x:Key="Reports">Verslae</sys:String>
+    <sys:String x:Key="LocalEvents">Plaaslike geleenthede</sys:String>
     <sys:String x:Key="LocalEventsAndAnnouncements">Plaaslike geleenthede en aankondigings</sys:String>
     <sys:String x:Key="ServiceRequestStatus">Diensversoekstatus</sys:String>
+    <sys:String x:Key="ServiceRequest">Diensversoek</sys:String>
+    <sys:String x:Key="Set">Instellings</sys:String>
+    <sys:String x:Key="Logout">Teken uit</sys:String>
+
+
+
 
 </ResourceDictionary>

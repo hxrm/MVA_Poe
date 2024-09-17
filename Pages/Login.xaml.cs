@@ -36,16 +36,24 @@ namespace MVA_poe.Pages
         private Thread loadingThread;
         public Login()
         {
-           SetLanguage("en");
-           InitializeComponent();
+            SetLanguage("en");
+            InitializeComponent();
             loadingThread = new Thread(() =>
             {
                load = new Loading();
                load.ShowDialog();
             });
-            loadingThread.SetApartmentState(ApartmentState.STA); // Set the thread to STA (Single Threaded Apartment)
-           
-
+            loadingThread.SetApartmentState(ApartmentState.STA); 
+         
+        }
+        private void NewThread()
+        {
+            loadingThread = new Thread(() =>
+            {
+                load = new Loading();
+                load.ShowDialog();
+            });
+            loadingThread.SetApartmentState(ApartmentState.STA); 
         }
         private void SetLanguage(string cultureCode)
         {
@@ -67,14 +75,16 @@ namespace MVA_poe.Pages
         }
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            String p = txtPas.Password;
 
-            loadingThread.Start();
+           
+
+            String p = txtPas.Password;
 
 
             // Checking if the email field is empty
             if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
+
                 MessageBox.Show("Please enter your email.");
                 return;
 
@@ -92,6 +102,18 @@ namespace MVA_poe.Pages
             // Check if the user exists in the database
             bool userExists = PullData();
 
+
+
+            if (loadingThread.ThreadState == ThreadState.Stopped || loadingThread.ThreadState == ThreadState.Unstarted)
+            {
+                NewThread();
+                loadingThread.Start();
+            }
+            else
+            {
+                // If the thread is already running, just start it
+                loadingThread.Start();
+            }
             if (userExists)
             {
               
@@ -107,7 +129,7 @@ namespace MVA_poe.Pages
             }
             else
             {
-                load.Dispatcher.Invoke(() => load.Visibility = Visibility.Hidden);
+                load.Dispatcher.Invoke(() => load.Close());                
                 MessageBox.Show("Failed to login. Please check your email and password.");
             }
         }
@@ -156,7 +178,7 @@ namespace MVA_poe.Pages
                     if (pWord == user.pWord) // Check if the entered password matches the stored hashed password
                     {
                         loggedIn = true;
-                        dbHelper = new DBHelper(user.UserId); // Assuming DBHelper takes user ID as a parameter
+                        dbHelper = new DBHelper(user.UserId, user.langPref, eMail); // Assuming DBHelper takes user ID as a parameter
                     }
                 }
             } 

@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MVA_Poe.Pages"
+      xmlns:controls="clr-namespace:MVA_Poe.Controls"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="{DynamicResource CreateNewReport}" Foreground="{DynamicResource PrimaryTextColor}">
@@ -11,10 +12,8 @@
     <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0"/>
-                <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="25.2"/>
-                <ColumnDefinition Width="154.8"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="61*"/>
@@ -40,17 +39,17 @@
            VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
             <!--Input-->
-            <Grid Grid.Column="2" Grid.Row="2" MinWidth="180" Grid.ColumnSpan="2">
+            <Grid Grid.Column="2" Grid.Row="2" MinWidth="180" Grid.ColumnSpan="1" Margin="20 0 0 0">
                 <StackPanel>
-                <TextBlock Text="{DynamicResource ReportTitle}" FontWeight="SemiBold" Margin="5,5,5,5" />
-                 <TextBlock x:Name="reporTitleError" Visibility="Hidden" Text="" FontWeight="Light" Margin="0,-5,0,5" Foreground="Red"  FontSize="13"/>
+                    <TextBlock Text="{DynamicResource ReportTitle}" FontWeight="SemiBold" Margin="5,5,5,5" />
+                    <TextBlock x:Name="reporTitleError" Visibility="Hidden" Text="" FontWeight="Light" Margin="0,-5,0,5" Foreground="Red"  FontSize="13"/>
                 </StackPanel>
             </Grid>
             <TextBox x:Name="txtTitle" Grid.Column="4" Grid.Row="2" Margin="15,5,9,5" Grid.ColumnSpan="2"/>
 
 
 
-            <Grid Grid.Column="2" Grid.Row="3" MinWidth="180" Grid.ColumnSpan="2">
+            <Grid Grid.Column="2" Grid.Row="3" MinWidth="180" Grid.ColumnSpan="2" Margin="20 0 0 0">
                 <StackPanel>
                     <TextBlock Text="{DynamicResource Location}" FontWeight="SemiBold" Margin="5,5,5,5" />
                     <TextBlock x:Name="locError" Visibility="Hidden" Text="" FontWeight="Light" Margin="0,-5,0,5" Foreground="Red"  FontSize="13"/>
@@ -58,47 +57,59 @@
             </Grid>
             <TextBox x:Name="txtLocation" Grid.Column="4" Grid.Row="3" Margin="15,5,15,5" Grid.ColumnSpan="2"/>
 
-            <Grid Grid.Column="2" Grid.Row="4" MinWidth="180" Grid.ColumnSpan="2">
+            <Grid Grid.Column="2" Grid.Row="4" MinWidth="180" Grid.ColumnSpan="2" Margin="20 0 0 0">
                 <StackPanel>
                     <TextBlock Text="{DynamicResource Category}" FontWeight="SemiBold" Margin="5,5,5,5" />
                     <TextBlock x:Name="catError" Visibility="Hidden" Text="" FontWeight="Light" Margin="0,-5,0,5" Foreground="Red"  FontSize="13"/>
                 </StackPanel>
-            </Grid>          
+            </Grid>
             <ComboBox x:Name="cmbCategory" Grid.Column="4" Grid.Row="4" Margin="15,5,15,5" Grid.ColumnSpan="2"/>
 
-            <Grid Grid.Column="2" Grid.Row="5" MinWidth="180" Grid.ColumnSpan="2">
+            <Grid Grid.Column="2" Grid.Row="5" MinWidth="180" Grid.ColumnSpan="2" Margin="20">
                 <StackPanel>
                     <TextBlock Text="{DynamicResource Description}" FontWeight="SemiBold" Margin="5,5,5,5" />
                     <TextBlock x:Name="descripError" Visibility="Hidden" Text="" FontWeight="Light" Margin="0,-5,0,5" Foreground="Red"  FontSize="13"/>
                 </StackPanel>
             </Grid>
             <TextBox x:Name="txtDescrip" Grid.Column="4" Grid.Row="5" Height="70" Margin="15,5,15,5" Grid.ColumnSpan="2" Grid.RowSpan="2" AcceptsReturn="True" TextWrapping="Wrap"/>
-            
-            <Grid Grid.Column="2" Grid.Row="8" MinWidth="180" Grid.ColumnSpan="2">
+
+            <Grid Grid.Column="2" Grid.Row="8" MinWidth="180" Grid.ColumnSpan="2" Margin="20 0 0 0">
                 <StackPanel>
+                    <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{DynamicResource Attachments}" FontWeight="SemiBold" Margin="5,5,5,5" />
+                        <Button x:Name="btnUpload" Content="{DynamicResource Upload}" Width="100" 
+HorizontalAlignment="Right" VerticalAlignment="Center" 
+Margin="5,0" Click="btnUpload_Click"/>
+
+                    </StackPanel>
                     <TextBlock x:Name="attachError" Visibility="Hidden" Text="" FontWeight="Light" Margin="0,-5,0,5" Foreground="Red"  FontSize="13"/>
+                    
                 </StackPanel>
             </Grid>
-            <Grid Grid.Column="4" Grid.Row="8" Margin="15,5,15,5" Grid.ColumnSpan="2">
-                <TextBox x:Name="txtMedia" VerticalAlignment="Center" IsEnabled="False"/>
-
-                <Button x:Name="btnUpload" Content="{DynamicResource Upload}" Width="100" 
-            HorizontalAlignment="Right" VerticalAlignment="Center" 
-            Margin="0,0,5,0" Click="btnUpload_Click"/>
-            </Grid>
-
-            <Button x:Name="btnSubmit" Content="{DynamicResource Submit}" Width="150" Grid.Column="7" Grid.Row="11" Margin="32,1,19,8" Click="btnSubmit_Click" Grid.RowSpan="2"/>
-            <Button x:Name="btnLoad" Content="{DynamicResource Load}" Width="150" Grid.Column="4" Grid.Row="10" Grid.ColumnSpan="1" Margin="15,15,15,15" Click="btnLoad_Click"/>
-            <Button x:Name="btnU" Content="{DynamicResource Upload}" Width="150" Grid.Column="5" Grid.Row="10" Grid.ColumnSpan="1" Margin="15,15,15,15" Click="btnUpload_Click"/>
-
-            <ScrollViewer Grid.Column="6" Margin="0,25,26,17" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden" Grid.RowSpan="7" Grid.Row="1" Grid.ColumnSpan="2">
-                <Grid>
-                    <ItemsControl x:Name="UploadingFilesList" Margin="0,0,3,35" Foreground="Black">
-                        <TextBlock Text="{DynamicResource Attachments}" FontSize="20" FontWeight="SemiBold"/>
+            <!--<Grid Grid.Column="4" Grid.Row="8"  Margin="15,5,15,5" Grid.ColumnSpan="2" Background="AliceBlue">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    <ItemsControl x:Name="UploadingFilesList" MinHeight="45" Margin="10" Foreground="DarkOliveGreen">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>                       
                     </ItemsControl>
-                </Grid>
-            </ScrollViewer>
+                </ScrollViewer>               
+            </Grid>-->
+            <Grid Grid.Column="4" Grid.Row="8"  Margin="15,5,15,5" Grid.ColumnSpan="2" >
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    <ListBox x:Name="UploadingFilesList" MinHeight="45" Margin="10" Background="AliceBlue">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ListBox>
+                </ScrollViewer>
+            </Grid>
+            <Button x:Name="btnSubmit" Content="{DynamicResource Submit}" Width="150" Grid.Column="5" Grid.Row="11" Margin="32,1,19,8" Click="btnSubmit_Click" Grid.RowSpan="2"/>
+
         </Grid>
     </Border>
 </Page>

@@ -22,11 +22,11 @@
 
 
 
-
+            <!--Button Style -->
             <Style TargetType="Button">
-                <Setter Property="Background" Value="{DynamicResource PrimaryBlueColor}"/>
+                <Setter Property="Background" Value="{DynamicResource OtherBlueColor}"/>
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryTextColor}"/>
-                <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBlueColor}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource OtherBlueColor}"/>
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="Padding" Value="10 5"/>
                 <Setter Property="FontSize" Value="16"/>
@@ -42,11 +42,11 @@
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="{DynamicResource PrimaryBlueColor}"/>
+                                    <Setter Property="Background" Value="{DynamicResource OtherBlueColor}"/>
                                     <Setter Property="Foreground" Value="{DynamicResource PrimaryTextColor}"/>
                                 </Trigger>
                                 <Trigger Property="IsPressed" Value="True">
-                                    <Setter Property="Background" Value="{DynamicResource PrimaryBlueColor}"/>
+                                    <Setter Property="Background" Value="{DynamicResource OtherBlueColor}"/>
                                     <Setter Property="Foreground" Value="{DynamicResource PrimaryTextColor}"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
@@ -54,7 +54,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-
+            <!--TextBox Style -->
             <Style TargetType="TextBox">
                 <Setter Property="Background" Value="Transparent" />
                 <Setter Property="Foreground" Value="#384756" />
@@ -85,7 +85,7 @@
                 </Setter>
             </Style>
 
-
+            <!--Password Box Style -->
             <Style TargetType="PasswordBox">
                 <Setter Property="Background" Value="Transparent" />
                 <Setter Property="Foreground" Value="#384756" />
@@ -116,8 +116,8 @@
                 </Setter>
             </Style>
 
-
-
+          
+            <!--Progress Bar Style -->
             <SolidColorBrush x:Key="ProgressBar.Progress" Color="#FF06B025"/>
             <SolidColorBrush x:Key="ProgressBar.Background" Color="#FFE6E6E6"/>
             <SolidColorBrush x:Key="ProgressBar.Border" Color="#FFBCBCBC"/>

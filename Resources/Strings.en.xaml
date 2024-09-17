@@ -41,6 +41,7 @@
     <sys:String x:Key="Category">Category</sys:String>
     <sys:String x:Key="Date">Date</sys:String>
     <sys:String x:Key="IssueDetails">Issue Details</sys:String>
+    <sys:String x:Key="ReportTitle">Report Title</sys:String>
 
     <!-- Error Messages -->
     <sys:String x:Key="ErrorEmptyFields">Please fill in all fields</sys:String>
@@ -53,11 +54,11 @@
     <sys:String x:Key="ErrorInvalidIDNumber">Invalid ID number</sys:String>
 
     <!-- Miscellaneous -->
-    <sys:String x:Key="WelcomeMessage">Welcome to the municipal application</sys:String>
+    <sys:String x:Key="WelcomeMessage">Welcome to the municipal app</sys:String>
     <sys:String x:Key="ReportingIssue">Reporting an issue</sys:String>
     <sys:String x:Key="Attachments">Attachments</sys:String>
     <sys:String x:Key="ReportSubmitted">Issue reported</sys:String>
-    <sys:String x:Key="LanguagePreference">Language preference</sys:String>
+    <sys:String x:Key="LanguagePreference">Language Preference</sys:String>
     <sys:String x:Key="ForgotPassword">Forgot Password?</sys:String>
     <sys:String x:Key="AlreadyHaveAccount">Already have an account?</sys:String>
     <sys:String x:Key="CreateNewAccount">Create new account</sys:String>
@@ -67,7 +68,6 @@
     <sys:String x:Key="LocalEventsAndAnnouncements">Local Events and Announcements</sys:String>
     <sys:String x:Key="ServiceRequestStatus">Service Request Status</sys:String>
     <sys:String x:Key="ServiceRequest">Service Request</sys:String>
-
     <sys:String x:Key="Set">Settings</sys:String>
     <sys:String x:Key="Logout">Logout</sys:String>
 

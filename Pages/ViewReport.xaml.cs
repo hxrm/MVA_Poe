@@ -1,4 +1,5 @@
-﻿using MVA_Poe.Classes;
+﻿using MVA_poe.Controls;
+using MVA_Poe.Classes;
 using MVA_Poe.Controls;
 using System;
 using System.Collections.Generic;
@@ -27,67 +28,60 @@ namespace MVA_poe.Pages
     {
         public ObservableCollection<FileDetail> AttachListItems { get; set; }
         public ObservableCollection<Image> ImageListItems { get; set; }
+        private List<Report> reports =  new List<Report>();
+        
         public ViewReport()
         {
+
+                     
             InitializeComponent();
             AttachListItems = new ObservableCollection<FileDetail>(); 
             ImageListItems = new ObservableCollection<Image>();
-            LoadReport();
-            pList.ItemsSource = AttachListItems;
-            ImageList.ItemsSource = ImageListItems;
+            GetData();
+           
         }
 
-        public void LoadReport()
+        private void ReportList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Example user ID and report number
-            int userId = 1; // Replace with actual user ID
-            int reportNumber = 1002; // Replace with actual report number
-
-            // Retrieve report data from the database
-            List<Report> reports = GetReportsFromDatabase(userId, reportNumber);
-
-            // Add each report to the UploadingFilesList
+            LoadReportData();
+            
+        }
+        private void GetData()
+        {
+            int userId = DBHelper.userID;
+            List<String> reportNames = new List<String>();
+            
+            using (var context = new AppDbContext())
+            {
+                reports = context.Reports
+                    .Where(r => r.userId == userId)//
+                    .ToList();
+            }
             foreach (var report in reports)
             {
-                UploadingFilesList.Items.Add(report);
+                reportNames.Add(report.reportName);
+            }
+            ReportList.ItemsSource = reportNames;
+        }
+        private void LoadReportData()
+        {
+            int userId = DBHelper.userID; 
+            int reportNumber = ReportList.SelectedIndex;
+            int searchID = this.reports[reportNumber].reportID;
+          
+            List<Report> reports = GetReportsFromDatabase(userId, searchID);
+            ReportInfo reportInfo = new ReportInfo();
 
+            // Add each report to the UploadingFilesList
+            UploadingFilesList.Items.Clear();
+            foreach (var report in reports)
+            {
+               reportInfo.PopulateReportDisplay(report);
+               UploadingFilesList.Items.Add(reportInfo);
               
-                 foreach (var attachment in report.Attachments)
-                 {
-                    if (attachment.FileName.EndsWith(".png") || attachment.FileName.EndsWith(".jpeg") || attachment.FileName.EndsWith(".jpg"))
-                    {
-                        // Convert byte array to BitmapImage
-                        BitmapImage image = new BitmapImage();
-                        using (MemoryStream ms = new MemoryStream(attachment.FileContent))
-                        {
-                            image.BeginInit();
-                            image.StreamSource = ms;
-                            image.CacheOption = BitmapCacheOption.OnLoad;
-                            image.EndInit();
-                        }
-                        // Create Image control and set its source
-                        Image imagePreview = new Image();
-                        imagePreview.Source = image;
-                        // Add the Image control to the collection
-                        ImageListItems.Add(imagePreview);
-
-                    }
-                    else 
-                    {
-                        AttachListItems.Add(new FileDetail()
-                        {
-                            FileName = attachment.FileName,
-                            FileSize = string.Format("{0} {1}", (attachment.FileSize).ToString("0.0"), "Mb"),
-                            UploadProgress = 100
-                        });
-                        
-                    }
-                   //Save to File in app
-                }
-
             }
 
-        }
+        }       
 
         // Example method to retrieve reports from the database
         private List<Report> GetReportsFromDatabase(int userId, int reportNumber)
@@ -113,6 +107,7 @@ namespace MVA_poe.Pages
             }
 
             return reports;
-        }
+        }      
+     
     }
 }

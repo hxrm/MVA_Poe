@@ -22,81 +22,23 @@
                     <DropShadowEffect BlurRadius="30" ShadowDepth="5" Direction="-130" Opacity="0.1"/>
                 </Border.Effect>
             </Border>
+            <!--Title-->
+            <StackPanel Orientation="Horizontal" Margin="20 30 10 -4">
+                <TextBlock Text="{DynamicResource Report}"  FontSize="30" FontWeight="Bold" Foreground="{DynamicResource TextSecundaryColor}" Margin="15 0 0 0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="ReportList" Width="350" Margin="50 2 50 0"  SelectionChanged="ReportList_SelectionChanged"></ComboBox>
+            </StackPanel>
+            <Separator Grid.Row="1" Height="0.7" Margin="8,12,-2,377" Background="Silver"/>
 
             <!--Grid to hold the ListView-->
             <Grid Grid.Row="1" Grid.Column="3" Grid.RowSpan="6" Margin="30 40 30 50">
+
+
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <StackPanel>
-                        <ListView x:Name="UploadingFilesList" Margin="10" MinWidth="600">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Border BorderBrush="Gray" BorderThickness="1" Margin="5" Padding="10" MinWidth="600">
-                                        <StackPanel>
-                                            <TextBlock Text="Report ID:" FontWeight="Bold"/>
-                                            <TextBlock Text="{Binding reportID}" Margin="0,0,0,10"/>
-
-                                            <TextBlock Text="User ID:" FontWeight="Bold"/>
-                                            <TextBlock Text="{Binding userID}" Margin="0,0,0,10"/>
-
-                                            <TextBlock Text="Title:" FontWeight="Bold"/>
-                                            <TextBlock Text="{Binding reportName}" Margin="0,0,0,10"/>
-
-                                            <TextBlock Text="Description:" FontWeight="Bold"/>
-                                            <TextBlock Text="{Binding reportDesc}" Margin="0,0,0,10"/>
-
-                                            <TextBlock Text="Location:" FontWeight="Bold"/>
-                                            <TextBlock Text="{Binding reportLoc}" Margin="0,0,0,10"/>
-
-                                            <TextBlock Text="Date Created:" FontWeight="Bold"/>
-                                            <TextBlock Text="{Binding reportDate}" Margin="0,0,0,10"/>
-
-                                           
-                                            <!-- Nested ListView for Attachments -->
-                                            <!--<ListView ItemsSource="{Binding Attachments}" Margin="10" MinWidth="600">
-                                                <ListView.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="5" Padding="10" MinWidth="600">
-                                                            <StackPanel>
-                                                                <TextBlock Text="Attachment ID:" FontWeight="Bold"/>
-                                                                <TextBlock Text="{Binding attachmentID}" Margin="0,0,0,10"/>
-
-                                                                <TextBlock Text="File Name:" FontWeight="Bold"/>
-                                                                <TextBlock Text="{Binding FileName}" Margin="0,0,0,10"/>
-
-                                                                <TextBlock Text="File Size:" FontWeight="Bold"/>
-                                                                <TextBlock Text="{Binding FileSize}" Margin="0,0,0,10"/>
-                                                            </StackPanel>
-                                                        </Border>
-                                                    </DataTemplate>
-                                                </ListView.ItemTemplate>
-                                            </ListView>-->
-                                        </StackPanel>
-                                    </Border>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                        <ItemsControl x:Name="pList" Margin="30,0,50,30" Height="100" Width="640">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding FileName}" FontWeight="Bold"/>
-                                        <TextBlock Text="{Binding FileSize}" Margin="0,0,0,10"/>
-                                        <ProgressBar Value="{Binding UploadProgress}" Height="20"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                        <ItemsControl x:Name="ImageList" Margin="30,0,50,30" Height="100" Width="640">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding FileName}" FontWeight="Bold"/>
-                                        <TextBlock Text="{Binding FileSize}" Margin="0,0,0,10"/>
-                                        <ProgressBar Value="{Binding UploadProgress}" Height="20"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                    <StackPanel Orientation="Vertical">
+                        <!--Report Info-->
+                        <ListView x:Name="UploadingFilesList" Margin="10" HorizontalAlignment="Center" MinWidth="600">
+                           
+                        </ListView>                     
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
@@ -117,11 +59,6 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <!--Title-->
-                <StackPanel Orientation="Horizontal" Margin="20 30 10 -6">
-                    <TextBlock Text="{DynamicResource Report}"  FontSize="30" FontWeight="Bold" Foreground="{DynamicResource TextSecundaryColor}" Margin="15 0 0 0" VerticalAlignment="Top"/>
-                </StackPanel>
-                <Separator Grid.Row="1" Grid.ColumnSpan="2" Height="0.7" Margin="-20 20" Background="Silver"/>
 
                 <!--Buttons-->
                 <Border Grid.Column="1" Grid.Row="6" CornerRadius="0 0 10 10">

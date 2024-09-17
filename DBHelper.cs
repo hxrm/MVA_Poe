@@ -11,15 +11,19 @@ namespace MVA_poe
     {
         // VARIABLES
         public static int userID;
+        public static string lang;
+        public static string email;
         // Default constructor
         public DBHelper() { }
 
-        public DBHelper(int inputUser)
+        public DBHelper(int inputUser, string inputLang, string inputEmail)
         {
             userID = inputUser;
-        //    FindModulesByUserID();
-          //  FindSemesterByUserID();
+            lang = inputLang;
+            email = inputEmail; 
+
         }
+
 
     }
 }

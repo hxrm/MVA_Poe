@@ -66,7 +66,7 @@
                                 <PasswordBox x:Name="txtPas" VerticalAlignment="Center" Margin="8,20,40,20"/>                           </Grid>
 
                                          
-                            <Border Grid.Column="1" Grid.Row="6" CornerRadius="0 0 10 10" Margin="15,0,15,20">
+                            <Border Grid.Column="0" Grid.Row="6" CornerRadius="0 0 10 10" Margin="15,0,15,20" Grid.ColumnSpan="2">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                     <Button x:Name="btnSubmit" Content="{DynamicResource Submit}" Width="150" Margin="15,15,15,15" Click="btnSubmit_Click">
                                         <Button.Effect>

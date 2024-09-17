@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,22 +16,32 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Interop;
 
 namespace MVA_Poe
 {
     public partial class MainWindow : Window
     {
         DBHelper dBHelper;
+
+        public MainWindow()     
+        {
+
+            InitializeComponent();
+            DBHelper.userID = 1;
+        }
         public MainWindow(DBHelper db)
         {
             InitializeComponent();
-            SetLanguage("en");            
+            SetLanguage(DBHelper.lang);            
             this.dBHelper = db;
+           
             if (fContainer.CurrentSource == null)
             {
                 fContainer.Navigate(new System.Uri("Pages/Home.xaml", UriKind.Relative));
             }
         }
+        
         private void SetLanguage(string cultureCode)
         {
             CultureInfo.CurrentUICulture = new CultureInfo(cultureCode);
@@ -218,7 +229,16 @@ namespace MVA_Poe
 
         private void btnSetting_Click(object sender, RoutedEventArgs e)
         {
-
+            // Check if the current page is not the CreateReport page
+            if (fContainer.CurrentSource == null || !fContainer.CurrentSource.OriginalString.EndsWith("Profile.xaml"))
+            {
+                // Navigate to the CreateReport page
+                fContainer.Navigate(new System.Uri("Pages/Profile.xaml", UriKind.Relative));
+            }
+            else if (fContainer.CurrentSource.OriginalString.EndsWith("Profile.xaml"))
+            {
+                fContainer.Navigate(new System.Uri("Pages/Home.xaml", UriKind.Relative));
+            }
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
@@ -227,6 +247,24 @@ namespace MVA_Poe
             Auth auth = new Auth();
             auth.Show();
             Window.GetWindow(this).Close(); // Close the current window
+        }
+
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                ReleaseCapture();
+                IntPtr windowHandle = new WindowInteropHelper(this).Handle;
+                SendMessage(windowHandle, 0x112, 0xf012, 0);
+            }
         }
     }
 }

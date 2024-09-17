@@ -20,6 +20,8 @@ namespace MVA_Poe.Controls
     /// </summary>
     public partial class FileDetail : UserControl
     {
+        public bool closed;
+
 
         public FileDetail()
         {
@@ -68,5 +70,12 @@ namespace MVA_Poe.Controls
 
         public static readonly DependencyProperty UploadSpeedProperty =
             DependencyProperty.Register("UploadSpeed", typeof(int), typeof(FileDetail));
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+           this.Visibility = Visibility.Collapsed;
+           closed = true;
+            
+        }
     }
 }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MVA_poe;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,26 @@ namespace MVA_Poe.Pages
         public Home()
         {
             InitializeComponent();
+            SetLanguage(DBHelper.lang);
+        }
+
+        private void SetLanguage(string cultureCode)
+        {
+            CultureInfo.CurrentUICulture = new CultureInfo(cultureCode);
+            ResourceDictionary dict = new ResourceDictionary();
+            switch (cultureCode)
+            {
+                case "af":
+                    dict.Source = new Uri("Resources/Strings.af.xaml", UriKind.Relative);
+                    break;
+                case "isx":
+                    dict.Source = new Uri("Resources/Strings.isx.xaml", UriKind.Relative);
+                    break;
+                default:
+                    dict.Source = new Uri("Resources/Strings.en.xaml", UriKind.Relative);
+                    break;
+            }
+            this.Resources.MergedDictionaries.Add(dict);
         }
     }
 }

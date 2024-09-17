@@ -23,6 +23,8 @@ using System.Collections.ObjectModel;
 using System.Collections;
 using System.Runtime.InteropServices.ComTypes;
 using MVA_poe.Classes;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace MVA_Poe.Pages
 {
@@ -47,11 +49,8 @@ namespace MVA_Poe.Pages
         {
             InitializeComponent();
             PopulateCategoryComboBox();
-            AttachListItems = new ObservableCollection<FileDetail>();
-
-            SetLanguage("en"); // Set default language
-
-
+            SetLanguage(DBHelper.lang);
+            AttachListItems = new ObservableCollection<FileDetail>();     
             BitmapImage image = new BitmapImage();
             image.BeginInit();
             image.UriSource = new Uri("C:\\Users\\User\\Downloads\\Android Icons  (8).png");
@@ -119,6 +118,9 @@ namespace MVA_Poe.Pages
                 context.Reports.Add(report);
                 context.SaveChanges();
 
+                
+                Test();
+
                 // Set the reportID for each attachment and save them to the database
                 foreach (var attachment in attachments)
                 {
@@ -133,6 +135,23 @@ namespace MVA_Poe.Pages
             {
                 MessageBox.Show("Please fill in all the required fields.");
             }
+        }
+        public void Test()
+        {
+            int count = AttachListItems.Count;
+            for (int i = 0; i < count; i++)
+            {
+                if (AttachListItems[i].closed) 
+                {
+                    attachments.Remove(attachments.Find(x => x.FileName == AttachListItems[i].FileName));
+                  //  AttachListItems.Remove(AttachListItems[i]);
+                }
+            }
+
+
+            
+           
+                      
         }
 
         private void SetLanguage(string cultureCode)
@@ -214,24 +233,31 @@ namespace MVA_Poe.Pages
                     byte[] fileContent = File.ReadAllBytes(files[i]);
 
                     //Upload to list and make file object 
-                    UploadingFilesList.Items.Add(new FileDetail()
+                    var fileDetail = new FileDetail()
                     {
                         FileName = filename,
                         //Convert bytes to Mb => bytes / 1.049e+6
                         FileSize = string.Format("{0} {1}", (fileInfo.Length / 1.049e+6).ToString("0.0"), "Mb"),
                         UploadProgress = 100
 
-                    });
+                    };
+
+                 
+                   
+                 
+                    UploadingFilesList.Items.Add(fileDetail);
+                   
+                    AttachListItems.Add(fileDetail);
 
                   
                     //Upload to database and make file object
-                    var fileDetail = new Attachment
+                    var attach = new Attachment
                     {
                         FileName = filename,
                         FileSize = fileInfo.Length / 1.049e+6, // Convert bytes to MB
                         FileContent = fileContent
                     };
-                    attachments.Add(fileDetail);
+                    attachments.Add(attach);
 
                     validAttachment = true;
                  

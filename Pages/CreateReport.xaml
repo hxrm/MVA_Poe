@@ -32,7 +32,7 @@
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
             <TextBlock Text="{DynamicResource CreateNewReport}"  FontSize="30" Grid.Column="4" Foreground="{DynamicResource PrimaryTextColor}" FontWeight="Bold"
-            HorizontalAlignment="Center" Grid.RowSpan="2" Margin="0 20 0 15"/>
+            HorizontalAlignment="Center" Grid.RowSpan="2" Margin="0 20 100 15"/>
 
             <!--Input-->
             <Grid Grid.Column="2" Grid.Row="2" MinWidth="60" Grid.ColumnSpan="1" Margin="70 0 0 0">

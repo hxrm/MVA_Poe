@@ -160,7 +160,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Home.xaml">
+    <Page Include="Pages\Events.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -173,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Register.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Service.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,8 +225,8 @@
     <Compile Include="Pages\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Home.xaml.cs">
-      <DependentUpon>Home.xaml</DependentUpon>
+    <Compile Include="Pages\Events.xaml.cs">
+      <DependentUpon>Events.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -232,6 +236,9 @@
     </Compile>
     <Compile Include="Pages\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Service.xaml.cs">
+      <DependentUpon>Service.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ViewReport.xaml.cs">
       <DependentUpon>ViewReport.xaml</DependentUpon>
@@ -290,6 +297,23 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\userIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\block1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\img1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\COMMUNITY.png" />
+    <Resource Include="Resources\EVENTS.png" />
+    <Resource Include="Resources\SERVICE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\eventBC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\serviceBC.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

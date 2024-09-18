@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVA_poe"
         mc:Ignorable="d"
-        Title="Auth" Height="650" Width="1300"
+        Title="Auth" Height="650" Width="1000"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="Transparent" AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip" FontFamily="Poppins">
@@ -18,78 +18,13 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
-            <Border Grid.Column="0"
-                    Background="{DynamicResource SecundaryBackgroundColor}"
-                    CornerRadius="8 0 0 8" Height="650" VerticalAlignment="Bottom">
-                <Grid x:Name="GridNav" Width="250">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="60"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-
-
-                    <Grid Grid.Row="0" Margin="2 10 0 0">
-                        <Border 
-                            Margin="4 0 0 0"
-                            Width="50" Height="50"
-                            HorizontalAlignment="Left">
-                            <Border.Background>
-                                <ImageBrush ImageSource="Resources/1.png" Stretch="Uniform"/>
-                            </Border.Background>
-                        </Border>
-
-                        <Label Content="Civic Connect"
-                               Foreground="{DynamicResource PrimaryTextColor}"
-                               FontWeight="Bold"
-                               FontSize="16"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Left"
-                               Margin="60 0 0 0"/>
-                    </Grid>
-
-                    <!-- Start: MenuItem -->
-                    <StackPanel Grid.Row="1" Margin="-1 40 0 20">
-                        <Button x:Name="btnRegister" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnRegister_MouseEnter" MouseLeave="btnRegister_MouseLeave" Click="btnRegister_Click">
-                            <Button.Content>
-                                <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource plus}" IconWidth="16" Text="Register" VerticalAlignment="Center"/>
-                            </Button.Content>
-                        </Button>
-                        <Button x:Name="btnLogin" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnLogin_MouseEnter" MouseLeave="btnLogin_MouseLeave" Click="btnLogin_Click">
-                            <Button.Content>
-                                <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource users}" IconWidth="16" Text="Login" VerticalAlignment="Center"/>
-                            </Button.Content>
-                        </Button>
-
-                    </StackPanel>
-
-
-                    <!-- Start: Popup User Control -->
-                    <Popup x:Name="Popup" AllowsTransparency="True" HorizontalOffset="0" VerticalOffset="10">
-                        <Popup.Child>
-                            <ctls:UserPopup x:Name="Header" Foreground="{DynamicResource PrimaryTextColor}"/>
-                        </Popup.Child>
-                    </Popup>
-
-                    <!-- End: Popup User Control -->
-
-                </Grid>
-            </Border>
-
-
-           
-
-          
-
+            
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="110"/>
                     <RowDefinition Height="83*"/>
                     <RowDefinition Height="507*"/>
-                </Grid.RowDefinitions>
-
-                
+                </Grid.RowDefinitions>                
 
                 <!-- Start: Button Close | Restore | Minimize -->
                 <StackPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Height="30" Orientation="Horizontal" FlowDirection="RightToLeft">
@@ -108,13 +43,35 @@
                     </Button>
                     <Button x:Name="btnMinimize" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource minimize}" Click="btnMinimize_Click"/>
                 </StackPanel>
-            
+
+                <Grid Grid.Row="0" Margin="2 35 0 0">
+                    <Border Background="{DynamicResource SecundaryBackgroundColor}" MouseDown="Border_MouseDown"></Border>
+
+                    <Border Margin="30 0 15 0"  Width="55" Height="55"  HorizontalAlignment="Left">
+                        <Border.Background>
+                            <ImageBrush ImageSource="Resources/1.png" Stretch="Uniform"/>
+                        </Border.Background>
+                    </Border>
+
+                    <Label Content="Civic Connect"
+                               Foreground="{DynamicResource PrimaryTextColor}"
+                               FontWeight="Thin"
+                               FontSize="25"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Margin="90 0 0 0"/>
+                </Grid>
+                <Border>
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="30" ShadowDepth="10" Direction="-130" Opacity="0.8"/>
+                </Border.Effect>
+                </Border>
 
                 <!-- End: Button Close | Restore | Minimize -->
 
                 <Frame Grid.Row="1"
                        Name="fContainer"
-                       Margin="20,20,20,20"
+                       Margin="20,0,20,20"
                        NavigationUIVisibility="Hidden" Grid.RowSpan="2">
                 </Frame>
             </Grid>

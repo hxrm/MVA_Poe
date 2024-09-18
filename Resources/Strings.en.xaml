@@ -22,8 +22,6 @@
     <sys:String x:Key="EnterEmail">Enter your email address</sys:String>
     <sys:String x:Key="EnterLocation">Enter location</sys:String>
     <sys:String x:Key="EnterDescription">Enter description</sys:String>
-
-    <!-- Newly Added Prompts -->
     <sys:String x:Key="EnterFirstName">Enter your first name</sys:String>
     <sys:String x:Key="EnterLastName">Enter your last name</sys:String>
     <sys:String x:Key="EnterIDNumber">Enter your ID number</sys:String>
@@ -44,7 +42,7 @@
     <sys:String x:Key="ReportTitle">Report Title</sys:String>
 
     <!-- Error Messages -->
-    <sys:String x:Key="ErrorEmptyFields">Please fill in all fields</sys:String>
+    <sys:String x:Key="ErrorEmptyFields">Please fill out all fields</sys:String>
     <sys:String x:Key="ErrorInvalidCredentials">Invalid credentials</sys:String>
     <sys:String x:Key="ErrorConnection">Connection error</sys:String>
     <sys:String x:Key="ErrorEmailRequired">Email address is required</sys:String>
@@ -54,7 +52,7 @@
     <sys:String x:Key="ErrorInvalidIDNumber">Invalid ID number</sys:String>
 
     <!-- Miscellaneous -->
-    <sys:String x:Key="WelcomeMessage">Welcome to the municipal app</sys:String>
+    <sys:String x:Key="WelcomeMessage">Welcome to the municipal application</sys:String>
     <sys:String x:Key="ReportingIssue">Reporting an issue</sys:String>
     <sys:String x:Key="Attachments">Attachments</sys:String>
     <sys:String x:Key="ReportSubmitted">Issue reported</sys:String>
@@ -65,10 +63,28 @@
     <sys:String x:Key="CreateNewReport">Create new report</sys:String>
     <sys:String x:Key="Reports">Reports</sys:String>
     <sys:String x:Key="LocalEvents">Local Events</sys:String>
+    <sys:String x:Key="LocalAnnouncements">Local Announcements</sys:String>
     <sys:String x:Key="LocalEventsAndAnnouncements">Local Events and Announcements</sys:String>
     <sys:String x:Key="ServiceRequestStatus">Service Request Status</sys:String>
     <sys:String x:Key="ServiceRequest">Service Request</sys:String>
-    <sys:String x:Key="Set">Settings</sys:String>
+    <sys:String x:Key="Profile">Profile</sys:String>
     <sys:String x:Key="Logout">Logout</sys:String>
+    <sys:String x:Key="CommunityForum">Community Forum</sys:String>
+    <sys:String x:Key="GetStarted">Get Started Today!</sys:String>
+    <sys:String x:Key="CreateNewReportHere">Create new report here</sys:String>
+    <sys:String x:Key="RecentReport">Recent Report</sys:String>
+    <sys:String x:Key="ReportName">Report Name</sys:String>
+    <sys:String x:Key="DateLogged">Date Logged</sys:String>
+    <sys:String x:Key="Progress">Progress</sys:String>
+    <sys:String x:Key="Contribute">Contribute</sys:String>
+    <sys:String x:Key="DiscoverMore">Discover More</sys:String>
+
+    <!-- Announcement Messages -->
+    <sys:String x:Key="EA_MSG">We’re thrilled to announce that Local Events and Announcements will soon be live on the Municipal Services Application!</sys:String>
+    <sys:String x:Key="EA_MSG1">Stay up to date with the latest happenings in your community, including festivals, meetings, and important municipal announcements.</sys:String>
+    <sys:String x:Key="S_MSG1">Track and manage your service requests with ease, whether it's for garbage collection, street repairs, or other municipal services.</sys:String>
+    <sys:String x:Key="S_MSG">We’re thrilled to announce that Service Requests will soon be live on the Municipal Services Application!</sys:String>
+    <sys:String x:Key="Default_MSG">Please select a report to view details.</sys:String>
+    <sys:String x:Key="UPD_MSG">User Profile Details</sys:String>
 
 </ResourceDictionary>

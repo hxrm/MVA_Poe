@@ -8,61 +8,46 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CreateReport" Foreground="{DynamicResource SecundaryBackgroundColor}">
 
-    <Border CornerRadius="50" Background="White">
-        <Border.Effect>
-            <DropShadowEffect BlurRadius="30" ShadowDepth="5" Direction="-130" Opacity="0.1"/>
-        </Border.Effect>
+    <!-- Outer Border -->
+    <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}" Padding="10">
+        <!-- Existing Border -->
+        <Border CornerRadius="20" Background="White" Height="460">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" ShadowDepth="5" Direction="-130" Opacity="0.1"/>
+            </Border.Effect>
 
+            <Grid VerticalAlignment="Center" Width="800" Height="430">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="331*"/>
+                    <ColumnDefinition Width="44*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="389*"/>
+                    <RowDefinition Height="2"/>
+                    <RowDefinition Height="2"/>
+                    <RowDefinition Height="2"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
 
-        <Grid VerticalAlignment="Center" Margin="0" Width="800" MinHeight="390">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="331*"/>
-                <ColumnDefinition Width="44*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="90"/>
-                <RowDefinition Height="389*"/>
-                <RowDefinition Height="2"/>
-                <RowDefinition Height="2"/>
-                <RowDefinition Height="2"/>
-            </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Margin="21,0,9,23" Grid.ColumnSpan="2" Grid.Row="0" Height="60">
+                    <TextBlock Text="{DynamicResource Report}"  FontSize="30" FontWeight="Bold" Foreground="{DynamicResource SecundaryBackgroundColor}" Margin="15 0 0 0" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="ReportList" Width="470"   Margin="50 0 50 0" VerticalAlignment="Center"  SelectionChanged="ReportList_SelectionChanged"></ComboBox>
+                </StackPanel>
 
-            <!--Title-->
+                <Separator Height="20" Margin="15,69,5,0" VerticalAlignment="Top" Background="{DynamicResource PrimaryBlueColor}" Grid.ColumnSpan="2"/>
 
-            <StackPanel Orientation="Horizontal" Margin="21,7,9,23" Grid.ColumnSpan="2" Grid.Row="0" Height="60">
-                <TextBlock Text="{DynamicResource Report}"  FontSize="40" FontWeight="Bold" Foreground="{DynamicResource SecundaryBackgroundColor}" Margin="15 0 0 0" VerticalAlignment="Center"/>
-                <ComboBox x:Name="ReportList" Width="470"   Margin="50 0 50 0" VerticalAlignment="Center"  SelectionChanged="ReportList_SelectionChanged"></ComboBox>
-            </StackPanel>
-
-            <Separator Height="20" Margin="15,69,5,0" VerticalAlignment="Top" Background="{DynamicResource PrimaryBlueColor}" Grid.ColumnSpan="2"/>
-
-            <!--Grid to hold the ListView-->
-            <Grid Grid.Row="1" Margin="5 20 0 0" Grid.ColumnSpan="2">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" MinWidth="800" MinHeight="260" MaxHeight="300">
-                    <StackPanel Orientation="Vertical">
-                        <!--Report Info-->
-                        <ListView x:Name="UploadingFilesList" HorizontalAlignment="Center" MinWidth="780" MinHeight="270"/>
-                    </StackPanel>
-                </ScrollViewer>
+                <!--Grid to hold the ListView-->
+                <Grid Grid.Row="1" Margin="5 20 0 0" Grid.ColumnSpan="2">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"  MinHeight="260" MaxHeight="300">
+                        <StackPanel Orientation="Vertical" IsEnabled="False">
+                            <TextBlock x:Name="DefaultMessage" Text="{DynamicResource Default_MSG}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource TextSecundaryColor}" Visibility="Visible"/>
+                            <!--Report Info-->
+                            <ListView x:Name="UploadingFilesList" HorizontalAlignment="Center"  MinHeight="270" Visibility="Collapsed"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
             </Grid>
-
-            <!--<Grid Margin="4,0,-4,0" Width="750"  Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
-                --><!--Buttons--><!--
-                <Border Grid.Column="1" CornerRadius="0 0 10 10">
-                    --><!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                        <Button x:Name="btnSubmit" Content="{DynamicResource Submit}" Width="150" Margin="15,15,15,15">
-                            <Button.Effect>
-                                <DropShadowEffect BlurRadius="10" ShadowDepth="5" Direction="-130" Opacity="0.1"/>
-                            </Button.Effect>
-                        </Button>
-                        <Button Content="{DynamicResource Cancel}" Width="150" Margin="15,15,15,15">
-                            <Button.Effect>
-                                <DropShadowEffect BlurRadius="10" ShadowDepth="5" Direction="-130" Opacity="0.1"/>
-                            </Button.Effect>
-                        </Button>
-                    </StackPanel>--><!--
-                </Border>
-            </Grid>-->
-        </Grid>
+        </Border>
     </Border>
 </Page>

@@ -14,7 +14,7 @@
 
                 <!--Right Side-->
 
-                <Border Grid.Column="1" Background="AliceBlue" CornerRadius="0 0 0 5" >
+                <Border Grid.Column="1" Background="AliceBlue" CornerRadius="7" >
                     <Grid VerticalAlignment="Center" Margin="0" Width="750">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="61*"/>
@@ -22,7 +22,7 @@
                         </Grid.RowDefinitions>
 
                         <!--Main Layer -->
-                        <Border CornerRadius="7" Background="White" Margin="3,3,3,3" Grid.RowSpan="2" Width="750">
+                        <Border CornerRadius="15" Background="White" Grid.RowSpan="2" Width="750">
                             <Border.Effect>
                                 <DropShadowEffect BlurRadius="30" ShadowDepth="5" Direction="-130" Opacity="0.1"/>
                             </Border.Effect>
@@ -53,31 +53,33 @@
 
                             <Grid Grid.Column="0" Grid.Row="3" Margin="30,5,30,5" Grid.ColumnSpan="2">
                                 <StackPanel  Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource Email}" FontWeight="Bold" Margin="2,-5,6,20" Foreground="#97a5b4"  FontSize="14" />
+                                    <TextBlock Text="{DynamicResource Email}" FontWeight="Bold" Foreground="#97a5b4" FontSize="14" Margin="9 0 0 0" />
                                     <TextBlock x:Name="emailError" Visibility="Hidden" Text="" FontWeight="Light" Margin="0,-5,0,5" Foreground="Red"  FontSize="13"/>
                                 </StackPanel>
-                                <TextBox x:Name="txtEmail" VerticalAlignment="Center" Margin="8,20,40,0"/>
+                                <TextBox x:Name="txtEmail" VerticalAlignment="Center" Margin="8,25,40,0"/>
                             </Grid>
                             <Grid Grid.Column="0" Grid.Row="4" Margin="30,15,30,5" Grid.ColumnSpan="2">
                                 <StackPanel  Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource Password}" FontWeight="Bold" Margin="2,-5,6,20" Foreground="#97a5b4"  FontSize="14" />
+                                    <TextBlock Text="{DynamicResource Password}" FontWeight="Bold"  Foreground="#97a5b4"  FontSize="14"  Margin="9 0 0 40" />
                                     <TextBlock x:Name="passError" Visibility="Hidden" Text="" FontWeight="Light" Margin="0,-5,0,5" Foreground="Red"  FontSize="13"/>
                                 </StackPanel>
-                                <PasswordBox x:Name="txtPas" VerticalAlignment="Center" Margin="8,20,40,20"/>                           </Grid>
+                                <PasswordBox x:Name="txtPas" VerticalAlignment="Center" Margin="8,25,40,0"/>
+                            </Grid>
 
-                                         
-                            <Border Grid.Column="0" Grid.Row="6" CornerRadius="0 0 10 10" Margin="15,0,15,20" Grid.ColumnSpan="2">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button x:Name="btnSubmit" Content="{DynamicResource Submit}" Width="150" Margin="15,15,15,15" Click="btnSubmit_Click">
+
+                            <Border Grid.Column="0" Grid.Row="6" CornerRadius="0 0 10 10" Margin="15,0,5,0" Grid.ColumnSpan="2">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                    <Button x:Name="btnLogin" Content="{DynamicResource Login}" Width="224" Margin="15,15,15,15" Click="btnSubmit_Click" Height="43">
                                         <Button.Effect>
                                             <DropShadowEffect BlurRadius="10" ShadowDepth="5" Direction="-130" Opacity="0.1"/>
                                         </Button.Effect>
                                     </Button>
-                                    <Button Content="{DynamicResource Cancel}" Width="150" Margin="15,15,15,15">
-                                        <Button.Effect>
-                                            <DropShadowEffect BlurRadius="10" ShadowDepth="5" Direction="-130" Opacity="0.1"/>
-                                        </Button.Effect>
-                                    </Button>
+                                    <TextBlock HorizontalAlignment="Center" Margin="15,15,15,15" Foreground="{DynamicResource SecundaryBackgroundColor}" FontSize="15">
+                                        <Run Text="Don't have an account? " />
+                                        <Hyperlink Click="RegisterLink_Click" Foreground="{DynamicResource SecundaryIconColor}">
+                                            <Run Text="Register"/>
+                                        </Hyperlink>
+                                    </TextBlock>
                                 </StackPanel>
                             </Border>
                         </Grid>

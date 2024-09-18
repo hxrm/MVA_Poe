@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Profile">
 
-    <Border Background="{DynamicResource SecundaryBackgroundColor}">
+    <Border Background="{DynamicResource SecundaryBackgroundColor}" MinHeight="400" MinWidth="500">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="53"/>
@@ -20,13 +20,13 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="User Profile Details" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryTextColor}" Width="284" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource UPD_MSG}" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryTextColor}" Width="auto" VerticalAlignment="Center"/>
 
-            
-                <Border  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" MaxHeight="350" MaxWidth="800" BorderBrush="Black" BorderThickness="1" Padding="10" Background="AliceBlue" CornerRadius="10">
+           
+            <Border  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" MaxHeight="350" MaxWidth="800" BorderBrush="Black" BorderThickness="1" Padding="10" Background="AliceBlue" CornerRadius="10">
 
                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
-                    <StackPanel Orientation="Vertical" Margin="10" Background="AliceBlue" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Vertical" Margin="10" Background="AliceBlue" HorizontalAlignment="Left" Height="250">
                         <!-- User Information -->
                         <StackPanel Orientation="Horizontal" Margin="10">
                             <TextBlock Text="First Name" FontWeight="Bold" Width="100" FontSize="15"   VerticalAlignment="Center" Foreground="{DynamicResource TextFourthColor}" />
@@ -40,19 +40,15 @@
                         <StackPanel Orientation="Horizontal" Margin="10">
                             <TextBlock Text="Email" FontWeight="Bold" Width="100" FontSize="15" VerticalAlignment="Center" Foreground="{DynamicResource TextFourthColor}" />
                                 <TextBox x:Name="txtEmail" IsEnabled="False" Width="215" VerticalAlignment="Center" Background="White" Foreground="{DynamicResource PrimaryBackgroundColor}"/>
+                        </StackPanel>                         
                         </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="10">
-                                <TextBlock Text="ID Number" FontWeight="Bold" Width="100" FontSize="15" VerticalAlignment="Center" Foreground="{DynamicResource TextFourthColor}" />
-                                <TextBox x:Name="txtID" IsEnabled="False" Width="215" VerticalAlignment="Center" Background="White" Foreground="{DynamicResource PrimaryBackgroundColor}"/>
-                            </StackPanel>
+                    <StackPanel Orientation="Vertical"  HorizontalAlignment="Right" Height="250">
+                        <StackPanel Orientation="Horizontal" Margin="10">
+                            <TextBlock Text="ID Number" FontWeight="Bold" Width="100" FontSize="15" VerticalAlignment="Center" Foreground="{DynamicResource TextFourthColor}" />
+                            <TextBox x:Name="txtID" IsEnabled="False" Width="215" VerticalAlignment="Center" Background="White" Foreground="{DynamicResource PrimaryBackgroundColor}"/>
+                        </StackPanel>
 
-                        </StackPanel>
-                    <StackPanel Orientation="Vertical"  HorizontalAlignment="Right">                          
-                            <StackPanel Orientation="Horizontal" Margin="10">
-                                <TextBlock Text="Username" FontWeight="Bold" Width="100" FontSize="15" VerticalAlignment="Center" Foreground="{DynamicResource TextFourthColor}" />
-                                <TextBox x:Name="txtUsername" IsEnabled="False" Width="215" VerticalAlignment="Center" Background="White" Foreground="{DynamicResource PrimaryBackgroundColor}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="10">
+                        <StackPanel Orientation="Horizontal" Margin="10">
                                 <TextBlock Text="Address" FontWeight="Bold" Width="100" FontSize="15" VerticalAlignment="Center" Foreground="{DynamicResource TextFourthColor}" />
                                 <TextBox x:Name="txtAddress" IsEnabled="False" Width="215" VerticalAlignment="Center" Background="White" Foreground="{DynamicResource PrimaryBackgroundColor}"/>
                             </StackPanel>

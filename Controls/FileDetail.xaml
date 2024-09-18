@@ -6,8 +6,6 @@
              xmlns:local="clr-namespace:MVA_Poe.Controls"
              mc:Ignorable="d" 
              x:Name="this" Height="100" Width="247">
-
-
     <UserControl.Resources>
         <PathGeometry x:Key="DocIcon" Figures="M6 2C4.9057453 2 4 2.9057453 4 4L4
    20C4 21.094255 4.9057453 22 6 22L18 22C19.094255 22 20 21.094255 20
@@ -87,20 +85,7 @@ VerticalAlignment="Top" Click="Button_Click">
                             </Style>
                         </TextBlock.Style>
                     </TextBlock>
-
-                    <!--<TextBlock Grid.Row="2" HorizontalAlignment="Right">
-                        <TextBlock.Style>
-                            <Style TargetType="{x:Type TextBlock}">
-                                <Setter Property="Text" Value="{Binding UploadSpeed, ElementName=this, StringFormat={}{0}Kb/sec}"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding FallbackValue,  ElementName=pb}" Value="100">
-                                        <Setter Property="Text" Value=""/>
-                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>-->
+                    
                 </Grid>
             </Grid>
         </Border>

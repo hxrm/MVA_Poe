@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
+using MVA_poe.Pages;
 
 namespace MVA_poe.Classes
 {
@@ -39,9 +40,8 @@ namespace MVA_poe.Classes
                 if (!IsPasswordValid((string)e.NewValue))
                 {
                     // Display a message box indicating the password requirements
-                    MessageBox.Show("Password must contain at least 8 characters, including upper and lower case letters, a number, and a special character.");
-
-                    // Revert to the previous value (OldValue)
+                    MessageBox.Show("\n\n     Failed to login.\n \r\n                        \"Password must contain at least 8 characters, including upper and lower case letters, a number, and a special character. \n\n");
+                   // Revert to the previous value (OldValue)
                     SetPassword(passwordBox, (string)e.OldValue);
 
                     // Exit the method
@@ -76,4 +76,4 @@ namespace MVA_poe.Classes
             return System.Text.RegularExpressions.Regex.IsMatch(password, passwordPattern);
         }
     }// end class 
-}
+}//__---____---____---____---____---____---____---__.ooo END OF FILE ooo.__---____---____---____---____---____---____---__\\

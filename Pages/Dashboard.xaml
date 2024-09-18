@@ -5,11 +5,137 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MVA_Poe.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="500" d:DesignWidth="800"
       Title="Dashboard">
+    <StackPanel Margin="10 10 10 0" MaxWidth="900" HorizontalAlignment="Center">
 
-    <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
-        <TextBlock Text="Dashboard" FontSize="30" Foreground="{DynamicResource PrimaryTextColor}" FontWeight="Bold"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
-    </Border>
+        <!-- Contribute section -->
+        <StackPanel Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="Margin" Value="15 10 20 0"/>
+                </Style>
+            </StackPanel.Resources>
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <TextBlock Text="{DynamicResource Contribute}" Foreground="{DynamicResource PrimaryTextColor}" FontSize="25" Margin="20 0" FontWeight="Thin"/>
+                <StackPanel Orientation="Horizontal" Margin="10 0" HorizontalAlignment="Center">
+                    <Border Width="425" Height="200" MouseLeftButtonUp="Border_MouseLeftButtonUp">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                <GradientStop Color="#5bc3ff" Offset="0.0"/>
+                                <GradientStop Color="#3aa0ff" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border.Clip>
+                            <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0 0 425 200"/>
+                        </Border.Clip>
+                        <Grid>
+                            <!-- Image placed first to be in the background -->
+                            <Image Width="191" Height="200" Source="/Resources/img1.png" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                   Margin="0,0,-1,-34" RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="-13.884"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+
+                            <!-- StackPanel placed after the Image to be in the foreground -->
+                            <StackPanel Width="auto">
+                                <TextBlock Text="{DynamicResource GetStarted}" Foreground="White" FontSize="28"  Margin="15" />
+                                <TextBlock HorizontalAlignment="Left" Text="Create new report here" Margin="30 15"
+                                           Foreground="{DynamicResource PrimaryTextColor}" FontWeight="Thin" FontSize="18"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <!-- Recent report section -->
+                    <Border Width="250" Height="200" CornerRadius="10" Margin="0 12 0 0">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                <GradientStop Color="#4eff91" Offset="0.0"/>
+                                <GradientStop Color="#f0b73a" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <StackPanel Margin="2 10">
+                            <Border BorderBrush="white" BorderThickness="4" CornerRadius="10" Padding="10" Background="White">
+                                <StackPanel Width="185" HorizontalAlignment="Center">
+                                    <TextBlock Text="{DynamicResource RecentReport}" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource TextSecundaryColor}" Margin="0 0 0 10"/>
+                                    <TextBlock x:Name="txtReportTitle" Text="{DynamicResource ReportName}" FontSize="12" Foreground="{DynamicResource SecundaryBackgroundColor}" Margin="0 0 0 5"/>
+                                    <TextBlock x:Name="txtRportDate" Text="{DynamicResource DateLogged}" FontSize="12" Foreground="{DynamicResource SecundaryBackgroundColor}" Margin="0 0 0 10"/>
+                                    <TextBlock Text="{DynamicResource Progress}" FontSize="12" Foreground="{DynamicResource SecundaryBackgroundColor}" Margin="0 0 0 5"/>
+                                    <ProgressBar x:Name="ProgressBar" Width="200" Height="20" Value="50" Foreground="{DynamicResource SecundaryIconColor}" Background="LightGray"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Discover more section -->
+        <StackPanel Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="Margin" Value="15 10 34 0"/>
+                </Style>
+            </StackPanel.Resources>
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center"  >
+                <TextBlock Text="{DynamicResource DiscoverMore}" Foreground="{DynamicResource PrimaryTextColor}" FontSize="25" Margin="20 10 0 0" FontWeight="Thin"/>
+                <StackPanel Orientation="Horizontal" Margin="10" >
+                    <Border Width="200" Height="150" Background="#844eff" CornerRadius="10" MouseLeftButtonUp="Border1_MouseLeftButtonUp">
+                        <Grid>
+                            <Image Width="139" Height="105" Source="/Resources/events.png" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                   Margin="0,0,2,11" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="0">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="-1.285"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <StackPanel VerticalAlignment="Center" Margin="20" Panel.ZIndex="1">
+                                <TextBlock HorizontalAlignment="Left" Text="{DynamicResource LocalEvents}" Margin="15 5"
+                                           Foreground="{DynamicResource PrimaryTextColor}" FontWeight="Thin" FontSize="20" VerticalAlignment="Bottom"/>
+                                <TextBlock HorizontalAlignment="Left" Text="&amp;" Margin="50 0"
+                                           Foreground="{DynamicResource PrimaryTextColor}" FontWeight="Thin" FontSize="16" VerticalAlignment="Bottom"/>
+                                <TextBlock HorizontalAlignment="Left" Text="{DynamicResource LocalAnnouncements}" Margin="15 5"
+                                           Foreground="{DynamicResource PrimaryTextColor}" FontWeight="Thin" FontSize="20" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <!-- Service Request section -->
+                    <Border Width="200" Height="150" Background="#4e99ff" CornerRadius="10" MouseLeftButtonUp="Border2_MouseLeftButtonUp">
+                        <Grid>
+                            <Image Width="139" Height="105" Source="/Resources/service.png" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                   Margin="0,0,36,-7" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="0"/>
+                            <StackPanel VerticalAlignment="top" Margin="20" Panel.ZIndex="1" HorizontalAlignment="Right">
+                                <TextBlock HorizontalAlignment="Left" Text="{DynamicResource ServiceRequest}" Margin="15 5"
+                                           Foreground="{DynamicResource PrimaryTextColor}" FontWeight="Thin" FontSize="20"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <!-- Community Forum section -->
+                    <Border Width="200" Height="150" Background="#ecff4e" CornerRadius="10">
+                        <Grid>
+                            <Image Width="139" Height="105" Source="/Resources/community.png" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                   Margin="0,0,40,31" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="0"/>
+                            <StackPanel VerticalAlignment="Bottom" Margin="20" HorizontalAlignment="Right" Panel.ZIndex="1">
+                                <TextBlock Text="{DynamicResource CommunityForum}" Foreground="{DynamicResource PrimaryTextColor}" FontWeight="Thin" FontSize="20"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
 </Page>

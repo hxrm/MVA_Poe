@@ -5,52 +5,55 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVA_poe.Controls"
              mc:Ignorable="d"
-             d:DesignHeight="400" d:DesignWidth="600">
+             d:DesignHeight="400" d:DesignWidth="700" >
 
-    <Grid Margin="10" MinWidth="600">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <!-- Title Row -->
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" Padding="5" Background="{DynamicResource SecundaryIconColor}">
+        <Grid Margin="10" MinWidth="600" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <!-- Title Row -->
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
 
-        <!-- Title -->
-        <TextBlock x:Name="reportTitle" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Report: " Foreground="{DynamicResource SecundaryBackgroundColor}"
-                   FontSize="20" FontWeight="Bold" Margin="5" HorizontalAlignment="Center"/>
+            <!-- Title -->
+            <TextBlock x:Name="reportTitle" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Report: " Foreground="{DynamicResource PrimaryTextColor}"
+                       FontSize="20" FontWeight="Bold" Margin="5" HorizontalAlignment="Center"/>
 
-        <!-- Location -->
-        <Label Grid.Row="1" Grid.Column="0" Content="Location" Margin="5"/>
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="LocationTextBox" Margin="5" IsReadOnly="True"/>
+            <!-- Location -->
+            <Label Grid.Row="1" Grid.Column="0" Content="Location" Margin="5" Foreground="{DynamicResource PrimaryTextColor}" FontWeight="Bold" />
+            <TextBox Grid.Row="1"  Grid.Column="1" x:Name="LocationTextBox" Margin="5" IsReadOnly="True" Background="White" />
 
-        <!-- Date -->
-        <Label Grid.Row="2" Grid.Column="0" Content="Date" Margin="5"/>
-        <TextBox Grid.Row="2" Grid.Column="1" x:Name="DateTextBox" Margin="5" IsReadOnly="True"/>
+            <!-- Date -->
+            <Label Grid.Row="2" Grid.Column="0" Content="Date" Foreground="{DynamicResource PrimaryTextColor}" FontWeight="Bold" Margin="5"/>
+            <TextBox Grid.Row="2" Grid.Column="1" x:Name="DateTextBox" Margin="5" IsReadOnly="True" Background="White" />
 
-        <!-- Category -->
-        <Label Grid.Row="3" Grid.Column="0" Content="Category" Margin="5"/>
-        <TextBox Grid.Row="3" Grid.Column="1" x:Name="CategoryTextBox" Margin="5" IsReadOnly="True"/>
+            <!-- Category -->
+            <Label Grid.Row="3" Grid.Column="0" Content="Category" Foreground="{DynamicResource PrimaryTextColor}" FontWeight="Bold"  Margin="5"/>
+            <TextBox Grid.Row="3" Grid.Column="1" x:Name="CategoryTextBox" Margin="5" IsReadOnly="True" Background="White" />
 
-        <!-- Description -->
-        <Label Grid.Row="4" Grid.Column="0" Content="Description" Margin="5"/>
-        <TextBox Grid.Row="4" Grid.Column="1" x:Name="DescriptionTextBox" Margin="5" Height="100" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True"/>
+            <!-- Description -->
+            <Label Grid.Row="4" Grid.Column="0" Content="Description" Foreground="{DynamicResource PrimaryTextColor}" FontWeight="Bold"  Margin="5"/>
+            <TextBox Grid.Row="4" Grid.Column="1" x:Name="DescriptionTextBox" Margin="5" Background="White" Height="100" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True" MaxWidth="500"/>
 
-         <!--Media Attachments--> 
-        <Label Grid.Row="5" Grid.Column="0" Content="Media Attachments" Margin="5"/>
-        <ListBox Grid.Row="5" Grid.Column="1" x:Name="MediaAttachmentsListBox" Margin="5" 
-         ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" MinHeight="120">
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-        </ListBox>
-    </Grid>
-    </UserControl>
+            <!--Media Attachments-->
+            <Label Grid.Row="5" Grid.Column="0" Content="Media Attachments" Foreground="{DynamicResource PrimaryTextColor}" FontWeight="Bold" Margin="5"/>
+            <ListBox Grid.Row="5" Grid.Column="1" x:Name="MediaAttachmentsListBox" Margin="0 15" 
+             ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" MinHeight="120">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </Grid>
+    </Border>
+</UserControl>

@@ -22,17 +22,14 @@
     <sys:String x:Key="EnterEmail">Voer jou e-pos adres in</sys:String>
     <sys:String x:Key="EnterLocation">Voer ligging in</sys:String>
     <sys:String x:Key="EnterDescription">Voer beskrywing in</sys:String>
-
-    <!-- Newly Added Prompts -->
     <sys:String x:Key="EnterFirstName">Voer jou voornaam in</sys:String>
     <sys:String x:Key="EnterLastName">Voer jou van in</sys:String>
     <sys:String x:Key="EnterIDNumber">Voer jou ID nommer in</sys:String>
 
-
     <!-- Labels -->
     <sys:String x:Key="FirstName">Voornaam</sys:String>
     <sys:String x:Key="LastName">Van</sys:String>
-    <sys:String x:Key="IDNumber"> ID nommer</sys:String>
+    <sys:String x:Key="IDNumber">ID nommer</sys:String>
     <sys:String x:Key="UserName">Gebruikersnaam</sys:String>
     <sys:String x:Key="Password">Wagwoord</sys:String>
     <sys:String x:Key="ConfirmPassword">Bevestig Wagwoord</sys:String>
@@ -42,9 +39,7 @@
     <sys:String x:Key="Category">Kategorie</sys:String>
     <sys:String x:Key="Date">Datum</sys:String>
     <sys:String x:Key="IssueDetails">Probleem Besonderhede</sys:String>
-    <sys:String x:Key="ReportTitle">Report Titel</sys:String>
-
-
+    <sys:String x:Key="ReportTitle">Verslagtitel</sys:String>
 
     <!-- Error Messages -->
     <sys:String x:Key="ErrorEmptyFields">Vul asseblief alle velde in</sys:String>
@@ -67,14 +62,28 @@
     <sys:String x:Key="CreateNewAccount">Skep nuwe rekening</sys:String>
     <sys:String x:Key="CreateNewReport">Skep nuwe verslag</sys:String>
     <sys:String x:Key="Reports">Verslae</sys:String>
-    <sys:String x:Key="LocalEvents">Plaaslike geleenthede</sys:String>
+    <sys:String x:Key="LocalEvents">Plaaslike Geleenthede</sys:String>
+    <sys:String x:Key="LocalAnnouncements">Plaaslike Aankondigings</sys:String>
     <sys:String x:Key="LocalEventsAndAnnouncements">Plaaslike geleenthede en aankondigings</sys:String>
     <sys:String x:Key="ServiceRequestStatus">Diensversoekstatus</sys:String>
     <sys:String x:Key="ServiceRequest">Diensversoek</sys:String>
-    <sys:String x:Key="Set">Instellings</sys:String>
+    <sys:String x:Key="Profile">Profiel</sys:String>
     <sys:String x:Key="Logout">Teken uit</sys:String>
+    <sys:String x:Key="CommunityForum">Gemeenskapsforum</sys:String>
+    <sys:String x:Key="GetStarted">Begin vandag!</sys:String>
+    <sys:String x:Key="CreateNewReportHere">Skep nuwe verslag hier</sys:String>
+    <sys:String x:Key="RecentReport">Onlangse Verslag</sys:String>
+    <sys:String x:Key="ReportName">Verslag Naam</sys:String>
+    <sys:String x:Key="DateLogged">Datum Aangemeld</sys:String>
+    <sys:String x:Key="Progress">Vordering</sys:String>
+    <sys:String x:Key="Contribute">Dra by</sys:String>
+    <sys:String x:Key="DiscoverMore">Ontdek meer</sys:String>
 
-
-
+    <sys:String x:Key="EA_MSG">Ons is opgewonde om aan te kondig dat Plaaslike Geleenthede en Aankondigings binnekort beskikbaar sal wees op die Munisipale Dienste Aansoek!</sys:String>
+    <sys:String x:Key="EA_MSG1">Bly op hoogte van die nuutste gebeure in jou gemeenskap, insluitend feeste, vergaderings, en belangrike munisipale aankondigings.</sys:String>
+    <sys:String x:Key="S_MSG1">Volg en bestuur jou diensversoeke met gemak, of dit nou vir vullisverwydering, straatherstelwerk, of ander munisipale dienste is.</sys:String>
+    <sys:String x:Key="S_MSG">Ons is opgewonde om aan te kondig dat Diensversoeke binnekort beskikbaar sal wees op die Munisipale Dienste Aansoek!</sys:String>
+    <sys:String x:Key="Default_MSG">Kies asseblief 'n verslag om besonderhede te sien.</sys:String>
+    <sys:String x:Key="UPD_MSG">Gebruikersprofiel Besonderhede</sys:String>
 
 </ResourceDictionary>

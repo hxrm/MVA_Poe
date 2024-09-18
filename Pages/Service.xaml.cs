@@ -1,5 +1,4 @@
-﻿using MVA_poe;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -15,19 +14,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MVA_Poe.Pages
+namespace MVA_poe.Pages
 {
     /// <summary>
-    /// Lógica de interacción para Home.xaml
+    /// Interaction logic for Service.xaml
     /// </summary>
-    public partial class Home : Page
+    public partial class Service : Page
     {
-        public Home()
+        public Service()
         {
             InitializeComponent();
             SetLanguage(DBHelper.lang);
         }
-
         private void SetLanguage(string cultureCode)
         {
             CultureInfo.CurrentUICulture = new CultureInfo(cultureCode);

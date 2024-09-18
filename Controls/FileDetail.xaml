@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVA_Poe.Controls"
              mc:Ignorable="d" 
-             x:Name="this"
-             d:DesignHeight="150" d:DesignWidth="350">
+             x:Name="this" Height="100" Width="247">
 
 
     <UserControl.Resources>
@@ -27,7 +26,7 @@
   18.628906 22.121094 19.253906 21.734375 19.640625Z"/>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Margin="0,0,-2,-2">
         <Border x:Name="Conatiner" CornerRadius="15"  Background="White">
 
             <Grid Margin="15 15 15 0 " >
@@ -61,47 +60,27 @@ VerticalAlignment="Top" Click="Button_Click">
                         <RowDefinition/>
                         <RowDefinition />
                         <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
                     </Grid.RowDefinitions>
                     <!--Filename and size -->
-                    <Grid Margin="10 6">
+                    <Grid Margin="10 0" VerticalAlignment="Center">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock
-                 TextTrimming="CharacterEllipsis"
-                 MaxHeight="100"
-                 FontWeight="Bold"
-                 Text="{Binding FileName, ElementName=this,
-                 FallbackValue=FileName,TargetNullValue=FileName}"/>
-
-                        <TextBlock
-                 Grid.Column="1"
-                 Padding="5,0"
-                 Text="{Binding FileSize, ElementName=this,
-                 FallbackValue=FileSizeInMb, TargetNullValue=FileSizeInMb}"/>
+                        <TextBlock TextTrimming="CharacterEllipsis" FontSize="8" MaxHeight="100" FontWeight="Bold" Text="{Binding FileName, ElementName=this, FallbackValue=FileName,TargetNullValue=FileName}"/>
+                        <TextBlock  Grid.Column="1" Padding="5,0"  FontSize="8" Text="{Binding FileSize, ElementName=this, FallbackValue=FileSizeInMb, TargetNullValue=FileSizeInMb}"/>
                     </Grid>
                     <!--Cancel Btn-->
 
-
-                    <ProgressBar
-             Name="pb"
-             Grid.Row="1"   
-             Height="8" 
-             Foreground="#47BDfF"
-             Value="{Binding UploadProgress, ElementName=this}"/>
+                    <ProgressBar  Name="pb" Grid.Row="1"  Height="8"  Foreground="#47BDfF" Value="{Binding UploadProgress, ElementName=this}" Margin="-22,5,22,5"/>
                     <!--Progress Text-->
-                    <TextBlock Grid.Row="2" HorizontalAlignment="Right" Margin="10" Grid.RowSpan="2">
+                    <TextBlock Grid.Row="2" HorizontalAlignment="Right" Margin="10" Grid.RowSpan="2" FontSize="8">
                         <TextBlock.Style>
                             <Style TargetType="{x:Type TextBlock}">
-                                <Setter Property="Text" Value="{Binding Value,
-                         ElementName=pb, StringFormat={}{0:##.0}% done}"/>
+                                <Setter Property="Text" Value="{Binding Value, ElementName=pb, StringFormat={}{0:##.0}% done}"/>
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Value,
-                             ElementName=pb}" Value="100">
+                                    <DataTrigger Binding="{Binding Value,ElementName=pb}" Value="100">
                                         <Setter Property="Text" Value="Upload Complete"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -109,21 +88,19 @@ VerticalAlignment="Top" Click="Button_Click">
                         </TextBlock.Style>
                     </TextBlock>
 
-                    <TextBlock Grid.Row="2" HorizontalAlignment="Right">
+                    <!--<TextBlock Grid.Row="2" HorizontalAlignment="Right">
                         <TextBlock.Style>
                             <Style TargetType="{x:Type TextBlock}">
-                                <Setter Property="Text" Value="{Binding UploadSpeed,
-                         ElementName=this, StringFormat={}{0}Kb/sec}"/>
+                                <Setter Property="Text" Value="{Binding UploadSpeed, ElementName=this, StringFormat={}{0}Kb/sec}"/>
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding FallbackValue,
-                             ElementName=pb}" Value="100">
+                                    <DataTrigger Binding="{Binding FallbackValue,  ElementName=pb}" Value="100">
                                         <Setter Property="Text" Value=""/>
                                         <Setter Property="Visibility" Value="Collapsed"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </TextBlock.Style>
-                    </TextBlock>
+                    </TextBlock>-->
                 </Grid>
             </Grid>
         </Border>

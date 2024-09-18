@@ -34,6 +34,7 @@ namespace MVA_poe.Controls
         public void PopulateReportDisplay(Report report)
         {
             this.report = report;
+            reportTitle.Text += ""+report.reportName;
             LocationTextBox.Text = report.reportLoc;
             DateTextBox.Text = report.reportDate.ToString("MM/dd/yyyy");
             CategoryTextBox.Text = GetCategory();

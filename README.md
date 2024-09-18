@@ -48,7 +48,7 @@ The MVA_poe (also known as Civic Connect) application is a C# WPF application de
 - Jd’s Code Lab (2021). WPF C# | Drag & Drop to Upload File UI. Available at: [YouTube](https://www.youtube.com/watch?v=eEa_Fl3ZguA&t=2s) (Accessed: 16 September 2024).
 - Jeyderht (2021). C# WPF - Modern Vertical Menu. Available at: [YouTube](https://www.youtube.com/watch?v=Et-QcvwKzY4&t=4s) (Accessed: 16 September 2024).
 - Jeyderht (2021). Jeyderht/WPFMODERNVERTICALMENU. Available at: [GitHub](https://github.com/Jeyderht/WPFModernVerticalMenu) (Accessed: 16 September 2024).
-- OpenAI. 2024. ChatGPT (Version 4.0). [Large language model]. Available at:(https://chat.openai.com/][ https://chatgpt.com/share/66eb1daa-a24c-800b-984a-39a1191c949c] . (Accessed: 18 September 2024).
+- OpenAI. 2024. ChatGPT (Version 4.0). [Large language model]. Available at:(https://chat.openai.com/][(https://chatgpt.com/share/66eb1daa-a24c-800b-984a-39a1191c949c )] (Accessed: 18 September 2024).
 
 ## License
 

@@ -7,13 +7,13 @@ namespace MVA_Poe.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class tree : IMigrationMetadata
+    public sealed partial class AddEvent : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(tree));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddEvent));
         
         string IMigrationMetadata.Id
         {
-            get { return "202409112123079_tree"; }
+            get { return "202410112140125_AddEvent"; }
         }
         
         string IMigrationMetadata.Source

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVA_poe.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
@@ -18,6 +19,8 @@ namespace MVA_Poe.Classes
 
         // Define a DbSet property named Reports, which represents a collection of Report entities in the database.
         public DbSet<Report> Reports { get; set; }
+        // Define a DbSet property named Events, which represents a collection of Report entities in the database.
+        public DbSet<Event> Events { get; set; }
 
         // Define a DbSet property named Attachments, which represents a collection of Attachment entities in the database.
         public DbSet<Attachment> Attachments { get; set; }

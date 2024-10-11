@@ -75,7 +75,7 @@ namespace MVA_Poe.Pages
             // Create and initialize a BitmapImage
             BitmapImage image = new BitmapImage();
             image.BeginInit();
-            image.UriSource = new Uri("C:\\Users\\User\\Downloads\\Android Icons  (8).png");
+            image.UriSource = new Uri("pack://application:,,,/Resources/DOC.png");
             image.EndInit();
 
             // Initialize the AppDbContext instance

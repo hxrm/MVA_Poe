@@ -118,6 +118,7 @@
     </Compile>
     <Compile Include="Classes\AppDbContext.cs" />
     <Compile Include="Classes\Attachment.cs" />
+    <Compile Include="Classes\Event.cs" />
     <Compile Include="Classes\Report.cs" />
     <Compile Include="Classes\SecurePasswordBox.cs" />
     <Compile Include="Classes\User.cs" />
@@ -143,6 +144,7 @@
     <Compile Include="Controls\UserPopup.xaml.cs">
       <DependentUpon>UserPopup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\EventCategory.cs" />
     <Compile Include="Data\ReportCategory.cs" />
     <Compile Include="DBHelper.cs" />
     <Compile Include="Loading.xaml.cs">
@@ -214,9 +216,9 @@
     <Compile Include="Migrations\202409112117589_two.Designer.cs">
       <DependentUpon>202409112117589_two.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202409112123079_tree.cs" />
-    <Compile Include="Migrations\202409112123079_tree.Designer.cs">
-      <DependentUpon>202409112123079_tree.cs</DependentUpon>
+    <Compile Include="Migrations\202410112140125_AddEvent.cs" />
+    <Compile Include="Migrations\202410112140125_AddEvent.Designer.cs">
+      <DependentUpon>202410112140125_AddEvent.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pages\CreateReport.xaml.cs">
@@ -262,8 +264,8 @@
     <EmbeddedResource Include="Migrations\202409112117589_two.resx">
       <DependentUpon>202409112117589_two.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202409112123079_tree.resx">
-      <DependentUpon>202409112123079_tree.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202410112140125_AddEvent.resx">
+      <DependentUpon>202410112140125_AddEvent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

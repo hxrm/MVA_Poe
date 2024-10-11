@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MVA_poe.Classes;
+using MVA_Poe.Classes;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -21,11 +23,52 @@ namespace MVA_poe.Pages
     /// </summary>
     public partial class Events : Page
     {
+
+        // List to store Events
+        private SortedDictionary<DateTime, List<Event>> events = new  SortedDictionary<DateTime, List<Event>>();
         public Events()
         {
             InitializeComponent();
             SetLanguage(DBHelper.lang);
+            // Retrieve data
+            GetData();
         }
+
+        // Method: GetData
+        // Retrieves data from the database
+        private void GetData()
+        {
+
+            // List to store report names
+            List<String> eventNames = new List<String>();
+
+            // Create a new instance of AppDbContext
+            using (var context = new AppDbContext())
+            {
+                // Retrieve the events from the database
+                var eventList = context.Events
+                    .OrderBy(e => e.EventDate)
+                    .ToList();
+
+                // Add each event to the SortedDictionary
+                foreach (var e in eventList)
+                {
+                    if (!events.ContainsKey(e.EventDate))
+                    {
+                        events[e.EventDate] = new List<Event>();
+                    }
+                    events[e.EventDate].Add(e);
+
+                    // Add each event name to the eventNames list
+                    eventNames.Add(e.EventName);
+                }
+            }
+            // Set the report names as the item source for the ReportList
+            EventList.ItemsSource = eventNames;
+            //ELSES IF USER HAS RECOMMENDED EVENTS USE PRIORITY QUEUE
+        }
+
+        //----------------------------------------------------------------------------//
         private void SetLanguage(string cultureCode)
         {
             CultureInfo.CurrentUICulture = new CultureInfo(cultureCode);
@@ -44,5 +87,9 @@ namespace MVA_poe.Pages
             }
             this.Resources.MergedDictionaries.Add(dict);
         }
+        //----------------------------------------------------------------------------//
+
     }
+
 }
+//__---____---____---____---____---____---____---__.ooo END OF FILE ooo.__---____---____---____---____---____---____---__\\

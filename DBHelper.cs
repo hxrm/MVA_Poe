@@ -19,7 +19,8 @@ namespace MVA_poe
         public static string email;
 
         // List to store current session records
-        private static List<RecordPattern> _currentSessionRecords = new List<RecordPattern>();
+     //   public static RecordPattern trackSearch = new RecordPattern();
+        public static List<RecordPattern>trackSearch = new List<RecordPattern>();
 
         // Default constructor
         public DBHelper() { }
@@ -37,37 +38,20 @@ namespace MVA_poe
             email = inputEmail;
         }
 
-        // Add a record pattern to the current session
-        public static void AddRecordPatternToSession(RecordPattern record)
-        {
-            _currentSessionRecords.Add(record);
-        }
-
-        // Get the current session records
-        public static List<RecordPattern> GetCurrentSessionRecords()
-        {
-            return new List<RecordPattern>(_currentSessionRecords);
-        }
+      
 
         // Clear the current session
         public static void ClearSession()
         {
-            _currentSessionRecords.Clear();
+            trackSearch = new List<RecordPattern>();
         }
-
+        
+        //SHOULD I BE ADDING A LIST OF RECORD PATTERNS TO THE PATTERN FREQUENCY CLASS? AS I THINK IT ALWASY RETURNS 1 FOR FREQUENCY ???
+        // THEN SET UP TIMER TRIGGER TO SAVE THE RECORDS TO THE DATABASE
         // Finalize the session and analyze the data
-        public static void FinalizeSessionAndAnalyzeData()
+        public static void FinalizeSessionAndAnalyzeData()  
         {
-            var sessionData = GetCurrentSessionRecords();
-            var patternFrequency = AnalyzeData(sessionData);
-            SavePatternFrequency(patternFrequency);
-            ClearSession();
-        }
-
-        // Analyze the session data
-        private static PatternFrequency AnalyzeData(List<RecordPattern> sessionData)
-        {
-            var patternFrequency = new PatternFrequency
+            PatternFrequency patternFrequency = new PatternFrequency
             {
                 userId = userID,
                 CreatedAt = DateTime.UtcNow,
@@ -75,44 +59,14 @@ namespace MVA_poe
                 DateFrequencies = new List<DateFrequency>()
             };
 
-            foreach (var record in sessionData)
-            {
-                foreach (var category in record.GetSearchCatHistory())
-                {
-                    var categoryFrequency = patternFrequency.CategoryFrequencies
-                        .FirstOrDefault(cf => cf.Category == category);
-                    if (categoryFrequency == null)
-                    {
-                        categoryFrequency = new CategoryFrequency
-                        {
-                            Category = category,
-                            Frequency = 0
-                        };
-                        patternFrequency.CategoryFrequencies.Add(categoryFrequency);
-                    }
-                    categoryFrequency.Frequency++;
-                }
-
-                foreach (var date in record.GetSearchDateHistory())
-                {
-                    var dateFrequency = patternFrequency.DateFrequencies
-                        .FirstOrDefault(df => df.Date.Date == date.Date);
-                    if (dateFrequency == null)
-                    {
-                        dateFrequency = new DateFrequency
-                        {
-                            Date = date.Date,
-                            Frequency = 0
-                        };
-                        patternFrequency.DateFrequencies.Add(dateFrequency);
-                    }
-                    dateFrequency.Frequency++;
-                }
+            foreach(var record in trackSearch)
+            {               
+                patternFrequency.AggregateFromRecordPattern(record);
             }
-
-            return patternFrequency;
+           // patternFrequency.AggregateFromRecordPattern(trackSearch);
+            SavePatternFrequency(patternFrequency);
+            ClearSession();
         }
-
         // Save the pattern frequency to the database
         private static void SavePatternFrequency(PatternFrequency patternFrequency)
         {

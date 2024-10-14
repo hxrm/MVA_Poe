@@ -1,9 +1,11 @@
-﻿using MVA_poe.Data;
+﻿using MVA_poe.Classes;
+using MVA_poe.Data;
 using MVA_Poe.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 public class PatternFrequency
 {
@@ -34,8 +36,46 @@ public class PatternFrequency
         DateFrequencies = new List<DateFrequency>();
         CreatedAt = DateTime.UtcNow; // Initialize to the current time
     }
-}
+    public void AggregateFromRecordPattern(RecordPattern recordPattern)
+    {
+        HashSet<EventCategory> uniqueCategories = new HashSet<EventCategory>(recordPattern.GetSearchCatHistory());
+        HashSet<DateTime> uniqueDates = new HashSet<DateTime>(recordPattern.GetSearchDateHistory());
 
+        foreach (var category in uniqueCategories)
+        {
+            var existingCategory = CategoryFrequencies.FirstOrDefault(cf => cf.Category == category);
+            if (existingCategory != null)
+            {
+                existingCategory.Frequency++;
+            }
+            else
+            {
+                CategoryFrequencies.Add(new CategoryFrequency
+                {
+                    Category = category,
+                    Frequency = 1
+                });
+            }
+        }
+
+        foreach (var date in uniqueDates)
+        {
+            var existingDate = DateFrequencies.FirstOrDefault(df => df.Date == date);
+            if (existingDate != null)
+            {
+                existingDate.Frequency++;
+            }
+            else
+            {
+                DateFrequencies.Add(new DateFrequency
+                {
+                    Date = date,
+                    Frequency = 1
+                });
+            }
+        }
+    }
+}
 public class CategoryFrequency
 {
     [Key]

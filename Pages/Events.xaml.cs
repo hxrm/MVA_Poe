@@ -34,7 +34,7 @@ namespace MVA_poe.Pages
         public ObservableCollection<EventCard> EventCardItems { get; set; }
         private bool searchDate = false;
         private bool inSearch = false;
-        public RecordPattern trackSearch = new RecordPattern();
+     //   public RecordPattern trackSearch = new RecordPattern();
         // Initialize the AttachListItems collection
     
         public Events()
@@ -167,14 +167,21 @@ namespace MVA_poe.Pages
             if (category.HasValue)
             {
                 filteredEvents = FilterByCategory(filteredEvents, category.Value);
-                trackSearch.RecordSearchCatergory(category.Value);
+                RecordPattern r = new RecordPattern();
+                r.RecordSearchCategory(category.Value);
+                DBHelper.trackSearch.Add(r);
+                
+              //  trackSearch.RecordSearchCatergory(category.Value);
             }
 
             if (start.HasValue && end.HasValue)
             {
                 filteredEvents = FilterByDate(filteredEvents, start, end);
-                trackSearch.RecordSearchDateRange(start.Value);
-                trackSearch.RecordSearchDateRange(end.Value);
+              
+                RecordPattern r = new RecordPattern();
+               r.RecordSearchDateRange(start.Value);
+                r.RecordSearchDateRange(end.Value);
+                DBHelper.trackSearch.Add(r);
             }
             // Check if no events are found
             if (!filteredEvents.Any())
@@ -209,8 +216,12 @@ namespace MVA_poe.Pages
                         var eventCard = new EventCard(ev);
                         EventCardItems.Add(eventCard);
                         EventViewList.Items.Add(eventCard);
-                        trackSearch.RecordSearchCatergory(ev.EventCat);
-                        trackSearch.RecordSearchDateRange(ev.EventDate);
+
+                        RecordPattern r = new RecordPattern();
+                       r.RecordSearchCategory(ev.EventCat);
+                       r.RecordSearchDateRange(ev.EventDate);
+                        DBHelper.trackSearch.Add(r);
+                     
                         RecordDateRaneg();
                     }
                 }
@@ -290,7 +301,11 @@ namespace MVA_poe.Pages
                 DateTime end = endDate.SelectedDate.Value;
                 for (DateTime date = start; date <= end; date = date.AddDays(1))
                 {
-                   trackSearch.RecordSearchDateRange(date);
+                    
+                    RecordPattern r = new RecordPattern();
+                    r.RecordSearchDateRange(date);
+                    DBHelper.trackSearch.Add(r);
+
                 }
             }        
 

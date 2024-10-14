@@ -9,39 +9,33 @@ namespace MVA_poe.Classes
 {
     public class RecordPattern
     {
-        private HashSet<EventCategory> uniqueCategories;
-        private HashSet<DateTime> uniqueDates;
+        private List<EventCategory> searchCategories;
+        private List<DateTime> searchDates;
 
         public RecordPattern()
         {
-            uniqueCategories = new HashSet<EventCategory>();
-            uniqueDates = new HashSet<DateTime>();
+            searchCategories = new List<EventCategory>();
+            searchDates = new List<DateTime>();
         }
 
-        // Record category search
-        public void RecordSearchCatergory(EventCategory searchCat)
+        public void RecordSearchCategory(EventCategory searchCat)
         {
-            uniqueCategories.Add(searchCat);
-
+            searchCategories.Add(searchCat);
         }
-        // Record date search
+
         public void RecordSearchDateRange(DateTime searchDateRange)
         {
-            uniqueDates.Add(searchDateRange);
-        }
-        // Retrieve unique dates
-        public HashSet<DateTime> GetSearchDateHistory()
-        {
-            return uniqueDates;
-        }
-        // Retrieve unique categories
-        public HashSet<EventCategory> GetSearchCatHistory()
-        {
-            return uniqueCategories;
+            searchDates.Add(searchDateRange);
         }
 
-       
+        public List<DateTime> GetSearchDateHistory()
+        {
+            return searchDates;
+        }
+
+        public List<EventCategory> GetSearchCatHistory()
+        {
+            return searchCategories;
+        }
     }
-
-   
 }

@@ -24,6 +24,9 @@ namespace MVA_Poe.Classes
 
         // Define a DbSet property named Attachments, which represents a collection of Attachment entities in the database.
         public DbSet<Attachment> Attachments { get; set; }
+        public DbSet<PatternFrequency> PatternFrequencies { get; set; }
+        public DbSet<CategoryFrequency> CategoryFrequencies { get; set; }
+        public DbSet<DateFrequency> DateFrequencies { get; set; }
 
         // Static field to store the database file path
         static string dbFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"MVC_Database.mdf");

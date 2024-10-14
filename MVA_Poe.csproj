@@ -73,6 +73,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\EventCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\FileDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -119,10 +123,15 @@
     <Compile Include="Classes\AppDbContext.cs" />
     <Compile Include="Classes\Attachment.cs" />
     <Compile Include="Classes\Event.cs" />
+    <Compile Include="Classes\PatternFrequency.cs" />
     <Compile Include="Classes\Report.cs" />
     <Compile Include="Classes\SecurePasswordBox.cs" />
     <Compile Include="Classes\User.cs" />
+    <Compile Include="Classes\RecordPattern.cs" />
     <Compile Include="Classes\Valid.cs" />
+    <Compile Include="Controls\EventCard.xaml.cs">
+      <DependentUpon>EventCard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FileDetail.xaml.cs">
       <DependentUpon>FileDetail.xaml</DependentUpon>
     </Compile>
@@ -144,6 +153,7 @@
     <Compile Include="Controls\UserPopup.xaml.cs">
       <DependentUpon>UserPopup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\EnumExtend.cs" />
     <Compile Include="Data\EventCategory.cs" />
     <Compile Include="Data\ReportCategory.cs" />
     <Compile Include="DBHelper.cs" />
@@ -179,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Service.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ViewEvent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,6 +234,10 @@
     <Compile Include="Migrations\202410112140125_AddEvent.Designer.cs">
       <DependentUpon>202410112140125_AddEvent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202410141703557_Pattern.cs" />
+    <Compile Include="Migrations\202410141703557_Pattern.Designer.cs">
+      <DependentUpon>202410141703557_Pattern.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pages\CreateReport.xaml.cs">
       <DependentUpon>CreateReport.xaml</DependentUpon>
@@ -241,6 +259,9 @@
     </Compile>
     <Compile Include="Pages\Service.xaml.cs">
       <DependentUpon>Service.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ViewEvent.xaml.cs">
+      <DependentUpon>ViewEvent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ViewReport.xaml.cs">
       <DependentUpon>ViewReport.xaml</DependentUpon>
@@ -266,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410112140125_AddEvent.resx">
       <DependentUpon>202410112140125_AddEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410141703557_Pattern.resx">
+      <DependentUpon>202410141703557_Pattern.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -316,6 +340,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\serviceBC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\eve.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

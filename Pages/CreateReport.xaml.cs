@@ -42,6 +42,7 @@ namespace MVA_Poe.Pages
         // Declare an ObservableCollection for file details
         public ObservableCollection<FileDetail> AttachListItems { get; set; }
 
+
         // Declare a list to hold attachments
         List<Attachment> attachments = new List<Attachment>();
 

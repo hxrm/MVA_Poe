@@ -1,49 +1,257 @@
-﻿<Page x:Class="MVA_poe.Pages.Events"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:MVA_poe.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="800"
-      Title="Events">
+﻿<Page
+    x:Class="MVA_poe.Pages.Events"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MVA_poe.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Events"
+    d:DesignHeight="500"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
 
     <Grid>
-        <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
+        <Border
+            Margin="6,4,-6,-4"
+            Background="{DynamicResource SecundaryBackgroundColor}"
+            CornerRadius="5">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
-                <!-- Title for the Page -->
-                <TextBlock Text="{DynamicResource LocalEventsAndAnnouncements}"
-                           Grid.Row="0" 
-                           FontSize="35" 
-                           Foreground="{DynamicResource PrimaryTextColor}" 
-                           FontWeight="Bold"
-                           VerticalAlignment="Top" 
-                           HorizontalAlignment="Center" 
-                           Margin="0,30,0,0"/>
+                <!--  Title for the Page  -->
+                <TextBlock
+                    Grid.Row="0"
+                    Margin="0,30,0,15"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    FontSize="35"
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource PrimaryTextColor}"
+                    Text="{DynamicResource LocalEventsAndAnnouncements}" />
+
+                <!--  Main Content Area  -->
+                <StackPanel
+                    Grid.Row="1"
+                    Width="765"
+                    Height="353"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical">
+
+                    <Border Width="Auto" Height="Auto">
+                        <Grid
+                            Width="744"
+                            Height="88"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Background="{DynamicResource TextFourthColor}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
 
+                            <TextBox
+                                x:Name="txtSearch"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                Height="39"
+                                Margin="16,4,12,0"
+                                VerticalAlignment="Top"
+                                Background="{DynamicResource TextFourthColor}"
+                                Foreground="{DynamicResource SecundaryBackgroundColor}"
+                                     TextChanged="txtSearch_TextChanged" />
 
-                <!-- Main Content Area -->
-                <StackPanel Orientation="Vertical"  Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Height="381" Width="544"
-                         >
-                    <StackPanel Orientation="Horizontal" Margin="21,0,9,23" Grid.ColumnSpan="2" Grid.Row="0" Height="60">
-                        <TextBlock Text="{DynamicResource LocalEvents}"  FontSize="15" FontWeight="Bold" Foreground="{DynamicResource PrimaryIconColor}" Margin="15 0 0 0" VerticalAlignment="Center"/>
-                        <ComboBox x:Name="EventList" Width="277"   Margin="50 0 50 0" VerticalAlignment="Center"   Height="36"></ComboBox>
-                    </StackPanel>
+                            <!--  Start Date Picker  -->
+                            <DatePicker
+                                x:Name="startDate"
+                                Grid.Column="2"
+                                Height="32"
+                                Margin="128,0,133,0"
+                                VerticalAlignment="Center"
+                                        CalendarClosed="startDate_CalendarClosed" />
+
+                            <!--  End Date Picker  -->
+                            <DatePicker
+                                x:Name="endDate"
+                                Grid.Column="2"
+                                Height="33"
+                                Margin="241,7,16,0"
+                                VerticalAlignment="Top"
+                                        CalendarClosed="endDate_CalendarClosed" />
+
+                            <!--  Category ComboBox with Placeholder  -->
+                            <ComboBox
+                                x:Name="EventCB"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                Height="30"
+                                Margin="18,6,25,0"
+                                VerticalAlignment="Top"
+                                DropDownClosed="EventCB_DropDownClosed">
+                                <ComboBox.Style>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ComboBox">
+                                                    <Grid>
+                                                        <TextBlock
+                                                            x:Name="PlaceholderText"
+                                                            Margin="5,0,0,0"
+                                                            VerticalAlignment="Center"
+                                                            IsHitTestVisible="False"
+                                                            Text="Category" />
+                                                        <ToggleButton
+                                                            Name="ToggleButton"
+                                                            Margin="1,0,6,2"
+                                                            ClickMode="Press"
+                                                            Focusable="false"
+                                                            IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                                                            <ToggleButton.Template>
+                                                                <ControlTemplate TargetType="ToggleButton">
+                                                                    <Border
+                                                                        Padding="5"
+                                                                        Background="Transparent"
+                                                                        BorderBrush="White"
+                                                                        BorderThickness="0,0,0,1">
+                                                                        <Path
+                                                                            x:Name="Arrow"
+                                                                            Margin="292,4,5,4"
+                                                                            Data="M 0 0 L 4 4 L 8 0 Z"
+                                                                            Fill="White" />
+                                                                    </Border>
+                                                                </ControlTemplate>
+                                                            </ToggleButton.Template>
+                                                        </ToggleButton>
+                                                        <ContentPresenter
+                                                            Name="ContentSite"
+                                                            Margin="3,3,23,3"
+                                                            HorizontalAlignment="Left"
+                                                            VerticalAlignment="Center"
+                                                            Content="{TemplateBinding SelectionBoxItem}"
+                                                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                                            IsHitTestVisible="False" />
+                                                        <TextBox
+                                                            x:Name="PART_EditableTextBox"
+                                                            Margin="3,3,23,3"
+                                                            HorizontalAlignment="Left"
+                                                            VerticalAlignment="Center"
+                                                            Background="Transparent"
+                                                            Focusable="True"
+                                                            IsReadOnly="{TemplateBinding IsReadOnly}"
+                                                            Style="{x:Null}"
+                                                            Visibility="Hidden" />
+                                                        <Popup
+                                                            Name="Popup"
+                                                            AllowsTransparency="True"
+                                                            Focusable="False"
+                                                            IsOpen="{TemplateBinding IsDropDownOpen}"
+                                                            Placement="Bottom"
+                                                            PopupAnimation="Slide">
+                                                            <Grid
+                                                                Name="DropDown"
+                                                                MinWidth="{TemplateBinding ActualWidth}"
+                                                                MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                                                SnapsToDevicePixels="True">
+                                                                <Border
+                                                                    x:Name="DropDownBorder"
+                                                                    Background="White"
+                                                                    BorderBrush="Gray"
+                                                                    BorderThickness="1" />
+                                                                <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                                                </ScrollViewer>
+                                                            </Grid>
+                                                        </Popup>
+                                                    </Grid>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="HasItems" Value="false">
+                                                            <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsEnabled" Value="false">
+                                                            <Setter Property="Foreground" Value="Gray" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsGrouping" Value="true">
+                                                            <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+                                                        </Trigger>
+                                                        <Trigger Property="SelectedItem" Value="{x:Null}">
+                                                            <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible" />
+                                                        </Trigger>
+                                                        <Trigger Property="SelectedItem" Value="{x:Null}">
+                                                            <Setter TargetName="PlaceholderText" Property="Visibility" Value="Collapsed" />
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ComboBox.Style>
+                            </ComboBox>
+                            <Grid Grid.Row="1" Grid.Column="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--  Search Button  -->
+                                <Button
+                                    x:Name="btnSearch"
+                                    Grid.Column="0"
+                                    Margin="50,0,50,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Background="Green"
+                                    Click="btnSearch_Click"
+                                    Content="Search"
+                                    Foreground="White" />
+
+                                <!--  Reset Button  -->
+                                <Button
+                                    Grid.Column="1"
+                                    Margin="50,0,50,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Background="LightGreen"
+                                    Content="Reset"
+                                        Click="resetBtn_Click" />
+
+                            </Grid>
 
 
-                    <Border>
-                        <Grid>
-                            <Image Source="/Resources/eventBC.png"  Panel.ZIndex="0" HorizontalAlignment="Left" Width="444" Margin="36,0,0,-29"/>
                         </Grid>
                     </Border>
 
+
+
+
+                    <ScrollViewer
+                        Width="758"
+                        Height="300"
+                        HorizontalScrollBarVisibility="Auto"
+                        VerticalScrollBarVisibility="Disabled">
+                        <ListBox x:Name="EventViewList" Background="Transparent">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ListBox>
+                    </ScrollViewer>
+
                 </StackPanel>
+
+
             </Grid>
         </Border>
     </Grid>

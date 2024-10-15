@@ -359,6 +359,9 @@
   <ItemGroup>
     <Resource Include="Resources\eve.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ic_filter.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

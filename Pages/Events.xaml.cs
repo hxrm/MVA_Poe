@@ -34,6 +34,7 @@ namespace MVA_poe.Pages
         public ObservableCollection<EventCard> EventCardItems { get; set; }
         private bool searchDate = false;
         private bool inSearch = false;
+        bool filterSearch;
      //   public SearchRecord trackSearch = new SearchRecord();
         // Initialize the AttachListItems collection
     
@@ -339,6 +340,17 @@ namespace MVA_poe.Pages
             endDate.SelectedDate = null;
             txtSearch.Text = "";
             PopulateEventList();
+
+        }
+        private void filterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            filterSearch = true;
+
+            // Toggle visibility for EventCB
+            EventCB.Visibility = EventCB.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+
+            // Toggle visibility for startDate
+            dateGrid.Visibility = dateGrid.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
 
         }
 

@@ -20,7 +20,7 @@ namespace MVA_poe
 
         // List to store current session records
      //   public static RecordPattern trackSearch = new RecordPattern();
-        public static List<RecordPattern>trackSearch = new List<RecordPattern>();
+        public static List<SearchRecord>trackSearch = new List<SearchRecord>();
 
         // Default constructor
         public DBHelper() { }
@@ -43,29 +43,36 @@ namespace MVA_poe
         // Clear the current session
         public static void ClearSession()
         {
-            trackSearch = new List<RecordPattern>();
+            trackSearch = new List<SearchRecord>();
         }
-        
-        //SHOULD I BE ADDING A LIST OF RECORD PATTERNS TO THE PATTERN FREQUENCY CLASS? AS I THINK IT ALWASY RETURNS 1 FOR FREQUENCY ???
+
+       
         // THEN SET UP TIMER TRIGGER TO SAVE THE RECORDS TO THE DATABASE
         // Finalize the session and analyze the data
-        public static void FinalizeSessionAndAnalyzeData()  
+        public static void FinalizeSessionAndAnalyzeData()
         {
             PatternFrequency patternFrequency = new PatternFrequency
             {
                 userId = userID,
                 CreatedAt = DateTime.UtcNow,
-                CategoryFrequencies = new List<CategoryFrequency>(),
-                DateFrequencies = new List<DateFrequency>()
             };
 
-            foreach(var record in trackSearch)
-            {               
-                patternFrequency.AggregateFromRecordPattern(record);
-            }
-           // patternFrequency.AggregateFromRecordPattern(trackSearch);
+            // Here, trackSearch is a list of UserSearchRecord
+            patternFrequency.AggregateFromUserSearchRecords(DBHelper.trackSearch);
+            SaveSearchRecord();
             SavePatternFrequency(patternFrequency);
             ClearSession();
+        }
+        private static void SaveSearchRecord()
+        {
+           using (var context = new AppDbContext())
+            {
+                foreach (var searchRecord in trackSearch)
+                {
+                    context.SearchRecords.Add(searchRecord);
+                }
+                context.SaveChanges();
+            }
         }
         // Save the pattern frequency to the database
         private static void SavePatternFrequency(PatternFrequency patternFrequency)

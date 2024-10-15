@@ -124,10 +124,11 @@
     <Compile Include="Classes\Attachment.cs" />
     <Compile Include="Classes\Event.cs" />
     <Compile Include="Classes\PatternFrequency.cs" />
+    <Compile Include="Classes\RecommendationEngine.cs" />
     <Compile Include="Classes\Report.cs" />
     <Compile Include="Classes\SecurePasswordBox.cs" />
     <Compile Include="Classes\User.cs" />
-    <Compile Include="Classes\RecordPattern.cs" />
+    <Compile Include="Classes\SearchRecord.cs" />
     <Compile Include="Classes\Valid.cs" />
     <Compile Include="Controls\EventCard.xaml.cs">
       <DependentUpon>EventCard.xaml</DependentUpon>
@@ -181,6 +182,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Profile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Rec.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -238,6 +243,10 @@
     <Compile Include="Migrations\202410141703557_Pattern.Designer.cs">
       <DependentUpon>202410141703557_Pattern.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202410150106529_AddSearchRecord.cs" />
+    <Compile Include="Migrations\202410150106529_AddSearchRecord.Designer.cs">
+      <DependentUpon>202410150106529_AddSearchRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pages\CreateReport.xaml.cs">
       <DependentUpon>CreateReport.xaml</DependentUpon>
@@ -253,6 +262,9 @@
     </Compile>
     <Compile Include="Pages\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Rec.xaml.cs">
+      <DependentUpon>Rec.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
@@ -290,6 +302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410141703557_Pattern.resx">
       <DependentUpon>202410141703557_Pattern.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410150106529_AddSearchRecord.resx">
+      <DependentUpon>202410150106529_AddSearchRecord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

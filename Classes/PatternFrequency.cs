@@ -36,11 +36,22 @@ public class PatternFrequency
         DateFrequencies = new List<DateFrequency>();
         CreatedAt = DateTime.UtcNow; // Initialize to the current time
     }
-    public void AggregateFromRecordPattern(RecordPattern recordPattern)
+    // Aggregates from a list of user search records
+    public void AggregateFromUserSearchRecords(IEnumerable<SearchRecord> records)
     {
-        HashSet<EventCategory> uniqueCategories = new HashSet<EventCategory>(recordPattern.GetSearchCatHistory());
-        HashSet<DateTime> uniqueDates = new HashSet<DateTime>(recordPattern.GetSearchDateHistory());
+        var uniqueCategories = new HashSet<EventCategory>();
+        var uniqueDates = new HashSet<DateTime>();
 
+        foreach (var record in records)
+        {
+            if (record.Category.HasValue)
+            {
+                uniqueCategories.Add(record.Category.Value);
+            }
+            uniqueDates.Add(record.StartDate);
+        }
+
+        // Frequency aggregation logic
         foreach (var category in uniqueCategories)
         {
             var existingCategory = CategoryFrequencies.FirstOrDefault(cf => cf.Category == category);
@@ -76,7 +87,8 @@ public class PatternFrequency
         }
     }
 }
-public class CategoryFrequency
+
+    public class CategoryFrequency
 {
     [Key]
     public int Id { get; set; } // Primary Key

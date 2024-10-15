@@ -27,6 +27,7 @@ namespace MVA_Poe.Classes
         public DbSet<PatternFrequency> PatternFrequencies { get; set; }
         public DbSet<CategoryFrequency> CategoryFrequencies { get; set; }
         public DbSet<DateFrequency> DateFrequencies { get; set; }
+        public DbSet<SearchRecord> SearchRecords { get; set; }
 
         // Static field to store the database file path
         static string dbFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"MVC_Database.mdf");

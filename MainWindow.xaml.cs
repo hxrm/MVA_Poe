@@ -407,7 +407,7 @@ namespace MVA_Poe
             if (fContainer.CurrentSource == null || !fContainer.CurrentSource.OriginalString.EndsWith("Events.xaml"))
             {
                 // Navigate to the Events page
-                fContainer.Navigate(new System.Uri("Pages/Events.xaml", UriKind.Relative));
+                fContainer.Navigate(new System.Uri("Pages/Rec.xaml", UriKind.Relative));
             }
             // If the current page is the Events page
             else if (fContainer.CurrentSource.OriginalString.EndsWith("Events.xaml"))

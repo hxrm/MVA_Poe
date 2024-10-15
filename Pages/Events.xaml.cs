@@ -34,7 +34,7 @@ namespace MVA_poe.Pages
         public ObservableCollection<EventCard> EventCardItems { get; set; }
         private bool searchDate = false;
         private bool inSearch = false;
-     //   public RecordPattern trackSearch = new RecordPattern();
+     //   public SearchRecord trackSearch = new SearchRecord();
         // Initialize the AttachListItems collection
     
         public Events()
@@ -140,69 +140,124 @@ namespace MVA_poe.Pages
 
 
         //----------------------------------------------------------------------------//
+        // Method to handle the search button click event
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            inSearch = true;
+            inSearch = true; 
+            // Set the inSearch flag to true
             string searchText = txtSearch.Text;
-            var selectedCategory = EventCB.SelectedItem as string;
-            EventCategory? category = null;
+            // Get the search text from the TextBox
+            var selectedCategory = EventCB.SelectedItem as string; 
+            // Get the selected category from the ComboBox
+            EventCategory? category = null; 
+         
 
+            bool text = false;
+            bool cat = false;
+            bool date = false;
+            // Initialize the category variable
+
+            // If a category is selected, get the corresponding EventCategory enum value
             if (!string.IsNullOrEmpty(selectedCategory))
             {
                 category = Enum.GetValues(typeof(EventCategory))
                                .Cast<EventCategory>()
-                               .FirstOrDefault(cat => cat.GetString() == selectedCategory);
+                               .FirstOrDefault(cate => cate.GetString() == selectedCategory);
             }
 
-            DateTime? start = startDate.SelectedDate;
-            DateTime? end = endDate.SelectedDate;
+
+
+
+            DateTime? start = startDate.SelectedDate; // Get the selected start date
+            DateTime? end = endDate.SelectedDate; // Get the selected end date
 
             IEnumerable<Event> filteredEvents = events.SelectMany(entry => entry.Value);
+            // Flatten the dictionary to a list of events
 
+            // Filter events by text if search text is provided
             if (!string.IsNullOrEmpty(searchText))
-            {
+            { 
+                text= true;
+
                 filteredEvents = FilterByText(filteredEvents, searchText);
+                
             }
 
+            // Filter events by category if a category is selected
             if (category.HasValue)
             {
+                cat = true;
+
                 filteredEvents = FilterByCategory(filteredEvents, category.Value);
-                RecordPattern r = new RecordPattern();
-                r.RecordSearchCategory(category.Value);
-                DBHelper.trackSearch.Add(r);
-                
-              //  trackSearch.RecordSearchCatergory(category.Value);
+                //foreach (var ev in filteredEvents)
+                //{
+                //    SearchRecord r = new SearchRecord(DBHelper.userID, ev.EventCat, ev.EventDate); // Create a new SearchRecord
+                //    DBHelper.trackSearch.Add(r); // Add the SearchRecord to the trackSearch list
+                //}
             }
 
-            if (start.HasValue && end.HasValue)
+            // Filter events by date range if both start and end dates are selected
+            if (start.HasValue && end.HasValue)                
             {
+                date = true;
                 filteredEvents = FilterByDate(filteredEvents, start, end);
-              
-                RecordPattern r = new RecordPattern();
-               r.RecordSearchDateRange(start.Value);
-                r.RecordSearchDateRange(end.Value);
-                DBHelper.trackSearch.Add(r);
+
+                // Record the date of each event found within the date range
+                //foreach (var ev in filteredEvents)
+                //{
+                //    SearchRecord r = new SearchRecord(DBHelper.userID, start.Value, end.Value); // Create a new SearchRecord
+                //    DBHelper.trackSearch.Add(r); // Add the SearchRecord to the trackSearch list
+                //}
             }
-            // Check if no events are found
+
+            // If no events are found, display all events
             if (!filteredEvents.Any())
             {
-                // If no events are found, display all events
                 filteredEvents = events.SelectMany(entry => entry.Value);
             }
 
-            EventViewList.Items.Clear();
-            EventCardItems.Clear();
+            EventViewList.Items.Clear(); // Clear the existing items in the ListView
+            EventCardItems.Clear(); // Clear the existing items in the ObservableCollection
 
+            // Add the filtered events to the ListView and ObservableCollection
+            Save(text, cat, date, filteredEvents);
             foreach (var ev in filteredEvents)
             {
                 var eventCard = new EventCard(ev);
                 EventCardItems.Add(eventCard);
-                EventViewList.Items.Add(eventCard);
+                EventViewList.Items.Add(eventCard);              
+                
+              
             }
+        }
+        private void Save(bool text, bool cat , bool date, IEnumerable<Event> filteredEvents)
+        {
+            DateTime? start = startDate.SelectedDate; // Get the selected start date
+            DateTime? end = endDate.SelectedDate; 
+            if (text || cat && !date)
+            {
+                foreach (var ev in filteredEvents)
+                {
+                    SearchRecord r = new SearchRecord(DBHelper.userID, ev.EventCat, ev.EventDate); // Create a new SearchRecord
+                    DBHelper.trackSearch.Add(r); // Add the SearchRecord to the trackSearch list
+                }
+               
+            }
+            
+           
+            else if (date && start.HasValue && end.HasValue)
+            {
+                foreach (var ev in filteredEvents)
+                {
+                    SearchRecord r = new SearchRecord(DBHelper.userID, start.Value, end.Value); // Create a new SearchRecord
+                    DBHelper.trackSearch.Add(r); // Add the SearchRecord to the trackSearch list
+                }
+            }
+
         }
         //----------------------------------------------------------------------------//    
 
-       
+
         private void DateCatSearch(EventCategory selectedCategory)
         {
             EventViewList.Items.Clear();
@@ -217,10 +272,10 @@ namespace MVA_poe.Pages
                         EventCardItems.Add(eventCard);
                         EventViewList.Items.Add(eventCard);
 
-                        RecordPattern r = new RecordPattern();
+                     /*   SearchRecord r = new SearchRecord();
                        r.RecordSearchCategory(ev.EventCat);
                        r.RecordSearchDateRange(ev.EventDate);
-                        DBHelper.trackSearch.Add(r);
+                        DBHelper.trackSearch.Add(r);*/
                      
                         RecordDateRaneg();
                     }
@@ -296,19 +351,16 @@ namespace MVA_poe.Pages
         {
             if (startDate.SelectedDate != null && endDate.SelectedDate != null)
             {
-               // get the all dates between range 
-               DateTime start = startDate.SelectedDate.Value;
+                DateTime start = startDate.SelectedDate.Value;
                 DateTime end = endDate.SelectedDate.Value;
+
                 for (DateTime date = start; date <= end; date = date.AddDays(1))
                 {
-                    
-                    RecordPattern r = new RecordPattern();
-                    r.RecordSearchDateRange(date);
+                    // Record the date for each day in the range
+                 SearchRecord r = new SearchRecord(DBHelper.userID, start, end);
                     DBHelper.trackSearch.Add(r);
-
                 }
-            }        
-
+            }
         }
 
         //----------------------------------------------------------------------------//

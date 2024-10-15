@@ -20,14 +20,107 @@
 
             </ResourceDictionary.MergedDictionaries>
 
+            <!--  fgfdgs  -->
 
-            <Style TargetType="{x:Type ScrollViewer}"
-                   x:Key="CustomScrollViewerStyle">
+
+
+
+            <!--  Custom Calendar Style  -->
+            <!--  Custom Calendar Style  -->
+            <Style x:Key="DatePickerCalendarStyle1" TargetType="{x:Type Calendar}">
+                <!--  Text color  -->
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryBackgroundColor}" />
+                <!--  Background of the calendar  -->
+                <Setter Property="Background" Value="White" />
+                <!--  Border of the calendar  -->
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <!--  Border thickness to give it a sleeker feel  -->
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Calendar">
+                            <Grid>
+                                <CalendarItem
+                                    x:Name="PART_CalendarItem"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Foreground="{TemplateBinding Foreground}" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!--  Custom DatePicker Style  -->
+            <Style TargetType="{x:Type DatePicker}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type DatePicker}">
+                            <Grid>
+                                <Border
+                                    Background="{DynamicResource SecundaryBackgroundColor}"
+                                    BorderBrush="{DynamicResource SecundaryBackgroundColor}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="5">
+                                    <!--  Set CornerRadius to make the border rounded  -->
+                                    <DatePickerTextBox
+                                        x:Name="PART_TextBox"
+                                        Width="180"
+                                        Padding="4,1,1,1"
+                                        HorizontalAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        Background="Transparent"
+                                        FontWeight="Bold"
+                                        Foreground="AliceBlue"
+                                        Text="Enter Date" />
+                                </Border>
+                                <Button
+                                    x:Name="PART_Button"
+                                    Width="34"
+                                    Height="35"
+                                    Margin="3,3,5,3"
+                                    HorizontalAlignment="Right"
+                                    Background="Transparent"
+                                    BorderThickness="0">
+                                    <Image
+                                        Width="30"
+                                        Height="30"
+                                        Margin="0,0,0,3"
+                                        Source="C:\Users\User\source\DB\MVA_poe\Resources\ic_calender.png" />
+                                </Button>
+                                <Popup
+                                    x:Name="PART_Popup"
+                                    AllowsTransparency="True"
+                                    Focusable="False"
+                                    IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Placement="Bottom"
+                                    PopupAnimation="Fade">
+                                    <Border
+                                        Background="White"
+                                        BorderBrush="#4880ff"
+                                        BorderThickness="1"
+                                        CornerRadius="5">
+                                        <Calendar
+                                            x:Name="PART_Calendar"
+                                            Background="White"
+                                            Style="{StaticResource DatePickerCalendarStyle1}" />
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+
+            <Style x:Key="CustomScrollViewerStyle" TargetType="{x:Type ScrollViewer}">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="ScrollViewer">
                             <Grid>
-                                <!-- The main content area -->
+                                <!--  The main content area  -->
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
@@ -37,43 +130,44 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
 
-                                <!-- Display the content within the ScrollViewer -->
-                                <ScrollContentPresenter Grid.Row="0"
-                                                        Grid.Column="0" />
+                                <!--  Display the content within the ScrollViewer  -->
+                                <ScrollContentPresenter Grid.Row="0" Grid.Column="0" />
 
-                                <!-- Custom Vertical Scrollbar -->
-                                <ScrollBar Name="PART_VerticalScrollBar"
-                                           Width="10"
-                                           Grid.Row="0"
-                                           Grid.Column="1"
-                                           Orientation="Vertical"
-                                           Background="Transparent"
-                                           BorderBrush="Gray"
-                                           BorderThickness="1"
-                                           Margin="0 0 0 0"
-                                           Opacity="0.7"
-                                           Minimum="0"
-                                           Maximum="{TemplateBinding ScrollableHeight}"
-                                           Value="{TemplateBinding VerticalOffset}"
-                                           ViewportSize="{TemplateBinding ViewportHeight}"
-                                           Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
+                                <!--  Custom Vertical Scrollbar  -->
+                                <ScrollBar
+                                    Name="PART_VerticalScrollBar"
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Width="10"
+                                    Margin="0,0,0,0"
+                                    Background="Transparent"
+                                    BorderBrush="Gray"
+                                    BorderThickness="1"
+                                    Maximum="{TemplateBinding ScrollableHeight}"
+                                    Minimum="0"
+                                    Opacity="0.7"
+                                    Orientation="Vertical"
+                                    ViewportSize="{TemplateBinding ViewportHeight}"
+                                    Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                    Value="{TemplateBinding VerticalOffset}" />
 
-                                <!-- Custom Horizontal Scrollbar -->
-                                <ScrollBar Name="PART_HorizontalScrollBar"
-                                           Height="10"
-                                           Grid.Row="1"
-                                           Grid.Column="0"
-                                           Orientation="Horizontal"
-                                           Background="Transparent"
-                                           BorderBrush="Gray"
-                                           BorderThickness="1"
-                                           Margin="0 0 0 0"
-                                           Opacity="0.7"
-                                           Minimum="0"
-                                           Maximum="{TemplateBinding ScrollableWidth}"
-                                           Value="{TemplateBinding HorizontalOffset}"
-                                           ViewportSize="{TemplateBinding ViewportWidth}"
-                                           Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" />
+                                <!--  Custom Horizontal Scrollbar  -->
+                                <ScrollBar
+                                    Name="PART_HorizontalScrollBar"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Height="10"
+                                    Margin="0,0,0,0"
+                                    Background="Transparent"
+                                    BorderBrush="Gray"
+                                    BorderThickness="1"
+                                    Maximum="{TemplateBinding ScrollableWidth}"
+                                    Minimum="0"
+                                    Opacity="0.7"
+                                    Orientation="Horizontal"
+                                    ViewportSize="{TemplateBinding ViewportWidth}"
+                                    Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
+                                    Value="{TemplateBinding HorizontalOffset}" />
 
                             </Grid>
                         </ControlTemplate>

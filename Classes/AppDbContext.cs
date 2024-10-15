@@ -23,11 +23,21 @@ namespace MVA_Poe.Classes
         public DbSet<Event> Events { get; set; }
 
         // Define a DbSet property named Attachments, which represents a collection of Attachment entities in the database.
+        // Define a DbSet property named Attachments, which represents a collection of Attachment entities in the database.
         public DbSet<Attachment> Attachments { get; set; }
+
+        // Define a DbSet property named PatternFrequencies, which represents a collection of PatternFrequency entities in the database.
         public DbSet<PatternFrequency> PatternFrequencies { get; set; }
+
+        // Define a DbSet property named CategoryFrequencies, which represents a collection of CategoryFrequency entities in the database.
         public DbSet<CategoryFrequency> CategoryFrequencies { get; set; }
+
+        // Define a DbSet property named DateFrequencies, which represents a collection of DateFrequency entities in the database.
         public DbSet<DateFrequency> DateFrequencies { get; set; }
+
+        // Define a DbSet property named SearchRecords, which represents a collection of SearchRecord entities in the database.
         public DbSet<SearchRecord> SearchRecords { get; set; }
+
 
         // Static field to store the database file path
         static string dbFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"MVC_Database.mdf");

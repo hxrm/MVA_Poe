@@ -1,8 +1,9 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <!-- Buttons -->
+    <!--  Buttons  -->
     <sys:String x:Key="Submit">Indien</sys:String>
     <sys:String x:Key="Load">Laai</sys:String>
     <sys:String x:Key="Upload">Oplaai</sys:String>
@@ -16,7 +17,7 @@
     <sys:String x:Key="Login">Teken in</sys:String>
     <sys:String x:Key="ForgotGmail">Vergeet Gmail?</sys:String>
 
-    <!-- Prompts -->
+    <!--  Prompts  -->
     <sys:String x:Key="EnterName">Voer jou naam in</sys:String>
     <sys:String x:Key="EnterPassword">Voer jou wagwoord in</sys:String>
     <sys:String x:Key="EnterEmail">Voer jou e-pos adres in</sys:String>
@@ -26,7 +27,7 @@
     <sys:String x:Key="EnterLastName">Voer jou van in</sys:String>
     <sys:String x:Key="EnterIDNumber">Voer jou ID nommer in</sys:String>
 
-    <!-- Labels -->
+    <!--  Labels  -->
     <sys:String x:Key="FirstName">Voornaam</sys:String>
     <sys:String x:Key="LastName">Van</sys:String>
     <sys:String x:Key="IDNumber">ID nommer</sys:String>
@@ -41,7 +42,7 @@
     <sys:String x:Key="IssueDetails">Probleem Besonderhede</sys:String>
     <sys:String x:Key="ReportTitle">Verslagtitel</sys:String>
 
-    <!-- Error Messages -->
+    <!--  Error Messages  -->
     <sys:String x:Key="ErrorEmptyFields">Vul asseblief alle velde in</sys:String>
     <sys:String x:Key="ErrorInvalidCredentials">Ongeldige geloofsbriewe</sys:String>
     <sys:String x:Key="ErrorConnection">Verbindingsfout</sys:String>
@@ -51,7 +52,7 @@
     <sys:String x:Key="ErrorPasswordsDoNotMatch">Wagwoorde stem nie ooreen nie</sys:String>
     <sys:String x:Key="ErrorInvalidIDNumber">Ongeldige ID-nommer</sys:String>
 
-    <!-- Miscellaneous -->
+    <!--  Miscellaneous  -->
     <sys:String x:Key="WelcomeMessage">Welkom by die munisipale aansoek</sys:String>
     <sys:String x:Key="ReportingIssue">Rapportering van 'n probleem</sys:String>
     <sys:String x:Key="Attachments">Aanhangsels</sys:String>
@@ -85,5 +86,17 @@
     <sys:String x:Key="S_MSG">Ons is opgewonde om aan te kondig dat Diensversoeke binnekort beskikbaar sal wees op die Munisipale Dienste Aansoek!</sys:String>
     <sys:String x:Key="Default_MSG">Kies asseblief 'n verslag om besonderhede te sien.</sys:String>
     <sys:String x:Key="UPD_MSG">Gebruikersprofiel Besonderhede</sys:String>
+
+    <sys:String x:Key="EventHeader">Alle Gebeure</sys:String>
+    <sys:String x:Key="RecEventHeader1">Gebeure wat vir jou aanbeveel word...</sys:String>
+    <sys:String x:Key="RecEventHeader2">Plaaslike Gebeure</sys:String>
+    <sys:String x:Key="Search">Soek</sys:String>
+    <sys:String x:Key="Filter">Filter</sys:String>
+    <sys:String x:Key="Reset">Herstel</sys:String>
+    <sys:String x:Key="eName">Gebeurnaam:</sys:String>
+    <sys:String x:Key="eDecscrip">Gebeur Beskrywing:</sys:String>
+    <sys:String x:Key="eDate">Gebeur Datum:</sys:String>
+    <sys:String x:Key="eCategory">Gebeur Kategorie:</sys:String>
+    <sys:String x:Key="eLoc">Gebeur Ligging:</sys:String>
 
 </ResourceDictionary>

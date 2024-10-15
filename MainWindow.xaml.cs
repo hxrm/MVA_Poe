@@ -19,7 +19,12 @@ using System.Windows.Shapes;
 using System.Windows.Interop;
 
 namespace MVA_Poe
-{
+{/*
+ ST10158643
+ HANNAH MICHAELSON
+ GROUP 2
+ PROG 3B POE PART 2 
+ */
     public partial class MainWindow : Window
     {
         // Instance of DBHelper
@@ -408,7 +413,7 @@ namespace MVA_Poe
             if (fContainer.CurrentSource == null || !fContainer.CurrentSource.OriginalString.EndsWith("Events.xaml"))
             {
                 // Navigate to the Events page
-                fContainer.Navigate(new System.Uri("Pages/Rec.xaml", UriKind.Relative));
+                fContainer.Navigate(new System.Uri("Pages/Events.xaml", UriKind.Relative));
             }
             // If the current page is the Events page
             else if (fContainer.CurrentSource.OriginalString.EndsWith("Events.xaml"))

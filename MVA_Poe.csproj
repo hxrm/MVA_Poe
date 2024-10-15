@@ -97,6 +97,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\RecControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ReportDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -148,6 +152,9 @@
     <Compile Include="Controls\MenuItem.xaml.cs">
       <DependentUpon>MenuItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\RecControl.xaml.cs">
+      <DependentUpon>RecControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ReportDetail.xaml.cs">
       <DependentUpon>ReportDetail.xaml</DependentUpon>
     </Compile>
@@ -182,10 +189,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Profile.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Rec.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -262,9 +265,6 @@
     </Compile>
     <Compile Include="Pages\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Rec.xaml.cs">
-      <DependentUpon>Rec.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
@@ -357,10 +357,27 @@
     <Resource Include="Resources\serviceBC.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\eve.png" />
+    <Resource Include="Resources\eve1.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ic_filter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\eve0.png" />
+    <Resource Include="Resources\eve2.png" />
+    <Resource Include="Resources\eve3.png" />
+    <Resource Include="Resources\eve4.png" />
+    <Resource Include="Resources\eve5.png" />
+    <Resource Include="Resources\eve6.png" />
+    <Resource Include="Resources\eve7.png" />
+    <Resource Include="Resources\eve8.png" />
+    <Resource Include="Resources\eve9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ic_cal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ic_calender.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

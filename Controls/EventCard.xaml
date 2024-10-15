@@ -16,10 +16,11 @@
                 CornerRadius="12"
                 MouseDown="Border_MouseDown">
             <Border.Background>
-                <ImageBrush ImageSource="/Resources/eve.png"
+                <ImageBrush ImageSource="{Binding BorderImageSource, RelativeSource={RelativeSource AncestorType=UserControl}}"
                             Stretch="UniformToFill" />
             </Border.Background>
 
+            
             <Grid HorizontalAlignment="Center"
                   VerticalAlignment="Bottom">
                 <Grid.RowDefinitions>
@@ -33,25 +34,36 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
 
+                        
                         <TextBlock Grid.Row="0"
-                                   Margin="10 0 20 5"
+                                   Margin="10,0,20,5"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center"
-                                   Foreground="White">
+                                   Foreground="Black">
                             <Run FontSize="15"
-                                 FontWeight="Bold"
+                                 FontWeight="ExtraBold"
                                  Text="{Binding EventName, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                         </TextBlock>
                         <TextBlock Grid.Row="1"
-                                   Margin="10 0 20 5"
+                                   Margin="10,0,20,5"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center"
-                                   Foreground="White">                            
+                                   Foreground="Black">
                             <Run FontSize="12"
-                                 FontWeight="SemiBold"
+                                 FontWeight="Bold"
                                  Text="{Binding EventCategory, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                        </TextBlock>
+                        <TextBlock Grid.Row="2"
+                                   Margin="10,0,20,5"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Foreground="Black">
+                            <Run FontSize="12"
+                                 FontWeight="Bold"
+                                 Text="{Binding EventDate, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                         </TextBlock>
                     </Grid>
                 </Grid>
@@ -59,19 +71,23 @@
                 <Grid Grid.Row="1"
                       Width="250"
                       Height="105"
-                      Margin="0 0 0 10"
+                      Margin="0,0,0,15"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Bottom">
-                    <Rectangle Fill="White"
-                               Opacity=".5"
+                    <Rectangle Margin="-16,-103,-17,-4"
+                               Fill="White"
+                               Opacity=".3"
                                RadiusX="8"
                                RadiusY="8" />
-                    <TextBlock HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
+
+
+                    <TextBlock Margin="0,8,0,0"
+                               HorizontalAlignment="Center"
                                FontSize="12"
-                               Foreground="White"
-                               TextWrapping="Wrap"
-                               Text="{Binding EventDescription, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                               FontWeight="SemiBold"
+                               Foreground="Black"
+                               Text="{Binding EventDescription, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                               TextWrapping="Wrap" />
                 </Grid>
             </Grid>
         </Border>

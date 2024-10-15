@@ -1,4 +1,6 @@
-﻿using MVA_poe.Data;
+﻿// Import necessary namespaces
+using MVA_poe.Data;
+using MVA_poe.Pages;
 using MVA_Poe.Classes;
 using System;
 using System.Collections.Generic;
@@ -8,73 +10,109 @@ using System.Linq;
 
 namespace MVA_poe.Classes
 {
+    // Class to generate event recommendations based on user patterns
     public class RecommendationEngine
     {
-        private HashSet<EventCategory> uniqueCategories; // Set for unique categories
-        private HashSet<DateTime> uniqueDates; // Set for unique dates
+        // Set for unique categories
+        private HashSet<EventCategory> uniqueCategories;
+
+        // Set for unique dates
+        private HashSet<DateTime> uniqueDates;
+
+        // Queue to store event recommendations
         private Queue<Event> eventRecommendations;
 
-      //  private PatternFrequency pattern;
-        public bool recommendationEnabled { get; set; }
+        // Static property to enable or disable recommendations
+        public static bool recommendationEnabled { get; set; }
 
-        List<string> dayPreference = new List<string>();
-        List<EventCategory> categoryPreference = new List<EventCategory>();
-        List<PatternFrequency> pattern = new List<PatternFrequency>();
+        // List to store preferred days
+        public List<string> dayPreference = new List<string>();
 
+        // List to store preferred categories
+        public List<EventCategory> categoryPreference = new List<EventCategory>();
+
+        // List to store pattern frequencies
+        private List<PatternFrequency> pattern = new List<PatternFrequency>();
+
+        // Constructor to initialize the recommendation engine
         public RecommendationEngine()
         {
+            // Initialize unique categories set
             uniqueCategories = new HashSet<EventCategory>();
+
+            // Initialize unique dates set
             uniqueDates = new HashSet<DateTime>();
+
+            // Initialize event recommendations queue
             eventRecommendations = new Queue<Event>();
+
+            // Get user pattern data
             GetPatternData();
+
+            // Generate day recommendations
             GenerateDayRecommendation();
+
+            // Generate category recommendations
             GenerateCatRecommendation();
-          //  eventRecommendations = new PriorityQueue<Event, int>();
+
+            // Populate event recommendations
+            PopulateEventRecommendations();
         }
 
-        // Method to get user Pattern data from database if exists
+        //----------------------------------------------------------------------------
+
+        // Method to get user pattern data from the database if it exists
         private void GetPatternData()
         {
+            // Use a database context to access the database
             using (var context = new AppDbContext())
             {
-
+                // Query the database for pattern frequencies for the current user
                 pattern = context.Database.SqlQuery<PatternFrequency>("SELECT * FROM PatternFrequencies WHERE userId = " + DBHelper.userID).ToList();
+
+                // Check if any pattern data exists
                 if (pattern.Any())
                 {
-                    recommendationEnabled = false;
+                    // Enable recommendations if pattern data exists
+                    recommendationEnabled = true;
+
                 }
                 else
                 {
+                    // Disable recommendations if no pattern data exists
                     recommendationEnabled = false;
                 }
+
+                // If recommendations are enabled, process the pattern data
                 if (recommendationEnabled)
-                { 
+                {
                     foreach (var item in pattern)
                     {
-                        // Get all category frequencies in db
+                        // Get all category frequencies from the database
                         item.CategoryFrequencies = context.CategoryFrequencies.Where(cf => cf.PatternFrequencyId == item.Id).ToList();
-                        // Get all date frequencies in db
+
+                        // Get all date frequencies from the database
                         item.DateFrequencies = context.DateFrequencies.Where(df => df.PatternFrequencyId == item.Id).ToList();
 
-                        // Populate uniqueCategories set
+                        // Populate unique categories set
                         foreach (var categoryFrequency in item.CategoryFrequencies)
                         {
                             uniqueCategories.Add(categoryFrequency.Category);
                         }
 
-                        // Populate uniqueDates set
+                        // Populate unique dates set
                         foreach (var dateFrequency in item.DateFrequencies)
                         {
                             uniqueDates.Add(dateFrequency.Date);
                         }
                     }
-                }               
+                }
                 else
                 {
-                   
+                    // If no pattern data exists, use search records to create unique categories and dates
                     List<SearchRecord> searchRecord = DBHelper.trackSearch;
                     if (searchRecord != null)
-                    {//if the search record has data then use it to create the unique categories and dates
+                    {
                         foreach (var record in searchRecord)
                         {
                             if (record.Category.HasValue)
@@ -82,17 +120,14 @@ namespace MVA_poe.Classes
                                 uniqueCategories.Add(record.Category.Value);
                                 uniqueDates.Add(record.StartDate);
                             }
-                           
+
                             if (record.EndDate != null)
                             {
                                 uniqueDates.Add(record.EndDate.Value);
-                                 uniqueDates.Add(record.StartDate);
+                                uniqueDates.Add(record.StartDate);
                             }
-
                         }
-
-                    }                    
-                    
+                    }
                     else
                     {
                         return;
@@ -100,10 +135,13 @@ namespace MVA_poe.Classes
                 }
             }
         }
-        //CAT FINDER 
+
+        //----------------------------------------------------------------------------
+
         // Method to recommend events based on the preferred categories
         private void GenerateCatRecommendation()
         {
+            // Dictionary to store category frequencies
             Dictionary<EventCategory, int> catFrequency = new Dictionary<EventCategory, int>();
 
             // Count the frequency of each category based on the user's search patterns
@@ -121,7 +159,8 @@ namespace MVA_poe.Classes
             // Check if the catFrequency dictionary is empty
             if (catFrequency.Count == 0)
             {
-                categoryPreference = new List<EventCategory>(); // Empty list to indicate no data
+                // Empty list to indicate no data
+                categoryPreference = new List<EventCategory>();
                 return;
             }
 
@@ -132,11 +171,14 @@ namespace MVA_poe.Classes
                 .Select(cf => cf.Key)
                 .ToList();
         }
-        //DAY FINDER 
+
+        //----------------------------------------------------------------------------
+
         // Method to generate recommendations for user days based on the unique dates,
         // will return the weekday(s) most searched by the user
         private void GenerateDayRecommendation()
         {
+            // Dictionary to store day frequencies
             Dictionary<DayOfWeek, int> dayFrequency = new Dictionary<DayOfWeek, int>();
 
             // Count the frequency of each day of the week based on unique dates
@@ -175,8 +217,11 @@ namespace MVA_poe.Classes
                 dayPreference.Add("Weekend");
             }
         }
+
+        //----------------------------------------------------------------------------
+
         // Method to recommend events based on the preferred weekdays
-        public List<Event> RecommendEventsForDays(List<Event> allEvents)
+        private List<Event> RecommendEventsForDays(List<Event> allEvents)
         {
             // Filter events based on preferred days
             var recommendedEvents = allEvents.Where(e =>
@@ -187,8 +232,11 @@ namespace MVA_poe.Classes
 
             return recommendedEvents;
         }
-        // Method to recommend events based on the preferred cat
-        public List<Event> RecommendEventsForCat(List<Event> allEvents)
+
+        //----------------------------------------------------------------------------
+
+        // Method to recommend events based on the preferred categories
+        private List<Event> RecommendEventsForCat(List<Event> allEvents)
         {
             // Filter events based on preferred categories
             var recommendedEvents = allEvents
@@ -198,9 +246,21 @@ namespace MVA_poe.Classes
             return recommendedEvents;
         }
 
-        // Populate the eventRecommendations queue
-        public void PopulateEventRecommendations(List<Event> allEvents)
+        //----------------------------------------------------------------------------
+
+        // Method to populate the eventRecommendations queue
+        private void PopulateEventRecommendations()
         {
+            // List to store all events
+            List<Event> allEvents;
+
+            // Use a database context to access the database
+            using (var db = new AppDbContext())
+            {
+                // Get all events from the database
+                allEvents = db.Events.ToList();
+            }
+
             // Get recommended events for days
             var recommendedByDay = RecommendEventsForDays(allEvents);
 
@@ -218,5 +278,14 @@ namespace MVA_poe.Classes
                 eventRecommendations.Enqueue(evt);
             }
         }
+
+        //----------------------------------------------------------------------------
+
+        // Method to return the event recommendations queue
+        public Queue<Event> ReturnRecommendations()
+        {
+            return eventRecommendations;
+        }
     }
 }
+//__---____---____---____---____---____---____---__.ooo END OF FILE ooo.__---____---____---____---____---____---____---__\\

@@ -1,8 +1,9 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <!-- Buttons -->
+    <!--  Buttons  -->
     <sys:String x:Key="Submit">Submit</sys:String>
     <sys:String x:Key="Load">Load</sys:String>
     <sys:String x:Key="Upload">Upload</sys:String>
@@ -16,7 +17,9 @@
     <sys:String x:Key="Login">Login</sys:String>
     <sys:String x:Key="ForgotGmail">Forgot Gmail?</sys:String>
 
-    <!-- Prompts -->
+
+
+    <!--  Prompts  -->
     <sys:String x:Key="EnterName">Enter your name</sys:String>
     <sys:String x:Key="EnterPassword">Enter your password</sys:String>
     <sys:String x:Key="EnterEmail">Enter your email address</sys:String>
@@ -26,7 +29,7 @@
     <sys:String x:Key="EnterLastName">Enter your last name</sys:String>
     <sys:String x:Key="EnterIDNumber">Enter your ID number</sys:String>
 
-    <!-- Labels -->
+    <!--  Labels  -->
     <sys:String x:Key="FirstName">First Name</sys:String>
     <sys:String x:Key="LastName">Last Name</sys:String>
     <sys:String x:Key="IDNumber">ID Number</sys:String>
@@ -41,7 +44,7 @@
     <sys:String x:Key="IssueDetails">Issue Details</sys:String>
     <sys:String x:Key="ReportTitle">Report Title</sys:String>
 
-    <!-- Error Messages -->
+    <!--  Error Messages  -->
     <sys:String x:Key="ErrorEmptyFields">Please fill out all fields</sys:String>
     <sys:String x:Key="ErrorInvalidCredentials">Invalid credentials</sys:String>
     <sys:String x:Key="ErrorConnection">Connection error</sys:String>
@@ -51,7 +54,7 @@
     <sys:String x:Key="ErrorPasswordsDoNotMatch">Passwords do not match</sys:String>
     <sys:String x:Key="ErrorInvalidIDNumber">Invalid ID number</sys:String>
 
-    <!-- Miscellaneous -->
+    <!--  Miscellaneous  -->
     <sys:String x:Key="WelcomeMessage">Welcome to the municipal application</sys:String>
     <sys:String x:Key="ReportingIssue">Reporting an issue</sys:String>
     <sys:String x:Key="Attachments">Attachments</sys:String>
@@ -79,12 +82,25 @@
     <sys:String x:Key="Contribute">Contribute</sys:String>
     <sys:String x:Key="DiscoverMore">Discover More</sys:String>
 
-    <!-- Announcement Messages -->
+    <!--  Announcement Messages  -->
     <sys:String x:Key="EA_MSG">We’re thrilled to announce that Local Events and Announcements will soon be live on the Municipal Services Application!</sys:String>
     <sys:String x:Key="EA_MSG1">Stay up to date with the latest happenings in your community, including festivals, meetings, and important municipal announcements.</sys:String>
     <sys:String x:Key="S_MSG1">Track and manage your service requests with ease, whether it's for garbage collection, street repairs, or other municipal services.</sys:String>
     <sys:String x:Key="S_MSG">We’re thrilled to announce that Service Requests will soon be live on the Municipal Services Application!</sys:String>
     <sys:String x:Key="Default_MSG">Please select a report to view details.</sys:String>
     <sys:String x:Key="UPD_MSG">User Profile Details</sys:String>
+
+    <sys:String x:Key="EventHeader">All Events</sys:String>
+    <sys:String x:Key="RecEventHeader1">Events recommended for you...</sys:String>
+    <sys:String x:Key="RecEventHeader2">Local Events</sys:String>
+    <sys:String x:Key="Search">Search</sys:String>
+    <sys:String x:Key="Filter">Filter</sys:String>
+    <sys:String x:Key="Reset">Reset</sys:String>
+    <sys:String x:Key="eName">Event Name:</sys:String>
+    <sys:String x:Key="eDecscrip">Event Description:</sys:String>
+    <sys:String x:Key="eDate">Event Date:</sys:String>
+    <sys:String x:Key="eCategory">Event Category:</sys:String>
+    <sys:String x:Key="eLoc">Event Location:</sys:String>
+
 
 </ResourceDictionary>

@@ -1,4 +1,5 @@
-﻿using MVA_poe.Classes;
+﻿// Import necessary namespaces
+using MVA_poe.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,16 +22,33 @@ namespace MVA_poe.Pages
     /// </summary>
     public partial class ViewEvent : Page
     {
-        public ViewEvent(Event selectedEvent)
+        // Constructor for the ViewEvent class
+        // Takes an Event object and a BitmapImage as parameters
+        public ViewEvent(Event selectedEvent, BitmapImage image)
         {
+            // Initialize the components defined in the XAML file
             InitializeComponent();
+
+            //----------------------------------------------------------------------------
+
             // Use the selectedEvent to populate the UI elements
-            // For example:
+            // Set the text of EventNameTextBlock to the name of the event
             EventNameTextBlock.Text = selectedEvent.EventName;
+
+            // Set the text of EventDescriptionTextBlock to the description of the event
             EventDescriptionTextBlock.Text = selectedEvent.EventDesc;
+
+            // Set the text of EventDateTextBlock to the date of the event, formatted as a general date/time pattern
             EventDateTextBlock.Text = selectedEvent.EventDate.ToString("g");
+
+            // Set the text of EventLocationTextBlock to the location of the event
             EventLocationTextBlock.Text = selectedEvent.EventLoc;
+
+            // Set the text of EventCategoryTextBlock to the category of the event, converted to a string
             EventCategoryTextBlock.Text = selectedEvent.EventCat.ToString();
+
+            // Set the source of EventImage to the provided BitmapImage
+            EventImage.Source = image;
         }
     }
 }

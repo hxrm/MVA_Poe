@@ -1,8 +1,9 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <!-- Buttons -->
+    <!--  Buttons  -->
     <sys:String x:Key="Submit">Ngenisa</sys:String>
     <sys:String x:Key="Load">Layisha</sys:String>
     <sys:String x:Key="Upload">Layisha Phezulu</sys:String>
@@ -16,7 +17,7 @@
     <sys:String x:Key="Login">Ngena</sys:String>
     <sys:String x:Key="ForgotGmail">Ulibele iGmail?</sys:String>
 
-    <!-- Prompts -->
+    <!--  Prompts  -->
     <sys:String x:Key="EnterName">Faka igama lakho</sys:String>
     <sys:String x:Key="EnterPassword">Faka iphasiwedi yakho</sys:String>
     <sys:String x:Key="EnterEmail">Faka idilesi ye-imeyile yakho</sys:String>
@@ -26,7 +27,7 @@
     <sys:String x:Key="EnterLastName">Faka ifani yakho</sys:String>
     <sys:String x:Key="EnterIDNumber">Faka inombolo ye-ID yakho</sys:String>
 
-    <!-- Labels -->
+    <!--  Labels  -->
     <sys:String x:Key="FirstName">Igama</sys:String>
     <sys:String x:Key="LastName">Ifani</sys:String>
     <sys:String x:Key="IDNumber">Inombolo ye-ID</sys:String>
@@ -41,7 +42,7 @@
     <sys:String x:Key="IssueDetails">Iinkcukacha Zengxaki</sys:String>
     <sys:String x:Key="ReportTitle">Isihloko Sengxelo</sys:String>
 
-    <!-- Error Messages -->
+    <!--  Error Messages  -->
     <sys:String x:Key="ErrorEmptyFields">Nceda uzalise onke amasimi</sys:String>
     <sys:String x:Key="ErrorInvalidCredentials">Amaqhosha angavumelekanga</sys:String>
     <sys:String x:Key="ErrorConnection">Impazamo yoqhagamshelwano</sys:String>
@@ -51,7 +52,7 @@
     <sys:String x:Key="ErrorPasswordsDoNotMatch">Amaphasiwedi awahambelani</sys:String>
     <sys:String x:Key="ErrorInvalidIDNumber">Inombolo ye-ID engasebenziyo</sys:String>
 
-    <!-- Miscellaneous -->
+    <!--  Miscellaneous  -->
     <sys:String x:Key="WelcomeMessage">Wamkelekile kwisicelo sikamasipala</sys:String>
     <sys:String x:Key="ReportingIssue">Ukuxela ingxaki</sys:String>
     <sys:String x:Key="Attachments">Izincamathiselo</sys:String>
@@ -79,12 +80,24 @@
     <sys:String x:Key="Contribute">Nikela</sys:String>
     <sys:String x:Key="DiscoverMore">Fumanisa Okunye</sys:String>
 
-    <!-- Announcement Messages -->
+    <!--  Announcement Messages  -->
     <sys:String x:Key="EA_MSG">Siyavuya ukwazisa ukuba Izehlo kunye Nezaziso Zasekuhlaleni ziza kufumaneka kungekudala kwisicelo senkonzo kamasipala!</sys:String>
     <sys:String x:Key="EA_MSG1">Hlala uhlaziywa ngeziganeko zamva nje zoluntu lwakho, kuquka iifestile, iintlanganiso, kunye nezaziso ezibalulekileyo zikamasipala.</sys:String>
     <sys:String x:Key="S_MSG1">Landela kwaye ulawule izicelo zakho zonkonzo ngokulula, nokuba kungokuhlanjwa kokukhupha inkunkuma, ukulungiswa kweendlela, okanye ezinye iinkonzo zikamasipala.</sys:String>
     <sys:String x:Key="S_MSG">Siyavuya ukwazisa ukuba izicelo zonkonzo ziza kufumaneka kungekudala kwisicelo senkonzo kamasipala!</sys:String>
     <sys:String x:Key="Default_MSG">Nceda ukhethe ingxelo ukuze ubone iinkcukacha.</sys:String>
     <sys:String x:Key="UPD_MSG">Iinkcukacha Zomsebenzisi</sys:String>
+
+    <sys:String x:Key="EventHeader">Zonke Izehlo</sys:String>
+    <sys:String x:Key="RecEventHeader1">Iziganeko ezincomelwayo kuwe...</sys:String>
+    <sys:String x:Key="RecEventHeader2">Iziganeko Zalapha</sys:String>
+    <sys:String x:Key="Search">Khangela</sys:String>
+    <sys:String x:Key="Filter">Hlunga</sys:String>
+    <sys:String x:Key="Reset">Setha Kwakhona</sys:String>
+    <sys:String x:Key="eName">Igama Lesiganeko:</sys:String>
+    <sys:String x:Key="eDecscrip">Inkcazo Yesiganeko:</sys:String>
+    <sys:String x:Key="eDate">Umhla Wesiganeko:</sys:String>
+    <sys:String x:Key="eCategory">Udidi Lwesiganeko:</sys:String>
+    <sys:String x:Key="eLoc">Indawo Yesiganeko:</sys:String>
 
 </ResourceDictionary>

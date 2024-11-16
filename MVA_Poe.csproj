@@ -126,13 +126,18 @@
     </Compile>
     <Compile Include="Classes\AppDbContext.cs" />
     <Compile Include="Classes\Attachment.cs" />
+    <Compile Include="Classes\DisplayRequest.cs" />
     <Compile Include="Classes\Event.cs" />
-    <Compile Include="Classes\PatternFrequency.cs" />
-    <Compile Include="Classes\RecommendationEngine.cs" />
+    <Compile Include="Classes\SearchManagment\AVLTree.cs" />
+    <Compile Include="Classes\SearchManagment\MaxHeap.cs" />
+    <Compile Include="Classes\SearchManagment\Node.cs" />
+    <Compile Include="Classes\SearchManagment\PatternFrequency.cs" />
+    <Compile Include="Classes\SearchManagment\RecommendationEngine.cs" />
     <Compile Include="Classes\Report.cs" />
     <Compile Include="Classes\SecurePasswordBox.cs" />
+    <Compile Include="Classes\ServiceRequest.cs" />
     <Compile Include="Classes\User.cs" />
-    <Compile Include="Classes\SearchRecord.cs" />
+    <Compile Include="Classes\SearchManagment\SearchRecord.cs" />
     <Compile Include="Classes\Valid.cs" />
     <Compile Include="Controls\EventCard.xaml.cs">
       <DependentUpon>EventCard.xaml</DependentUpon>
@@ -161,9 +166,12 @@
     <Compile Include="Controls\UserPopup.xaml.cs">
       <DependentUpon>UserPopup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\Employees.cs" />
     <Compile Include="Data\EnumExtend.cs" />
     <Compile Include="Data\EventCategory.cs" />
+    <Compile Include="Data\Priority.cs" />
     <Compile Include="Data\ReportCategory.cs" />
+    <Compile Include="Data\Status.cs" />
     <Compile Include="DBHelper.cs" />
     <Compile Include="Loading.xaml.cs">
       <DependentUpon>Loading.xaml</DependentUpon>
@@ -250,6 +258,10 @@
     <Compile Include="Migrations\202410150106529_AddSearchRecord.Designer.cs">
       <DependentUpon>202410150106529_AddSearchRecord.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202411160507181_ServiceRequest.cs" />
+    <Compile Include="Migrations\202411160507181_ServiceRequest.Designer.cs">
+      <DependentUpon>202411160507181_ServiceRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pages\CreateReport.xaml.cs">
       <DependentUpon>CreateReport.xaml</DependentUpon>
@@ -305,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410150106529_AddSearchRecord.resx">
       <DependentUpon>202410150106529_AddSearchRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411160507181_ServiceRequest.resx">
+      <DependentUpon>202411160507181_ServiceRequest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -25,6 +25,8 @@ using System.Runtime.InteropServices.ComTypes;
 using MVA_poe.Classes;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using MVA_poe.Data;
+using MVA_poe.Classes.SearchManagment;
 
 namespace MVA_Poe.Pages
 {
@@ -42,7 +44,6 @@ namespace MVA_Poe.Pages
         // Declare an ObservableCollection for file details
         public ObservableCollection<FileDetail> AttachListItems { get; set; }
 
-
         // Declare a list to hold attachments
         List<Attachment> attachments = new List<Attachment>();
 
@@ -53,10 +54,18 @@ namespace MVA_Poe.Pages
         Valid v = new Valid();
 
         // Declare boolean variables for field validation
-        bool validPWord, validEMail, validFName, validTitle, validID, validLoc;
+        private readonly bool validPWord;
+        private bool validEMail;
+        private bool validFName;
+        private bool validTitle;
+        private bool validID;
+        private bool validLoc;
 
         // Declare a string for error messages
         string tErrorMessage;
+
+
+        private readonly AVLTree<ServiceRequest> requestTree = new AVLTree<ServiceRequest>();
 
         // Constructor for the CreateReport class
         public CreateReport()
@@ -119,13 +128,14 @@ namespace MVA_Poe.Pages
         private void PopulateCategoryComboBox()
         {
             // Iterate through each value in the ReportCategory enum
-            foreach (var category in Enum.GetValues(typeof(ReportCategory)))
+            foreach (ReportCategory category in Enum.GetValues(typeof(ReportCategory)))
             {
-                // Format the category name and add it to the combo box
-                string catItem = System.Text.RegularExpressions.Regex.Replace(category.ToString(), "(\\B[A-Z])", " $1");
+                // Use the GetString extension method to get the description
+                string catItem = category.GetString();
                 cmbCategory.Items.Add(catItem);
             }
         }
+
 
         //----------------------------------------------------------------------------//
 
@@ -136,9 +146,17 @@ namespace MVA_Poe.Pages
             // Check if an item is selected in the combo box
             if (cmbCategory.SelectedItem != null)
             {
-                // Get the selected category and parse it to the ReportCategory enum
-                string selectedCategory = cmbCategory.SelectedItem.ToString().Replace(" ", "");
-                return (ReportCategory)Enum.Parse(typeof(ReportCategory), selectedCategory);
+                // Get the selected category description
+                string selectedCategoryDescription = cmbCategory.SelectedItem.ToString();
+
+                // Find the enum value that matches the description
+                foreach (ReportCategory category in Enum.GetValues(typeof(ReportCategory)))
+                {
+                    if (category.GetString() == selectedCategoryDescription)
+                    {
+                        return category;
+                    }
+                }
             }
             // Return the default category if none is selected
             return ReportCategory.Other;
@@ -218,6 +236,7 @@ namespace MVA_Poe.Pages
                 // Add the report to the database
                 context.Reports.Add(report);
                 context.SaveChanges();
+                StartRequest();
 
                 // Call the Test method
                 Test();
@@ -231,7 +250,7 @@ namespace MVA_Poe.Pages
                 context.SaveChanges();
 
                 // Show a success message
-                MessageBox.Show("\n\n    Report submitted successfully!    \n\n");
+                MessageBox.Show("\n\n    Report and Service Request submitted successfully!    \n\n");
 
                 // Navigate to the Dashboard page
                 this.NavigationService.Navigate(new Uri("Pages/Dashboard.xaml", UriKind.Relative));
@@ -242,7 +261,27 @@ namespace MVA_Poe.Pages
                 MessageBox.Show("\n\n     Please fill in all the required fields.    \n\n");
             }
         }
+        //----------------------------------------------------------------------------//
 
+        // Method: Test
+        // Removes closed attachments from the list
+        private void StartRequest()
+        {
+            // Create a new ServiceRequest
+            var serviceRequest = new ServiceRequest
+            {
+                reportId = report.reportID, 
+                report = report, 
+                requestStat = ServiceRequestStatus.Pending, 
+                requestPri = ServiceRequestPriority.Medium, 
+                employeeId = 0, 
+                requestUpdate = DateTime.Now 
+            };
+
+            // Add the service request to the database
+            context.ServiceRequests.Add(serviceRequest);
+            requestTree.Insert(serviceRequest);
+        }
         //----------------------------------------------------------------------------//
 
         // Method: Test

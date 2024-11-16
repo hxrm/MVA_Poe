@@ -1,27 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace MVA_Poe.Data
-{// Define an enumeration named ReportCategory
+{
+    // Define an enumeration named ReportCategory
     public enum ReportCategory
     {
+        [Description("Pothole")]
+        Pothole,
 
-        Pothole,         
-        StreetLight,            
-        WaterLeak,              
-        GarbageCollection,     
-        IllegalDumping,         
-        SewageLeak,             
-        PowerOutage,            
-        Vandalism,              
-        RoadSignDamage,        
-        TrafficLightFault,   
-        NoiseComplaint,         
-        AnimalControl,          
-        IllegalConstruction,   
+        [Description("Street Light")]
+        StreetLight,
+
+        [Description("Water Leak")]
+        WaterLeak,
+
+        [Description("Garbage Collection")]
+        GarbageCollection,
+
+        [Description("Illegal Dumping")]
+        IllegalDumping,
+
+        [Description("Sewage Leak")]
+        SewageLeak,
+
+        [Description("Power Outage")]
+        PowerOutage,
+
+        [Description("Vandalism")]
+        Vandalism,
+
+        [Description("Road Sign Damage")]
+        RoadSignDamage,
+
+        [Description("Traffic Light Fault")]
+        TrafficLightFault,
+
+        [Description("Noise Complaint")]
+        NoiseComplaint,
+
+        [Description("Animal Control")]
+        AnimalControl,
+
+        [Description("Illegal Construction")]
+        IllegalConstruction,
+
+        [Description("Other")]
         Other
     }
 }

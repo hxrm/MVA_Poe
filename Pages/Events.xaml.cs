@@ -30,7 +30,7 @@ namespace MVA_poe.Pages
     public partial class Events : Page
     {
         // List to store Events, sorted by DateTime
-        private SortedDictionary<DateTime, List<Event>> events = new SortedDictionary<DateTime, List<Event>>();
+        private readonly SortedDictionary<DateTime, List<Event>> events = new SortedDictionary<DateTime, List<Event>>();
 
         // ObservableCollection to store EventCard items, used for data binding in the UI
         public ObservableCollection<EventCard> EventCardItems { get; set; }

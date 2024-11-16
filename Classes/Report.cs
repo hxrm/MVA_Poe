@@ -36,6 +36,9 @@ namespace MVA_Poe.Classes
         // Property for a collection of attachments, initialized to null
         public ICollection<Attachment> Attachments { get; set; } = null;
 
+        // Property for a collection of null ServiceRequest objects
+        public ICollection<ServiceRequest> ServiceRequests { get; set; } = null;
+
         // Foreign Key for User
         // Property for the user ID, which is a foreign key
         public int userId { get; set; }

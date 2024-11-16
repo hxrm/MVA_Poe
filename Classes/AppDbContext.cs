@@ -37,6 +37,8 @@ namespace MVA_Poe.Classes
 
         // Define a DbSet property named SearchRecords, which represents a collection of SearchRecord entities in the database.
         public DbSet<SearchRecord> SearchRecords { get; set; }
+        // Add a DbSet for ServiceRequest
+        public DbSet<ServiceRequest> ServiceRequests { get; set; }
 
 
         // Static field to store the database file path

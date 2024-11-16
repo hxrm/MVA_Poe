@@ -30,7 +30,7 @@ namespace MVA_poe.Pages
     {
 
         // Declare an instance of AppDbContext
-        AppDbContext context;
+       // AppDbContext context;
 
         // Declare an instance of DBHelper
         DBHelper dbHelper;

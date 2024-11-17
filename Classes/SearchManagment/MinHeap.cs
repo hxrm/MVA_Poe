@@ -32,19 +32,21 @@ namespace MVA_poe.Classes.SearchManagment
                 size++;
             }
 
-            public ServiceRequest Dequeue()
-            {
-                if (size == 0) throw new InvalidOperationException("Heap is empty");
+        public ServiceRequest Dequeue()
+        {
+            if (size == 0)
+                throw new InvalidOperationException("Heap is empty.");
 
-                var root = heap[0];
-                heap[0] = heap[size - 1];
-                size--;
-                HeapifyDown(0);
+            var root = heap[0];
+            heap[0] = heap[size - 1];
+            size--;
+            HeapifyDown(0);
 
-                return root;
-            }
+            return root;
+        }
 
-            public bool IsEmpty()
+
+        public bool IsEmpty()
             {
                 return size == 0;
             }

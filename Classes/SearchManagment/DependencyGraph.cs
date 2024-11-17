@@ -43,16 +43,23 @@ namespace MVA_poe.Classes.SearchManagment
                 throw new KeyNotFoundException($"Service request with ID {toId} does not exist.");
             }
 
-            adjacencyList[fromId].Add(toId);
-
-            // Optional: Check for cycles after adding a dependency
-            if (HasCycle())
+            // Check if the dependency already exists before adding
+            if (HasDependency(fromId, toId))
             {
-                adjacencyList[fromId].Remove(toId); // Rollback the change
-                throw new InvalidOperationException("Adding this dependency creates a cyclic dependency.");
+                Console.WriteLine($"Dependency between {fromId} and {toId} already exists.");
+            }
+            else
+            {
+                adjacencyList[fromId].Add(toId);
+
+                // Optional: Check for cycles after adding a dependency
+                if (HasCycle())
+                {
+                    adjacencyList[fromId].Remove(toId); // Rollback the change
+                    throw new InvalidOperationException("Adding this dependency creates a cyclic dependency.");
+                }
             }
         }
-
         // Method to get the dependencies of a service request
         public List<int> GetDependencies(int requestId)
         {
@@ -61,19 +68,6 @@ namespace MVA_poe.Classes.SearchManagment
                 throw new KeyNotFoundException($"Service request with ID {requestId} does not exist.");
             }
             return adjacencyList[requestId];
-        }
-
-        // Method to get a service request by its ID
-        public ServiceRequest GetServiceRequest(int requestId)
-        {
-            serviceRequests.TryGetValue(requestId, out var request);
-            return request;
-        }
-
-        // Method to get all service requests
-        public IEnumerable<ServiceRequest> GetAllServiceRequests()
-        {
-            return serviceRequests.Values;
         }
 
         // Cyclic Dependency Detection
@@ -94,6 +88,17 @@ namespace MVA_poe.Classes.SearchManagment
             }
             // If no cycles are found, return false.
             return false;
+        }
+        // Method to check if a dependency already exists between two service requests
+        public bool HasDependency(int fromId, int toId)
+        {
+            if (!adjacencyList.ContainsKey(fromId))
+            {
+                throw new KeyNotFoundException($"Service request with ID {fromId} does not exist.");
+            }
+
+            // Check if 'toId' is in the list of dependencies for 'fromId'
+            return adjacencyList[fromId].Contains(toId);
         }
 
         // Recursive helper method to check for cycles in the graph.
@@ -179,6 +184,19 @@ namespace MVA_poe.Classes.SearchManagment
 
             return sortedOrder; // Return the topological order of the nodes.
         }
+
+        //// Method to get a service request by its ID
+        //public ServiceRequest GetServiceRequest(int requestId)
+        //{
+        //    serviceRequests.TryGetValue(requestId, out var request);
+        //    return request;
+        //}
+
+        //// Method to get all service requests
+        //public IEnumerable<ServiceRequest> GetAllServiceRequests()
+        //{
+        //    return serviceRequests.Values;
+        //}
     }
 }
 

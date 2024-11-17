@@ -30,6 +30,9 @@
             <Button Content="Show Dependency Graph"
                     Click="ShowDependencyGraph_Click"
                     Margin="5" />
+            <Button Content="Show MTS Graph"
+                    Click="MTS_Click"
+                    Margin="5" />
         </StackPanel>
 
         <ScrollViewer Grid.Row="1"

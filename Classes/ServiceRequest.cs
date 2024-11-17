@@ -1,5 +1,6 @@
 ﻿using MVA_poe.Data;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,16 +21,21 @@ namespace MVA_Poe.Classes
         public Report report { get; set; }
 
         // Service request status (using the ServiceRequestStatus enum)
-        public ServiceRequestStatus requestStat { get; set; }
+        public Status requestStat { get; set; }
 
         // Priority of the service request (using the ServiceRequestPriority enum)
-        public ServiceRequestPriority requestPri { get; set; }
+        public Priority requestPri { get; set; }
 
         // ID of the employee assigned to the service request
         public int employeeId { get; set; }
 
         // Last updated date of the service request
         public DateTime requestUpdate { get; set; }
+
+        // Self-referencing relationship for dependencies
+        public virtual ICollection<ServiceRequest> Dependencies { get; set; }
+        public virtual ICollection<ServiceRequest> DependentOn { get; set; }
+
 
         // Constructor for initializing properties
         public ServiceRequest()

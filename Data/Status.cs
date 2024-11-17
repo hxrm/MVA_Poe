@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MVA_poe.Data
 {
-    public enum ServiceRequestStatus
+    public enum Status
     {
         [Description("Request has been submitted but not yet started")]
         Pending,    // Request has been submitted but not yet started

@@ -27,6 +27,8 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using MVA_poe.Data;
 using MVA_poe.Classes.SearchManagment;
+using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace MVA_Poe.Pages
 {
@@ -64,7 +66,7 @@ namespace MVA_Poe.Pages
         // Declare a string for error messages
         string tErrorMessage;
 
-
+    
         private readonly AVLTree<ServiceRequest> requestTree = new AVLTree<ServiceRequest>();
 
         // Constructor for the CreateReport class
@@ -92,6 +94,43 @@ namespace MVA_Poe.Pages
             context = new AppDbContext();
         }
 
+
+        private async void LocationTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            string query = txtLocation.Text.ToLower();
+
+            // Query the OpenStreetMap Nominatim API for locations that match
+            var filteredLocations = await GetLocationsFromOpenStreetMap(query);
+
+            // Update the ListBox with filtered locations
+            LocationListBox.ItemsSource = filteredLocations;
+            LocationListBox.Visibility = filteredLocations.Any() ? Visibility.Visible : Visibility.Collapsed;
+        }
+        private async Task<List<string>> GetLocationsFromOpenStreetMap(string query)
+        {
+            var client = new HttpClient();
+            var url = $"https://nominatim.openstreetmap.org/search?q={Uri.EscapeDataString(query)}&format=json&addressdetails=1&limit=10&viewbox=17.0,-35.5,21.5,-32.0&bounded=1";
+            // Add User-Agent header
+            client.DefaultRequestHeaders.Add("User-Agent", "mvc_poe/1.0 (chanah.rm@gmail.com)");
+
+
+            var response = await client.GetStringAsync(url);
+                var results = JsonConvert.DeserializeObject<List<OSMResponse>>(response);
+
+                // Extract display names from the results
+                var locations = new List<string>();
+                foreach (var result in results)
+                {
+                    locations.Add(result.DisplayName);
+                }
+                
+            return locations;  
+        }
+        public class OSMResponse
+        {
+            [JsonProperty("display_name")]
+            public string DisplayName { get; set; }
+        }
         //----------------------------------------------------------------------------//
 
         // Method: SetLanguage
@@ -272,15 +311,21 @@ namespace MVA_Poe.Pages
             {
                 reportId = report.reportID, 
                 report = report, 
-                requestStat = ServiceRequestStatus.Pending, 
-                requestPri = ServiceRequestPriority.Medium, 
+                requestStat = Status.Pending, 
+                requestPri = Priority.Medium, 
                 employeeId = 0, 
                 requestUpdate = DateTime.Now 
             };
 
             // Add the service request to the database
             context.ServiceRequests.Add(serviceRequest);
+
+            var serviceRequestManager = new ServiceRequestManager();
+            serviceRequestManager.AddServiceRequest(serviceRequest);
+
             requestTree.Insert(serviceRequest);
+            // Save changes to the database
+            context.SaveChanges();
         }
         //----------------------------------------------------------------------------//
 

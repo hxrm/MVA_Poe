@@ -51,15 +51,30 @@
                     <TextBlock x:Name="locError" Visibility="Hidden" Text="" FontWeight="Light" Margin="0,-5,0,5" Foreground="Red"  FontSize="13"/>
                 </StackPanel>
             </Grid>
-            <TextBox x:Name="txtLocation" Foreground="{DynamicResource TextSecundaryColor}" Grid.Column="4" Grid.Row="3" Margin="5 10 30 10" Height="42"  Grid.ColumnSpan="2"/>
 
+            <StackPanel Grid.Column="4"
+                        Grid.Row="3"
+                        Grid.RowSpan="2"
+                        Margin="5 10 30 10"
+                        Height="100"
+                        Grid.ColumnSpan="2">
+                <TextBox x:Name="txtLocation" Foreground="{DynamicResource TextSecundaryColor}" Grid.Column="4" Grid.Row="3" Margin="5 10 30 10" Height="42"  Grid.ColumnSpan="2" KeyUp="LocationTextBox_KeyUp"/>
+                <ListBox x:Name="LocationListBox"
+                         Foreground="{DynamicResource TextSecundaryColor}"
+                         Grid.Column="4"
+                         Grid.Row="3"
+                         Margin="5 10 30 10"
+                         Height="42"
+                         Grid.ColumnSpan="2" />
+            </StackPanel>
             <Grid Grid.Column="2" Grid.Row="4" MinWidth="60" Grid.ColumnSpan="1" Margin="70 0 0 0">
                 <StackPanel>
                     <TextBlock Text="{DynamicResource Category}" FontWeight="SemiBold" Margin="5,5,5,5" />
                     <TextBlock x:Name="catError" Visibility="Hidden" Text="" FontWeight="Light" Margin="0,-5,0,5" Foreground="Red"  FontSize="13"/>
                 </StackPanel>
             </Grid>
-            <ComboBox x:Name="cmbCategory" Grid.Column="4" Grid.Row="4" Margin="5 10 30 10" Height="42"  Grid.ColumnSpan="2"/>
+            <ComboBox x:Name="cmbCategory" Grid.Column="4" Grid.Row="4" Margin="5 10 30 10" Height="42"  Grid.ColumnSpan="2"
+                      Visibility="Collapsed" />
 
             <Grid Grid.Column="2" Grid.Row="5" MinWidth="60" Grid.ColumnSpan="1" Margin="70 0 0 0">
                 <StackPanel>

@@ -50,6 +50,22 @@ namespace MVA_Poe.Classes
         // Constructor for the AppDbContext class. It calls the base class constructor with a connection string.
         public AppDbContext() : base(theDB)
         {
+
+        }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Configure self-referencing relationship for ServiceRequest
+            modelBuilder.Entity<ServiceRequest>()
+                .HasMany(sr => sr.Dependencies)
+                .WithMany(sr => sr.DependentOn)
+                .Map(cs =>
+                {
+                    cs.MapLeftKey("ServiceRequestId");
+                    cs.MapRightKey("DependencyId");
+                    cs.ToTable("ServiceRequestDependencies");
+                });
         }
     }
 }

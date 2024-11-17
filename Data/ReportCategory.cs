@@ -43,7 +43,8 @@ namespace MVA_Poe.Data
 
         [Description("Illegal Construction")]
         IllegalConstruction,
-
+        [Description("All")]
+        All,
         [Description("Other")]
         Other
     }

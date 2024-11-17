@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MVA_poe.Data
 {
-    public enum ServiceRequestPriority
+    public enum Priority
     {
         [Description("Low priority")]
         Low = 1,    // Low priority

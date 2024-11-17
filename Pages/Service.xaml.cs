@@ -34,7 +34,22 @@ namespace MVA_poe.Pages
             InitializeComponent();
             SetLanguage(DBHelper.lang);
             GetData();
+
+            //using (var context = new AppDbContext())
+            //{
+            //    var dependencyUpdater = new DependencyUpdater(context);
+            //    dependencyUpdater.AddDependenciesToExistingData();
+
+            //    Console.WriteLine("Dependencies added successfully.");
+            //}
+           
+
         }
+        private void VisualizeDependencies_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new DependencyVisual());
+        }
+
 
         private void SetLanguage(string cultureCode)
         {

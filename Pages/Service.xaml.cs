@@ -28,12 +28,15 @@ namespace MVA_poe.Pages
     {
         private AVLTree<ServiceRequest> requestTree = new AVLTree<ServiceRequest>();
         private MaxHeap requestHeap = new MaxHeap();
+        private ServiceRequestManager sm;
+
 
         public Service()
         {
             InitializeComponent();
             SetLanguage(DBHelper.lang);
             GetData();
+        
 
             //using (var context = new AppDbContext())
             //{
@@ -42,7 +45,7 @@ namespace MVA_poe.Pages
 
             //    Console.WriteLine("Dependencies added successfully.");
             //}
-           
+
 
         }
         private void VisualizeDependencies_Click(object sender, RoutedEventArgs e)
@@ -73,29 +76,30 @@ namespace MVA_poe.Pages
         // Retrieves data from the database
         private void GetData()
         {
-            // Use a database context to access the database
-            using (var db = new AppDbContext())
-            {
-                // Retrieve all service requests from the database and include their associated reports
-                var requestList = db.ServiceRequests.Include("report").ToList();
+            //// Use a database context to access the database
+            //using (var db = new AppDbContext())
+            //{
+            //    // Retrieve all service requests from the database and include their associated reports
+            //    var requestList = db.ServiceRequests.Include("report").ToList();
+            //    requestHeap = new MaxHeap();
+            //    // Clear the existing AVL tree
+            //    requestTree = new AVLTree<ServiceRequest>();
 
-                // Clear the existing AVL tree
-                requestTree = new AVLTree<ServiceRequest>();
+            //    // Iterate through each service request in the list
+            //    foreach (ServiceRequest request in requestList)
+            //    {
+            //        // Add each service request to the AVL tree
+            //        requestTree.Insert(request);
+            //        requestHeap.Insert(request);
+            //        request.requestDate = request.report.reportDate;
+            //    }            
 
-                // Iterate through each service request in the list
-                foreach (ServiceRequest request in requestList)
-                {
-                    // Add each service request to the AVL tree
-                    requestTree.Insert(request);
-                }
+            //}
+            sm = new ServiceRequestManager();
+            sm.GetAVL();
+            requestHeap = ServiceRequestManager.maxHeap;
+            requestTree = ServiceRequestManager.avlTree;
 
-                requestHeap = new MaxHeap();
-
-                foreach (ServiceRequest request in requestList)
-                {
-                    requestHeap.Insert(request);
-                }
-            }
             DisplayServiceRequests();
         }
 
@@ -114,17 +118,7 @@ namespace MVA_poe.Pages
                 .Where(sr => sr.requestPri.GetString().IndexOf(priority, StringComparison.OrdinalIgnoreCase) >= 0)
                 .Select(sr => GetDisplayItem(sr))
                 .ToList();
-        }
-
-        //private IEnumerable<DisplayRequest> SearchServiceRequestsByPriority(string priority)
-        //{
-        //    var serviceRequests = requestTree.InOrderTraversal();
-        //    return serviceRequests
-        //        .Where(sr => sr.requestPri.GetString().IndexOf(priority, StringComparison.OrdinalIgnoreCase) >= 0)
-        //        .Select(sr => GetDisplayItem(sr))
-        //        .ToList();
-        //}
-
+        }        
         private IEnumerable<DisplayRequest> SearchServiceRequestsByStatus(string status)
         {
             var serviceRequests = requestTree.InOrderTraversal();
@@ -134,7 +128,6 @@ namespace MVA_poe.Pages
                 .Select(sr => GetDisplayItem(sr))
                 .ToList();
         }
-
 
         private void DisplayServiceRequests()
         {
@@ -195,7 +188,6 @@ namespace MVA_poe.Pages
                 MessageBox.Show("Please select a search type and enter a search value.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-
             dataGrid.Items.Clear();
 
             switch (searchType)

@@ -310,6 +310,7 @@
     <Compile Include="Classes\SearchManagment\DependencyGraph.cs" />
     <Compile Include="Classes\SearchManagment\MaxHeap.cs" />
     <Compile Include="Classes\SearchManagment\MinHeap.cs" />
+    <Compile Include="Classes\SearchManagment\MTSGraph.cs" />
     <Compile Include="Classes\SearchManagment\Node.cs" />
     <Compile Include="Classes\SearchManagment\PatternFrequency.cs" />
     <Compile Include="Classes\SearchManagment\RecommendationEngine.cs" />
@@ -452,6 +453,10 @@
     <Compile Include="Migrations\202411161627140_Graph.Designer.cs">
       <DependentUpon>202411161627140_Graph.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202411171456096_MTS.cs" />
+    <Compile Include="Migrations\202411171456096_MTS.Designer.cs">
+      <DependentUpon>202411171456096_MTS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pages\CreateReport.xaml.cs">
       <DependentUpon>CreateReport.xaml</DependentUpon>
@@ -516,6 +521,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202411161627140_Graph.resx">
       <DependentUpon>202411161627140_Graph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411171456096_MTS.resx">
+      <DependentUpon>202411171456096_MTS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -589,6 +597,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ic_calender.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFramework">
+      <Version>6.5.1</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

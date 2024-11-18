@@ -8,125 +8,92 @@ namespace MVA_poe.Classes.SearchManagment
 {
     public class DependencyGraph
     {
-        // Thread-safe dictionaries for adjacency list and service requests
-        private readonly ConcurrentDictionary<int, List<int>> adjacencyList;
-        private readonly ConcurrentDictionary<int, ServiceRequest> serviceRequests;
+        // Adjacency list to represent the graph
+        private ConcurrentDictionary<int, List<int>> adjacencyList;
 
-        // Constructor to initialize the dictionaries
+        // Map to store the ServiceRequest objects by their requestId
+        public ConcurrentDictionary<int, ServiceRequest> serviceRequests;
+
+        // Constructor to initialize the graph
         public DependencyGraph()
         {
             adjacencyList = new ConcurrentDictionary<int, List<int>>();
             serviceRequests = new ConcurrentDictionary<int, ServiceRequest>();
         }
 
-        // Method to add a service request to the graph
+        // Add a new service request to the graph
         public void AddServiceRequest(ServiceRequest request)
         {
-            if (request == null || request.requestId <= 0)
-            {
-                throw new ArgumentException("Invalid service request or request ID.");
-            }
-
-            adjacencyList.TryAdd(request.requestId, new List<int>());
+            // Ensure the request is added to the serviceRequests dictionary
             serviceRequests.TryAdd(request.requestId, request);
+
+            // Initialize an empty list of dependencies for the request in the adjacency list
+            adjacencyList.TryAdd(request.requestId, new List<int>());
         }
 
-        // Method to add a dependency between two service requests
-        public void AddDependency(int fromId, int toId)
+        // Add a dependency between two requests
+        public bool AddDependency(int fromRequestId, int toRequestId)
         {
-            if (!adjacencyList.ContainsKey(fromId))
+            // Ensure both requests exist in the graph
+            if (!serviceRequests.ContainsKey(fromRequestId) || !serviceRequests.ContainsKey(toRequestId))
             {
-                throw new KeyNotFoundException($"Service request with ID {fromId} does not exist.");
-            }
-            if (!adjacencyList.ContainsKey(toId))
-            {
-                throw new KeyNotFoundException($"Service request with ID {toId} does not exist.");
+                throw new ArgumentException("One or both of the specified requests do not exist in the graph.");
             }
 
-            adjacencyList[fromId].Add(toId);
-
-            // Optional: Check for cycles after adding a dependency
-            if (HasCycle())
+            // Prevent adding a self-loop
+            if (fromRequestId == toRequestId)
             {
-                adjacencyList[fromId].Remove(toId); // Rollback the change
-                throw new InvalidOperationException("Adding this dependency creates a cyclic dependency.");
+                throw new InvalidOperationException("A service request cannot depend on itself.");
             }
+
+            // Check for cycles before adding the dependency
+            if (HasCycle(fromRequestId, toRequestId))
+            {
+                throw new InvalidOperationException("Adding this dependency would create a cycle.");
+            }
+
+            // Add the dependency
+            adjacencyList[fromRequestId].Add(toRequestId);
+            return true;
         }
-
-        // Method to get the dependencies of a service request
+        // Get all dependencies of a service request
         public List<int> GetDependencies(int requestId)
         {
-            if (!adjacencyList.ContainsKey(requestId))
+            return adjacencyList.TryGetValue(requestId, out var dependencies) ? dependencies : new List<int>();
+        }
+
+        // Perform a topological sort to resolve tasks in dependency order
+        public List<int> ResolveOrder()
+        {
+            var visited = new HashSet<int>();
+            var resultStack = new Stack<int>();
+
+            foreach (var requestId in adjacencyList.Keys)
             {
-                throw new KeyNotFoundException($"Service request with ID {requestId} does not exist.");
-            }
-            return adjacencyList[requestId];
-        }
-
-        // Method to get a service request by its ID
-        public ServiceRequest GetServiceRequest(int requestId)
-        {
-            serviceRequests.TryGetValue(requestId, out var request);
-            return request;
-        }
-
-        // Method to get all service requests
-        public IEnumerable<ServiceRequest> GetAllServiceRequests()
-        {
-            return serviceRequests.Values;
-        }
-
-        // Cyclic Dependency Detection
-        // This method checks if the graph contains any cycles.
-        public bool HasCycle()
-        {
-            var visited = new HashSet<int>(); // Tracks nodes that have been fully processed.
-            var recursionStack = new HashSet<int>(); // Tracks nodes in the current recursion stack to detect cycles.
-
-            // Iterate through all nodes in the graph.
-            foreach (var node in adjacencyList.Keys)
-            {
-                // If a cycle is detected starting from any node, return true.
-                if (IsCyclic(node, visited, recursionStack))
+                if (!visited.Contains(requestId))
                 {
-                    return true;
+                    TopologicalSortHelper(requestId, visited, resultStack);
                 }
             }
-            // If no cycles are found, return false.
-            return false;
+
+            return resultStack.Reverse().ToList(); // Return the resolved order
         }
 
-        // Recursive helper method to check for cycles in the graph.
-        private bool IsCyclic(int node, HashSet<int> visited, HashSet<int> recursionStack)
+        // Helper method for topological sort
+        private void TopologicalSortHelper(int requestId, HashSet<int> visited, Stack<int> resultStack)
         {
-            // If the node has not been visited yet.
-            if (!visited.Contains(node))
-            {
-                visited.Add(node); // Mark the node as visited.
-                recursionStack.Add(node); // Add the node to the recursion stack.
+            visited.Add(requestId);
 
-                // Iterate through all neighbors (dependencies) of the current node.
-                foreach (var neighbor in adjacencyList[node])
+            foreach (var dependentId in adjacencyList[requestId])
+            {
+                if (!visited.Contains(dependentId))
                 {
-                    // If the neighbor has not been visited, recursively check it for cycles.
-                    if (!visited.Contains(neighbor) && IsCyclic(neighbor, visited, recursionStack))
-                    {
-                        return true; // Cycle detected.
-                    }
-                    // If the neighbor is in the recursion stack, a cycle is detected.
-                    else if (recursionStack.Contains(neighbor))
-                    {
-                        return true;
-                    }
+                    TopologicalSortHelper(dependentId, visited, resultStack);
                 }
             }
-            // Remove the node from the recursion stack after processing all neighbors.
-            recursionStack.Remove(node);
-            return false; // No cycle detected for this node.
-        }
 
-        // Topological Sorting using Kahn's Algorithm
-        // This method generates a topological order of nodes in the graph.
+            resultStack.Push(requestId);
+        }
         public List<int> TopologicalSort()
         {
             var inDegree = new Dictionary<int, int>(); // Dictionary to track the number of incoming edges for each node.
@@ -179,6 +146,34 @@ namespace MVA_poe.Classes.SearchManagment
 
             return sortedOrder; // Return the topological order of the nodes.
         }
+        // Check for cycles in the graph
+        private bool HasCycle(int fromRequestId, int toRequestId)
+        {
+            var visited = new HashSet<int>();
+            var stack = new HashSet<int>();
+
+            return HasCycleHelper(fromRequestId, toRequestId, visited, stack);
+        }
+
+        private bool HasCycleHelper(int current, int target, HashSet<int> visited, HashSet<int> stack)
+        {
+            if (stack.Contains(current)) return true;
+
+            if (visited.Contains(current)) return false;
+
+            visited.Add(current);
+            stack.Add(current);
+
+            foreach (var dependent in adjacencyList[current])
+            {
+                if (dependent == target || HasCycleHelper(dependent, target, visited, stack))
+                {
+                    return true;
+                }
+            }
+
+            stack.Remove(current);
+            return false;
+        }
     }
 }
-

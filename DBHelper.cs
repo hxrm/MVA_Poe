@@ -1,8 +1,13 @@
 ﻿using MVA_poe.Classes;
+using MVA_poe.Classes.SearchManagment;
+using MVA_poe.Data;
 using MVA_Poe.Classes;
+using MVA_Poe.Migrations;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 
 namespace MVA_poe
 {
@@ -21,7 +26,8 @@ namespace MVA_poe
         // List to store current session records
      //   public static RecordPattern trackSearch = new RecordPattern();
         public static List<SearchRecord>trackSearch = new List<SearchRecord>();
-
+     
+        private static AVLTree<MVA_Poe.Classes.ServiceRequest> requestTree = new AVLTree<MVA_Poe.Classes.ServiceRequest>();
         // Default constructor
         public DBHelper() { }
 
@@ -45,8 +51,32 @@ namespace MVA_poe
         {
             trackSearch = new List<SearchRecord>();
         }
+        public static void NewRequest(Report report)
+        {
+            // Fetch data from the database
+            using (var context = new AppDbContext())
+            {
+               
+                    var serviceRequest = new MVA_Poe.Classes.ServiceRequest
+                    {
+                        reportId = report.reportID,
+                        report = report,
+                        employeeId = 0,
+                        requestDate = report.reportDate,
+                        requestUpdate = DateTime.Now
+                    };
+                    serviceRequest.AssignPriority();
+                    context.ServiceRequests.Add(serviceRequest);
+                    requestTree.Insert(serviceRequest);
+                    context.SaveChanges();             
+                
+                    }
+                }  
+            
+            
 
-       
+        
+
         // THEN SET UP TIMER TRIGGER TO SAVE THE RECORDS TO THE DATABASE
         // Finalize the session and analyze the data
         public static void FinalizeSessionAndAnalyzeData()
@@ -100,3 +130,4 @@ namespace MVA_poe
         }
     }
 }
+

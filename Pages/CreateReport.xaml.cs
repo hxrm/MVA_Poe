@@ -67,6 +67,7 @@ namespace MVA_Poe.Pages
         string tErrorMessage;
 
     
+        // use to pull data ?
         private readonly AVLTree<ServiceRequest> requestTree = new AVLTree<ServiceRequest>();
 
         // Constructor for the CreateReport class
@@ -270,15 +271,16 @@ namespace MVA_Poe.Pages
         private void SaveToDB()
         {
             // Check if the report and attachments are valid
+
+            Test();
+            
             if (validReport && validAttachment)
             {
                 // Add the report to the database
                 context.Reports.Add(report);
-                context.SaveChanges();
-                StartRequest();
-
+                context.SaveChanges();             
                 // Call the Test method
-                Test();
+               // Test();
 
                 // Set the reportID for each attachment and save them to the database
                 foreach (var attachment in attachments)
@@ -287,7 +289,7 @@ namespace MVA_Poe.Pages
                     context.Attachments.Add(attachment);
                 }
                 context.SaveChanges();
-
+                DBHelper.NewRequest(report);
                 // Show a success message
                 MessageBox.Show("\n\n    Report and Service Request submitted successfully!    \n\n");
 
@@ -300,33 +302,7 @@ namespace MVA_Poe.Pages
                 MessageBox.Show("\n\n     Please fill in all the required fields.    \n\n");
             }
         }
-        //----------------------------------------------------------------------------//
 
-        // Method: Test
-        // Removes closed attachments from the list
-        private void StartRequest()
-        {
-            // Create a new ServiceRequest
-            var serviceRequest = new ServiceRequest
-            {
-                reportId = report.reportID, 
-                report = report, 
-                requestStat = Status.Pending, 
-                requestPri = Priority.Medium, 
-                employeeId = 0, 
-                requestUpdate = DateTime.Now 
-            };
-
-            // Add the service request to the database
-            context.ServiceRequests.Add(serviceRequest);
-
-            var serviceRequestManager = new ServiceRequestManager();
-            serviceRequestManager.AddServiceRequest(serviceRequest);
-
-            requestTree.Insert(serviceRequest);
-            // Save changes to the database
-            context.SaveChanges();
-        }
         //----------------------------------------------------------------------------//
 
         // Method: Test
@@ -344,6 +320,14 @@ namespace MVA_Poe.Pages
                 {
                     attachments.Remove(attachments.Find(x => x.FileName == AttachListItems[i].FileName));
                 }
+            }
+            if (attachments.Count == 0)
+            {
+                validAttachment = true;
+            }
+            else
+            {
+                validAttachment = false;
             }
         }
 

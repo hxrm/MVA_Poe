@@ -90,13 +90,9 @@
     <sys:String x:Key="S_MSG">Ons is opgewonde om aan te kondig dat Diensversoeke binnekort beskikbaar sal wees op die Munisipale Dienste Aansoek!</sys:String>
     <sys:String x:Key="Default_MSG">Kies asseblief 'n verslag om besonderhede te sien.</sys:String>
     <sys:String x:Key="UPD_MSG">Gebruikersprofiel Besonderhede</sys:String>
-    <sys:String x:Key="LE_REC">Gebeurtenisse aanbeveel soos jy gesoek het</sys:String>
-    <sys:String x:Key="LE_REL">Verwante gebeure...</sys:String>
-    <sys:String x:Key="LE_CAT1">gebeure van</sys:String>
-    <sys:String x:Key="LE_CAT2">gebeure wat val op</sys:String>
-    <sys:String x:Key="LE_CAT3">en</sys:String>
 
- 
+
+
 
 
     <sys:String x:Key="EventHeader">Alle Gebeure</sys:String>

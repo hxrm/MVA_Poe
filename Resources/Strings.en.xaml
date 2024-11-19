@@ -96,7 +96,9 @@
     <sys:String x:Key="LE_REC">Events recommended as you searched</sys:String>
     <sys:String x:Key="LE_REL">Related Events...</sys:String>
     <sys:String x:Key="LE_NON">No specific preferences</sys:String>
-
+    <sys:String x:Key="LE_CAT1">events from</sys:String>
+    <sys:String x:Key="LE_CAT2">events falling on</sys:String>
+    <sys:String x:Key="LE_CAT3">and</sys:String>
 
     <sys:String x:Key="EventHeader">All Events</sys:String>
     <sys:String x:Key="RecEventHeader1">Events recommended for you...</sys:String>

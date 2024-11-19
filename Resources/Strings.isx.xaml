@@ -15,7 +15,10 @@
     <sys:String x:Key="Close">Vala</sys:String>
     <sys:String x:Key="Register">Bhalisa</sys:String>
     <sys:String x:Key="Login">Ngena</sys:String>
-    <sys:String x:Key="ForgotGmail">Ulibele iGmail?</sys:String>
+    <sys:String x:Key="Home">Ikhaya</sys:String>
+    <sys:String x:Key="SR_BTN_VISUAL">Jonga Umboniso</sys:String>
+    <sys:String x:Key="SR_BTN_STATUS">Hlela Isimo</sys:String>
+    <sys:String x:Key="SR_BTN_PRIOR">Hlela Phambili</sys:String>
 
     <!--  Prompts  -->
     <sys:String x:Key="EnterName">Faka igama lakho</sys:String>
@@ -38,6 +41,7 @@
     <sys:String x:Key="Location">Indawo</sys:String>
     <sys:String x:Key="Description">Inkcazo</sys:String>
     <sys:String x:Key="Category">Udidi</sys:String>
+    <sys:String x:Key="Language">Ulwimi</sys:String>
     <sys:String x:Key="Date">Umhla</sys:String>
     <sys:String x:Key="IssueDetails">Iinkcukacha Zengxaki</sys:String>
     <sys:String x:Key="ReportTitle">Isihloko Sengxelo</sys:String>
@@ -45,59 +49,38 @@
     <!--  Error Messages  -->
     <sys:String x:Key="ErrorEmptyFields">Nceda uzalise onke amasimi</sys:String>
     <sys:String x:Key="ErrorInvalidCredentials">Amaqhosha angavumelekanga</sys:String>
-    <sys:String x:Key="ErrorConnection">Impazamo yoqhagamshelwano</sys:String>
+    <sys:String x:Key="ErrorConnection">Imposiso yoNxibelelwano</sys:String>
     <sys:String x:Key="ErrorEmailRequired">Idilesi ye-imeyile iyafuneka</sys:String>
-    <sys:String x:Key="ErrorEmailInvalid">Idilesi ye-imeyile engasebenziyo</sys:String>
-    <sys:String x:Key="ErrorInvalidPasswordFormat">Ifomathi yephasiwedi engasebenziyo</sys:String>
-    <sys:String x:Key="ErrorPasswordsDoNotMatch">Amaphasiwedi awahambelani</sys:String>
-    <sys:String x:Key="ErrorInvalidIDNumber">Inombolo ye-ID engasebenziyo</sys:String>
+    <sys:String x:Key="ErrorEmailInvalid">Idilesi ye-imeyile ayivumelekanga</sys:String>
+    <sys:String x:Key="ErrorInvalidPasswordFormat">Ifomathi yephasiwedi ayivumelekanga</sys:String>
+    <sys:String x:Key="ErrorPasswordsDoNotMatch">Iphasiwedi azifani</sys:String>
+    <sys:String x:Key="ErrorInvalidIDNumber">Inombolo ye-ID ayivumelekanga</sys:String>
 
     <!--  Miscellaneous  -->
-    <sys:String x:Key="WelcomeMessage">Wamkelekile kwisicelo sikamasipala</sys:String>
+    <sys:String x:Key="WelcomeMessage">Wamkelekile kwi-app yomsebenzi kamasipala</sys:String>
     <sys:String x:Key="ReportingIssue">Ukuxela ingxaki</sys:String>
-    <sys:String x:Key="Attachments">Izincamathiselo</sys:String>
-    <sys:String x:Key="ReportSubmitted">Ingxelo ingenisiwe</sys:String>
-    <sys:String x:Key="LanguagePreference">Ukhetho LwesiLwimi</sys:String>
+    <sys:String x:Key="Attachments">Izincamathelisi</sys:String>
+    <sys:String x:Key="ReportSubmitted">Ingxaki ixeliwe</sys:String>
+    <sys:String x:Key="LanguagePreference">Ukhetho lolwimi</sys:String>
     <sys:String x:Key="ForgotPassword">Ulibele Iphasiwedi?</sys:String>
-    <sys:String x:Key="AlreadyHaveAccount">Usenomakhaya?</sys:String>
-    <sys:String x:Key="CreateNewAccount">Yenza iAkhawunti Entsha</sys:String>
-    <sys:String x:Key="CreateNewReport">Yenza Ingxelo Entsha</sys:String>
+    <sys:String x:Key="AlreadyHaveAccount">Usenayo iakhawunti?</sys:String>
+    <sys:String x:Key="CreateNewAccount">Yenza iakhawunti entsha</sys:String>
+    <sys:String x:Key="CreateNewReport">Yenza ingxelo entsha</sys:String>
     <sys:String x:Key="Reports">Iingxelo</sys:String>
-    <sys:String x:Key="LocalEvents">Izehlo Zasekuhlaleni</sys:String>
-    <sys:String x:Key="LocalAnnouncements">Izaziso Zasekuhlaleni</sys:String>
-    <sys:String x:Key="LocalEventsAndAnnouncements">Izehlo kunye Nezaziso Zasekuhlaleni</sys:String>
-    <sys:String x:Key="ServiceRequestStatus">Isimo Sesicelo Senkonzo</sys:String>
+    <sys:String x:Key="LocalEvents">Izehlo Zendawo</sys:String>
+    <sys:String x:Key="LocalAnnouncements">Izaziso Zendawo</sys:String>
+    <sys:String x:Key="LocalEventsAndAnnouncements">Izehlo neZaziso</sys:String>
+    <sys:String x:Key="ServiceRequestStatus">Imeko yoMsebenzi</sys:String>
     <sys:String x:Key="ServiceRequest">Isicelo Senkonzo</sys:String>
     <sys:String x:Key="Profile">Iprofayile</sys:String>
     <sys:String x:Key="Logout">Phuma</sys:String>
-    <sys:String x:Key="CommunityForum">Iqonga Lomphakathi</sys:String>
-    <sys:String x:Key="GetStarted">Qala namhlanje!</sys:String>
+    <sys:String x:Key="CommunityForum">Iqonga Loluntu</sys:String>
+    <sys:String x:Key="GetStarted">Qalisa Namhlanje!</sys:String>
     <sys:String x:Key="CreateNewReportHere">Yenza ingxelo entsha apha</sys:String>
-    <sys:String x:Key="RecentReport">Ingxelo Yakutsha</sys:String>
+    <sys:String x:Key="RecentReport">Ingxelo Yakutshanje</sys:String>
     <sys:String x:Key="ReportName">Igama Lengxelo</sys:String>
-    <sys:String x:Key="DateLogged">Umhla Ukhankanywe</sys:String>
-    <sys:String x:Key="Progress">Inqubekela phambili</sys:String>
-    <sys:String x:Key="Contribute">Nikela</sys:String>
-    <sys:String x:Key="DiscoverMore">Fumanisa Okunye</sys:String>
-
-    <!--  Announcement Messages  -->
-    <sys:String x:Key="EA_MSG">Siyavuya ukwazisa ukuba Izehlo kunye Nezaziso Zasekuhlaleni ziza kufumaneka kungekudala kwisicelo senkonzo kamasipala!</sys:String>
-    <sys:String x:Key="EA_MSG1">Hlala uhlaziywa ngeziganeko zamva nje zoluntu lwakho, kuquka iifestile, iintlanganiso, kunye nezaziso ezibalulekileyo zikamasipala.</sys:String>
-    <sys:String x:Key="S_MSG1">Landela kwaye ulawule izicelo zakho zonkonzo ngokulula, nokuba kungokuhlanjwa kokukhupha inkunkuma, ukulungiswa kweendlela, okanye ezinye iinkonzo zikamasipala.</sys:String>
-    <sys:String x:Key="S_MSG">Siyavuya ukwazisa ukuba izicelo zonkonzo ziza kufumaneka kungekudala kwisicelo senkonzo kamasipala!</sys:String>
-    <sys:String x:Key="Default_MSG">Nceda ukhethe ingxelo ukuze ubone iinkcukacha.</sys:String>
-    <sys:String x:Key="UPD_MSG">Iinkcukacha Zomsebenzisi</sys:String>
-
-    <sys:String x:Key="EventHeader">Zonke Izehlo</sys:String>
-    <sys:String x:Key="RecEventHeader1">Iziganeko ezincomelwayo kuwe...</sys:String>
-    <sys:String x:Key="RecEventHeader2">Iziganeko Zalapha</sys:String>
-    <sys:String x:Key="Search">Khangela</sys:String>
-    <sys:String x:Key="Filter">Hlunga</sys:String>
-    <sys:String x:Key="Reset">Setha Kwakhona</sys:String>
-    <sys:String x:Key="eName">Igama Lesiganeko:</sys:String>
-    <sys:String x:Key="eDecscrip">Inkcazo Yesiganeko:</sys:String>
-    <sys:String x:Key="eDate">Umhla Wesiganeko:</sys:String>
-    <sys:String x:Key="eCategory">Udidi Lwesiganeko:</sys:String>
-    <sys:String x:Key="eLoc">Indawo Yesiganeko:</sys:String>
-
+    <sys:String x:Key="DateLogged">Umhla Wokungena</sys:String>
+    <sys:String x:Key="Progress">Inqununu</sys:String>
+    <sys:String x:Key="Contribute">Nika igalelo</sys:String>
+    <sys:String x:Key="DiscoverMore">Fumana Okuninzi</sys:String>
 </ResourceDictionary>

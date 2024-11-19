@@ -34,9 +34,10 @@
                 Grid.Column="0"
                 Background="{DynamicResource SecundaryBackgroundColor}"
                 CornerRadius="8 0 0 8">
-                <Grid x:Name="GridNav"
-                      Margin="10 10 0 0"
-                      Width="210">
+                <Grid
+                    x:Name="GridNav"
+                    Width="210"
+                    Margin="10,10,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60" />
                         <RowDefinition Height="*" />
@@ -282,7 +283,7 @@
                         Width="100"
                         Margin="50,10,0,0"
                         Click="Button_Click"
-                            Content="{DynamicResource Home}" />
+                        Content="{DynamicResource Home}" />
                 </StackPanel>
 
 

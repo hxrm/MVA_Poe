@@ -36,7 +36,14 @@ namespace MVA_poe.Controls
             // Initialize the components defined in the XAML file
             InitializeComponent();
 
-            // Set the recommendation engine to the provided instance
+            // Ensure DBHelper.lang is set to a valid value before calling SetLanguage
+            if (string.IsNullOrEmpty(DBHelper.lang))
+            {
+                DBHelper.lang = "en"; // Default to English if no language is set
+            }
+
+            // Set the language based on the user's preference
+            SetLanguage(DBHelper.lang);
             recommendationEngine = rec;
 
             // Initialize the EventCardItems collection
@@ -49,8 +56,6 @@ namespace MVA_poe.Controls
             // Load recommended events
             LoadRecommendedEvents();
 
-            // Set the language based on the user's preference
-            SetLanguage(DBHelper.lang);
         }
 
         //----------------------------------------------------------------------------
@@ -150,6 +155,8 @@ namespace MVA_poe.Controls
             // Set the RecHeader with the combined string
             RecHeader = $"{header}... {combinedString}.";
             RelHeader = Application.Current.Resources["LE_REL"] as string;
+            relHeader.Text = RelHeader;
+            recHeader.Text = RecHeader;
         }
 
         //----------------------------------------------------------------------------
@@ -157,6 +164,11 @@ namespace MVA_poe.Controls
         // Method to set the language based on the provided culture code
         private void SetLanguage(string cultureCode)
         {
+            if (string.IsNullOrEmpty(cultureCode))
+            {
+                cultureCode = "en"; // Default to English if no culture code is provided
+            }
+
             // Set the current UI culture to the provided culture code
             CultureInfo.CurrentUICulture = new CultureInfo(cultureCode);
 
@@ -178,7 +190,12 @@ namespace MVA_poe.Controls
             }
 
             // Add the ResourceDictionary to the merged dictionaries of the control
-            this.Resources.MergedDictionaries.Add(dict);
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                this.Resources.MergedDictionaries.Clear();
+                this.Resources.MergedDictionaries.Add(dict);
+            });
+
         }
     }
 }//__---____---____---____---____---____---____---__.ooo END OF FILE ooo.__---____---____---____---____---____---____---__\\

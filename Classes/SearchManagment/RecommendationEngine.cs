@@ -21,6 +21,8 @@ namespace MVA_poe.Classes
 
         // Queue to store event recommendations
         private Queue<Event> eventRecommendations;
+        // Queue to store event recommendations
+        private Queue<Event> eventRelated;
 
         // Static property to enable or disable recommendations
         public static bool recommendationEnabled { get; set; }
@@ -45,6 +47,8 @@ namespace MVA_poe.Classes
 
             // Initialize event recommendations queue
             eventRecommendations = new Queue<Event>();
+            // Initialize event related queue
+            eventRelated = new Queue<Event>();
 
             // Get user pattern data
             GetPatternData();
@@ -57,6 +61,8 @@ namespace MVA_poe.Classes
 
             // Populate event recommendations
             PopulateEventRecommendations();
+            // Populate event related
+            PopulateEventRelated();
         }
 
         //----------------------------------------------------------------------------
@@ -281,10 +287,105 @@ namespace MVA_poe.Classes
 
         //----------------------------------------------------------------------------
 
+        private void PopulateEventRelated()
+        {
+            // List to store all events
+            List<Event> allEvents;
+
+            // Use a database context to access the database
+            using (var db = new AppDbContext())
+            {
+                // Get all events from the database
+                allEvents = db.Events.ToList();
+            }
+
+            // List to store related events based on category preference
+            List<Event> relatedEvents = new List<Event>();
+
+            foreach (EventCategory cat in categoryPreference)
+            {
+                switch (cat)
+                {
+                    case EventCategory.CulturalExhibitions:
+                        // Combine related events for Cultural Exhibitions
+                        relatedEvents = relatedEvents
+                            .Union(allEvents.Where(e => e.EventCat == EventCategory.FoodCraftMarkets))
+                            .ToList();
+                        break;
+
+                    case EventCategory.MusicFestivals:
+                        // Combine related events for Music Festivals
+                        relatedEvents = relatedEvents
+                            .Union(allEvents.Where(e => e.EventCat == EventCategory.FoodCraftMarkets))
+                            .ToList();
+                        break;
+
+                    case EventCategory.FoodCraftMarkets:
+                        relatedEvents = relatedEvents
+                            .Union(allEvents.Where(e => e.EventCat == EventCategory.MusicFestivals))
+                            .ToList();
+                        break;
+
+                    case EventCategory.SportsEvents:
+                        relatedEvents = relatedEvents
+                            .Union(allEvents.Where(e => e.EventCat == EventCategory.HealthWellnessWorkshops))
+                            .ToList();
+                        break;
+
+                    case EventCategory.CharityEvents:
+                        relatedEvents = relatedEvents
+                            .Union(allEvents.Where(e => e.EventCat == EventCategory.EducationalSeminars))
+                            .ToList();
+                        break;
+
+                    case EventCategory.HealthWellnessWorkshops:
+                        relatedEvents = relatedEvents
+                            .Union(allEvents.Where(e => e.EventCat == EventCategory.SportsEvents))
+                            .ToList();
+                        break;
+
+                    case EventCategory.EducationalSeminars:
+                        relatedEvents = relatedEvents
+                            .Union(allEvents.Where(e => e.EventCat == EventCategory.CharityEvents))
+                            .ToList();
+                        break;
+
+                    case EventCategory.LocalGovernmentAnnouncements:
+                        relatedEvents = relatedEvents
+                            .Union(allEvents.Where(e => e.EventCat == EventCategory.CommunityMeetings))
+                            .ToList();
+                        break;
+
+                    case EventCategory.CommunityMeetings:
+                        relatedEvents = relatedEvents
+                            .Union(allEvents.Where(e => e.EventCat == EventCategory.LocalGovernmentAnnouncements))
+                            .ToList();
+                        break;
+                }
+            }
+
+            // Remove duplicates by calling Distinct on the combined relatedEvents list
+            relatedEvents = relatedEvents.Distinct().ToList();
+
+            // Add the combined recommended events to the queue
+            foreach (var evt in relatedEvents)
+            {
+                eventRelated.Enqueue(evt);
+            }
+        }
+
+
+        //----------------------------------------------------------------------------
+
         // Method to return the event recommendations queue
         public Queue<Event> ReturnRecommendations()
         {
             return eventRecommendations;
+        }
+        // Method to return the event recommendations queue
+        public Queue<Event> ReturnRelatedEvents()
+        {
+            return eventRelated;
         }
     }
 }

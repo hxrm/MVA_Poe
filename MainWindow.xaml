@@ -34,7 +34,9 @@
                 Grid.Column="0"
                 Background="{DynamicResource SecundaryBackgroundColor}"
                 CornerRadius="8 0 0 8">
-                <Grid x:Name="GridNav" Width="60">
+                <Grid x:Name="GridNav"
+                      Margin="10 10 0 0"
+                      Width="210">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60" />
                         <RowDefinition Height="*" />
@@ -66,7 +68,6 @@
                         <Button
                             x:Name="btnCreateReport"
                             Click="btnReport_Click"
-                            MouseEnter="btnCreateReport_MouseEnter"
                             MouseLeave="btnCreateReport_MouseLeave"
                             Style="{DynamicResource PopupButtonStyle}">
                             <Button.Content>
@@ -82,7 +83,6 @@
                         <Button
                             x:Name="btnViewReport"
                             Click="btnViewReport_Click"
-                            MouseEnter="btnViewReport_MouseEnter"
                             MouseLeave="btnViewReport_MouseLeave"
                             Style="{DynamicResource PopupButtonStyle}">
                             <Button.Content>
@@ -98,7 +98,6 @@
                         <Button
                             x:Name="btnLocal"
                             Click="btnLocal_Click"
-                            MouseEnter="btnLocal_MouseEnter"
                             MouseLeave="btnLocal_MouseLeave"
                             Style="{DynamicResource PopupButtonStyle}">
                             <Button.Content>
@@ -115,7 +114,6 @@
                         <Button
                             x:Name="btnServiceRequest"
                             Click="btnServiceRequest_Click"
-                            MouseEnter="btnServiceRequest_MouseEnter"
                             MouseLeave="btnServiceRequest_MouseLeave"
                             Style="{DynamicResource PopupButtonStyle}">
                             <Button.Content>
@@ -134,7 +132,6 @@
                         <Button
                             x:Name="btnProfile"
                             Click="btnProfile_Click"
-                            MouseEnter="btnProfile_MouseEnter"
                             MouseLeave="btnProfile_MouseLeave"
                             Style="{DynamicResource PopupButtonStyle}">
                             <Button.Content>
@@ -150,7 +147,6 @@
                         <Button
                             x:Name="btnLogout"
                             Click="btnLogout_Click"
-                            MouseEnter="btnLogout_MouseEnter"
                             MouseLeave="btnLogout_MouseLeave"
                             Style="{DynamicResource PopupButtonStyle}">
                             <Button.Content>
@@ -183,7 +179,7 @@
 
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="54" />
+                    <ColumnDefinition Width="1" />
                     <ColumnDefinition Width="308*" />
                     <ColumnDefinition Width="135*" />
 
@@ -200,7 +196,8 @@
 
 
 
-                <ToggleButton
+                <!--<ToggleButton
+                    IsEnabled="False"
                     x:Name="Tg_Btn"
                     Grid.Row="0"
                     Width="30"
@@ -239,7 +236,7 @@
                             </BeginStoryboard>
                         </EventTrigger>
                     </ToggleButton.Triggers>
-                </ToggleButton>
+                </ToggleButton>-->
 
 
                 <!--  Start: Button Close | Restore | Minimize  -->
@@ -248,7 +245,7 @@
                     Grid.Column="2"
                     Width="248"
                     Height="41"
-                    Margin="0,5,6,0"
+                    Margin="0,5,36,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     FlowDirection="RightToLeft"
@@ -283,9 +280,9 @@
 
                     <Button
                         Width="100"
-                        Margin="50,5,5,0"
+                        Margin="50,10,0,0"
                         Click="Button_Click"
-                        Content="Home" />
+                            Content="{DynamicResource Home}" />
                 </StackPanel>
 
 

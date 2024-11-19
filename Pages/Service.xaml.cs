@@ -30,7 +30,6 @@ namespace MVA_poe.Pages
         private MaxHeap requestHeap = new MaxHeap();
         private ServiceRequestManager sm;
 
-
         public Service()
         {
             InitializeComponent();

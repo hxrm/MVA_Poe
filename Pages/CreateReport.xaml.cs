@@ -172,10 +172,16 @@ namespace MVA_Poe.Pages
             {
                 // Use the GetString extension method to get the description
                 string catItem = category.GetString();
+
+                // Skip adding the "All" category
+                if (catItem.Equals("All", StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
                 cmbCategory.Items.Add(catItem);
             }
         }
-
 
         //----------------------------------------------------------------------------//
 
@@ -271,17 +277,13 @@ namespace MVA_Poe.Pages
         private void SaveToDB()
         {
             // Check if the report and attachments are valid
-
             Test();
             
             if (validReport && validAttachment)
             {
                 // Add the report to the database
                 context.Reports.Add(report);
-                context.SaveChanges();             
-                // Call the Test method
-               // Test();
-
+                context.SaveChanges();       
                 // Set the reportID for each attachment and save them to the database
                 foreach (var attachment in attachments)
                 {

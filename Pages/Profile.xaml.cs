@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MVA_Poe;
 using MVA_Poe.Classes;
 
 namespace MVA_poe.Pages
@@ -197,37 +198,51 @@ namespace MVA_poe.Pages
         // Event handler for the Save button click event
         private void SaveButton_Click_1(object sender, RoutedEventArgs e)
         {
+            string langPref = "";
             // If edits are enabled
             if (edits)
             {
                 // Update the user's language preference based on the selected checkbox
                 if (chkAf.IsChecked == true)
                 {
-                    _user.langPref = "af";
+                    langPref = "af";
                 }
                 else if (chkEn.IsChecked == true)
                 {
-                    _user.langPref = "en";
+                    langPref = "en";
                 }
                 else if (chkIsx.IsChecked == true)
                 {
-                    _user.langPref = "isx";
+                    langPref = "isx";
                 }
 
                 // Create a new instance of AppDbContext
                 using (var context = new AppDbContext())
                 {
-                    // Retrieve the user from the database based on the user ID
-                    _user = context.Users
-                        .Where(u => u.UserId == userId)
-                        .FirstOrDefault();
+                    // Assuming '_user' is an instance of the User class, retrieve or update the user's language preference.
+                    var user = context.Users.FirstOrDefault(u => u.ID == _user.ID); // Assuming 'Id' is the user's identifier
 
-                    // Update the user's language preference
-                    _user.langPref = _user.langPref;
+                    if (user != null)
+                    {
+                        // Update the user's language preference
+                        user.langPref = langPref;
 
-                    // Save the changes to the database
-                    context.SaveChanges();
+                        // Optionally update the global or session variable if needed
+                        DBHelper.lang = user.langPref;
+                        var mainWindow = Application.Current.MainWindow as MainWindow;
+                        mainWindow?.ResetLang();
+
+                        // Save the changes to the database
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        // Handle case where the user is not found
+                        // For example, you might want to log or throw an error
+                        Console.WriteLine("User not found.");
+                    }
                 }
+
             }
 
             // Show a message indicating the profile was updated

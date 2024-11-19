@@ -16,9 +16,7 @@ namespace MVA_poe.Data
         Active, // The service request is being worked on
 
         [Description("The service request has been completed")]
-        Completed,  // The service request has been completed
+        Completed  // The service request has been completed
 
-        [Description("The service request has been closed")]
-        Closed      // The service request has been closed
     }
 }

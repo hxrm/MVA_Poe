@@ -283,6 +283,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ServiceCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\UserPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -344,6 +348,9 @@
     </Compile>
     <Compile Include="Controls\ReportDetail.xaml.cs">
       <DependentUpon>ReportDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ServiceCard.xaml.cs">
+      <DependentUpon>ServiceCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\UserPopup.xaml.cs">
       <DependentUpon>UserPopup.xaml</DependentUpon>

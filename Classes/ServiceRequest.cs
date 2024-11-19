@@ -1,9 +1,11 @@
 ﻿using MVA_poe.Classes.SearchManagment;
 using MVA_poe.Data;
+using MVA_Poe.Migrations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Remoting.Contexts;
 
 namespace MVA_Poe.Classes
 {
@@ -50,9 +52,21 @@ namespace MVA_Poe.Classes
         public ServiceRequest()
         {
             // Set the last updated time to the current date and time
-            requestUpdate = DateTime.Now;
+          //  requestUpdate = DateTime.Now;
         }
+        public void SetData(Report report)
+        {
+            AssignPriority();
+            var random = new Random();
+            // Assign a random employee ID (1, 2, or 3)
+            int employeeId = random.Next(1, 4);
+            reportId = report.reportID;
+            this.report = report;
+            this.employeeId = employeeId;
+            this.requestDate = report.reportDate;
+            this.requestUpdate = DateTime.Now;
 
+        }
 
         ///AVL 
        // Implement the CompareTo method

@@ -1,5 +1,6 @@
 ﻿using MVA_poe.Classes;
 using MVA_poe.Classes.SearchManagment;
+using MVA_poe.Controls;
 using MVA_poe.Data;
 using MVA_Poe.Classes;
 using MVA_Poe.Data;
@@ -54,7 +55,7 @@ namespace MVA_poe.Pages
 
             //}
             sm = new ServiceRequestManager();
-            sm.GetDependencyGraph();
+           // sm.GetDependencyGraph();
          
         }
         //private void GetData()
@@ -110,7 +111,7 @@ namespace MVA_poe.Pages
         // Returns the selected category from the combo box
         private ReportCategory GetSelectedCategory()
         {
-            ReportCategory selectedCategory = ReportCategory.Other; // Default category
+            ReportCategory selectedCategory = ReportCategory.All; // Default category
             // Check if an item is selected in the combo box
             if (cmbCategory.SelectedItem != null)
             {
@@ -137,7 +138,7 @@ namespace MVA_poe.Pages
         private void MTS_Click(object sender, RoutedEventArgs e)
         {
             visualizationCanvas.Children.Clear();
-               DrawMTS();
+             //  DrawMTS();
            //MSTGraph graphMTS  = new MSTGraph();
          
           //  Draw(graphMTS.Fake());
@@ -330,22 +331,125 @@ namespace MVA_poe.Pages
             }
         }
 
+        //private void DrawDependencyGraph()
+        //{
+        //    visualizationCanvas.Children.Clear(); // Clear the canvas
+
+        //    sm = new ServiceRequestManager();
+        //    var requests = ServiceRequestManager.graph.serviceRequests;
+        //    var dependencyGraph = ServiceRequestManager.graph;
+
+        //    var nodes = new Dictionary<int, ServiceCard>();
+        //    var positions = new Dictionary<int, Point>();
+        //    var selectedCategory = GetSelectedCategory();
+
+        //    // Filter requests based on the selected category
+        //    if (selectedCategory != ReportCategory.All)
+        //    {
+        //        requests = new ConcurrentDictionary<int, ServiceRequest>(
+        //            requests.Where(r => r.Value.report.reportCat == selectedCategory)
+        //                    .ToDictionary(r => r.Key, r => r.Value)
+        //        );
+        //    }
+
+        //    // Step 1: Lay out the nodes dynamically (with levels in DAG)
+        //    int index = 0;
+        //    var nodeLevels = new Dictionary<int, int>(); // Store levels of nodes in the DAG
+        //    double maxX = 0, maxY = 0; // Variables to track the max position values
+
+        //    foreach (var requestId in requests.Keys)
+        //    {
+        //        // Assign each node a level in the DAG (you might need to use a graph traversal)
+        //        int level = GetNodeLevel(requestId, dependencyGraph); // You can calculate node levels based on dependencies
+
+        //        nodeLevels[requestId] = level;
+        //    }
+
+        //    //  Define positions based on levels and index
+        //    foreach (var requestId in requests.Keys)
+        //    {
+        //        int level = nodeLevels[requestId];
+        //        positions[requestId] = new Point(100 + (index % 4) * 200, 100 + level * 200);
+        //        index++;
+
+        //        // Track max X and Y to adjust canvas size
+        //        maxX = Math.Max(maxX, positions[requestId].X + 50); // 50 is the node width
+        //        maxY = Math.Max(maxY, positions[requestId].Y + 50); // 50 is the node height
+        //    }
+
+        //    //  Draw nodes (ServiceRequest)
+        //    foreach (var requestId in positions.Keys)
+        //    {
+        //        var request = requests[requestId];
+        //        ServiceCard serviceCard = new ServiceCard(request);               
+
+        //        Canvas.SetLeft(serviceCard, positions[requestId].X);
+        //        Canvas.SetTop(serviceCard, positions[requestId].Y);
+        //        visualizationCanvas.Children.Add(serviceCard);
+        //        nodes[requestId] = serviceCard;
+        //    }
+
+        //    //Draw dependencies (arrows) between nodes
+        //    foreach (var fromId in positions.Keys)
+        //    {
+        //        var dependencies = dependencyGraph.GetDependencies(fromId);
+        //        foreach (var toId in dependencies)
+        //        {
+        //            // Ensure the dependent node exists
+        //            if (positions.ContainsKey(toId)) 
+        //            {
+        //                var start = positions[fromId];
+        //                var end = positions[toId];
+        //                DrawArrow(end, start);
+        //            }
+        //        }
+        //    }
+        //    // Step 5: Resize the canvas to fit all nodes
+        //    visualizationCanvas.Width = maxX + 50; // Add padding
+        //    visualizationCanvas.Height = maxY + 50; // Add padding
+        //}
+
+        // Helper method to calculate node level (distance from the root node)
+        private int GetNodeLevel(int nodeId, DependencyGraph graph)
+        {
+            var level = 0;
+            // Perform a BFS or DFS to calculate levels based on dependencies
+            var visited = new HashSet<int>();
+            var queue = new Queue<int>();
+            queue.Enqueue(nodeId);
+            visited.Add(nodeId);
+
+            while (queue.Count > 0)
+            {
+                var current = queue.Dequeue();
+                var dependencies = graph.GetDependencies(current);
+                foreach (var dependency in dependencies)
+                {
+                    if (!visited.Contains(dependency))
+                    {
+                        visited.Add(dependency);
+                        queue.Enqueue(dependency);
+                        level = Math.Max(level, GetNodeLevel(dependency, graph) + 1); // Increment level for dependency
+                    }
+                }
+            }
+
+            return level;
+        }
         private void DrawDependencyGraph()
         {
             visualizationCanvas.Children.Clear(); // Clear the canvas
-          
+
             sm = new ServiceRequestManager();
-            sm.GetDependencyGraph();
             var requests = ServiceRequestManager.graph.serviceRequests;
             var dependencyGraph = ServiceRequestManager.graph;
 
-            var nodes = new Dictionary<int, Ellipse>();
+            var nodes = new Dictionary<int, ServiceCard>();
             var positions = new Dictionary<int, Point>();
             var selectedCategory = GetSelectedCategory();
 
-
             // Filter requests based on the selected category
-            if (selectedCategory != ReportCategory.Other)
+            if (selectedCategory != ReportCategory.All)
             {
                 requests = new ConcurrentDictionary<int, ServiceRequest>(
                     requests.Where(r => r.Value.report.reportCat == selectedCategory)
@@ -353,203 +457,106 @@ namespace MVA_poe.Pages
                 );
             }
 
-            // Define positions for the nodes (dynamic positioning)
+            // Step 1: Lay out the nodes dynamically (with levels in DAG)
             int index = 0;
+            var nodeLevels = new Dictionary<int, int>(); // Store levels of nodes in the DAG
+            double maxX = 0, maxY = 0; // Variables to track the max position values
+
             foreach (var requestId in requests.Keys)
             {
-                positions[requestId] = new Point(100 + (index % 4) * 200, 100 + (index / 4) * 200);
-                index++;
+                // Assign each node a level in the DAG (you might need to use a graph traversal)
+                int level = GetNodeLevel(requestId, dependencyGraph); // You can calculate node levels based on dependencies
+
+                nodeLevels[requestId] = level;
             }
 
-            // Draw nodes
-            foreach (var requestId in positions.Keys)
+            // Define positions based on levels and index
+            foreach (var requestId in requests.Keys)
             {
-                var request = requests[requestId];
-                var ellipse = new Ellipse
-                {
-                    Width = 50,
-                    Height = 50,
-                    Fill = GetNodeColor(request.requestStat, request.requestPri),
-                    Stroke = Brushes.Black,
-                    StrokeThickness = 2
-                };
+                int level = nodeLevels[requestId];
+                positions[requestId] = new Point(100 + (index % 4) * 200, 100 + level * 200);
+                index++;
 
-                Canvas.SetLeft(ellipse, positions[requestId].X);
-                Canvas.SetTop(ellipse, positions[requestId].Y);
-                visualizationCanvas.Children.Add(ellipse);
-
-                var textBlock = new TextBlock
-                {
-                    Text = $"{requestId}\n{request.report.reportCat}\n{request.requestPri}",
-                    FontSize = 12,
-                    FontWeight = FontWeights.Bold,
-                    Foreground = Brushes.Black,
-                    TextAlignment = TextAlignment.Center
-                };
-
-                Canvas.SetLeft(textBlock, positions[requestId].X + 5);
-                Canvas.SetTop(textBlock, positions[requestId].Y + 5);
-                visualizationCanvas.Children.Add(textBlock);
-
-                nodes[requestId] = ellipse;
+                // Track max X and Y to adjust canvas size
+                maxX = Math.Max(maxX, positions[requestId].X + 50); // 50 is the node width
+                maxY = Math.Max(maxY, positions[requestId].Y + 50); // 50 is the node height
             }
 
-         //   Draw dependencies
+            // Step 2: Draw dependencies (arrows) between nodes first
             foreach (var fromId in positions.Keys)
             {
                 var dependencies = dependencyGraph.GetDependencies(fromId);
                 foreach (var toId in dependencies)
                 {
-                    if (positions.ContainsKey(toId)) // Ensure the dependent node exists
+                    // Ensure the dependent node exists
+                    if (positions.ContainsKey(toId))
                     {
-                        var line = new Line
-                        {
-                            X1 = positions[fromId].X + 25,
-                            Y1 = positions[fromId].Y + 25,
-                            X2 = positions[toId].X + 25,
-                            Y2 = positions[toId].Y + 25,
-                            Stroke = Brushes.Black,
-                            StrokeThickness = 2
-                        };
-                        visualizationCanvas.Children.Add(line);
+                        var start = positions[fromId];
+                        var end = positions[toId];
+                        DrawArrow(end, start); // Add arrows first
                     }
                 }
             }
-        }
-        // Method to get the color based on the status of the service request
-        private Brush GetNodeColor(Status status, Priority priority)
-        {
-            if (status == Status.Completed)
-                return Brushes.Green;  // Priority coloring is not as relevant when completed
 
-            switch (priority)
+            // Step 3: Draw nodes (ServiceRequest) after arrows
+            foreach (var requestId in positions.Keys)
             {
-                case Priority.High:
-                    return Brushes.Red;
-                case Priority.Medium:
-                    return Brushes.Orange;
-                case Priority.Low:
-                    return Brushes.Yellow;
-                default:
-                    return Brushes.Gray;
+                var request = requests[requestId];
+                ServiceCard serviceCard = new ServiceCard(request);
+
+                Canvas.SetLeft(serviceCard, positions[requestId].X);
+                Canvas.SetTop(serviceCard, positions[requestId].Y);
+                visualizationCanvas.Children.Add(serviceCard); // Add service cards after arrows
+                nodes[requestId] = serviceCard;
             }
+
+            // Step 4: Resize the canvas to fit all nodes
+            visualizationCanvas.Width = maxX + 50; // Add padding
+            visualizationCanvas.Height = maxY + 50; // Add padding
         }
 
-        // Method to get the color based on the priority of the service request
-        private Brush GetPriorityColor(Priority priority)
+        // Helper method to draw an arrow between two points
+        private void DrawArrow(Point start, Point end)
         {
-            switch (priority)
+            // Calculate the midpoint of the line
+            var midX = (start.X + end.X) / 2 + 25;
+            var midY = (start.Y + end.Y) / 2 + 25;
+
+            // Draw the main line
+            var line = new Line
             {
-                case Priority.High:
-                    return Brushes.Red;
-                case Priority.Medium:
-                    return Brushes.Orange;
-                case Priority.Low:
-                    return Brushes.Yellow;
-                default:
-                    return Brushes.Gray;
-            }
-        }
-        //private void DrawDependencyGraph(Queue<ServiceRequest> requests)
-        //{
-        //    visualizationCanvas.Children.Clear(); // Clear the canvas
-
-        //    var nodes = new Dictionary<int, Ellipse>();
-        //    var positions = new Dictionary<int, Point>();
-        //    var selectedCategory = GetSelectedCategory();
-        //    var dependencyGraph = serviceManager.GetDependencyGraph(); // Fetch the dependency graph
-
-        //    // Filter requests based on the selected category
-        //    if (selectedCategory != ReportCategory.Other)
-        //    {
-        //        // Filter the requests by the selected category (non-Other categories)
-        //        requests = new Queue<ServiceRequest>(requests.Where(r => r.report.reportCat == selectedCategory));
-        //    }
-
-        //    // Define positions for the nodes (dynamic positioning)
-        //    int index = 0;
-        //    foreach (var request in requests)
-        //    {
-        //        positions[index] = new Point(100 + (index % 4) * 200, 100 + (index / 4) * 200);
-        //        index++;
-        //    }
-
-        //    // Draw nodes (service requests)
-        //    foreach (var position in positions)
-        //    {
-        //        var request = requests.ElementAt(position.Key); // Get the service request at the position
-        //        var ellipse = new Ellipse
-        //        {
-        //            Width = 50,
-        //            Height = 50,
-        //            Fill = GetStatusColor(request.requestStat), // Get status color for the request
-        //            Stroke = Brushes.Black,
-        //            StrokeThickness = 2
-        //        };
-
-        //        Canvas.SetLeft(ellipse, position.Value.X);
-        //        Canvas.SetTop(ellipse, position.Value.Y);
-        //        visualizationCanvas.Children.Add(ellipse);
-
-        //        var textBlock = new TextBlock
-        //        {
-        //            Text = $"{request.report.reportCat}\n{request.requestPri}",
-        //            FontSize = 12,
-        //            FontWeight = FontWeights.Bold,
-        //            Foreground = Brushes.Black,
-        //            TextAlignment = TextAlignment.Center
-        //        };
-
-        //        Canvas.SetLeft(textBlock, position.Value.X + 5);
-        //        Canvas.SetTop(textBlock, position.Value.Y + 5);
-        //        visualizationCanvas.Children.Add(textBlock);
-
-        //        nodes[position.Key] = ellipse;
-        //    }
-
-        //    // Draw dependencies (edges) between service requests
-        //    foreach (var fromRequest in requests)
-        //    {
-        //        var dependencies = dependencyGraph.GetDependencies(fromRequest.requestId); // Get dependencies for the current request
-
-        //        foreach (var toRequest in dependencies)
-        //        {
-        //            if (positions.ContainsKey(toRequest)) // Ensure the dependent node exists
-        //            {
-        //                var line = new Line
-        //                {
-        //                    X1 = positions[fromRequest.requestId].X + 25, // Line starts at the center of the 'from' node
-        //                    Y1 = positions[fromRequest.requestId].Y + 25,
-        //                    X2 = positions[fromRequest.requestId].X + 25, // Line ends at the center of the 'to' node
-        //                    Y2 = positions[fromRequest.requestId].Y + 25,
-        //                    Stroke = Brushes.Black,
-        //                    StrokeThickness = 2
-        //                };
-
-        //                visualizationCanvas.Children.Add(line);
-        //            }
-        //        }
-        //    }
-        //}
-
-        private void CategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private DisplayRequest GetDisplayItem(ServiceRequest request)
-        {
-            var displayRequest = new DisplayRequest
-            {
-                requestId = request.requestId,
-                reportTitle = request.report?.reportName ?? "No Report",
-                status = request.requestStat.ToString(),
-                priority = request.requestPri.GetString(),
-                category = request.report?.reportCat.GetString() ?? "No Category",
-                date = request.requestUpdate.ToShortDateString(),
+                X1 = start.X + 25,
+                Y1 = start.Y + 25,
+                X2 = end.X + 25,
+                Y2 = end.Y + 25,
+                Stroke = Brushes.Black,
+                StrokeThickness = 2
             };
+            visualizationCanvas.Children.Add(line);
 
-            return displayRequest;
+            // Calculate the angle of the line
+            var angle = Math.Atan2(end.Y - start.Y, end.X - start.X);
+
+            // Define arrowhead points
+            var arrowSize = 10;
+            var arrowAngle = Math.PI / 6; // 30 degrees
+
+            var arrowPoint1 = new Point(
+                midX - arrowSize * Math.Cos(angle - arrowAngle),
+                midY - arrowSize * Math.Sin(angle - arrowAngle)
+            );
+            var arrowPoint2 = new Point(
+                midX - arrowSize * Math.Cos(angle + arrowAngle),
+                midY - arrowSize * Math.Sin(angle + arrowAngle)
+            );
+
+            // Draw the arrowhead
+            var arrow = new Polygon
+            {
+                Points = new PointCollection { new Point(midX, midY), arrowPoint1, arrowPoint2 },
+                Fill = Brushes.Black
+            };
+            visualizationCanvas.Children.Add(arrow);
         }
 
 

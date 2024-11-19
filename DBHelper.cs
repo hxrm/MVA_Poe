@@ -18,7 +18,7 @@ namespace MVA_poe
         public static int userID = 1;
 
         // Declare a public static string variable named 'lang'
-        public static string lang = "en";
+        public static string lang = "af";
 
         // Declare a public static string variable named 'email'
         public static string email = "h@gmail.com";
@@ -56,28 +56,14 @@ namespace MVA_poe
             // Fetch data from the database
             using (var context = new AppDbContext())
             {
-               
-                    var serviceRequest = new MVA_Poe.Classes.ServiceRequest
-                    {
-                        reportId = report.reportID,
-                        report = report,
-                        employeeId = 0,
-                        requestDate = report.reportDate,
-                        requestUpdate = DateTime.Now
-                    };
-                    serviceRequest.AssignPriority();
+                var serviceRequest = new MVA_Poe.Classes.ServiceRequest();
+                    serviceRequest.SetData(report);
                     context.ServiceRequests.Add(serviceRequest);
                     requestTree.Insert(serviceRequest);
                     context.SaveChanges();             
                 
                     }
                 }  
-            
-            
-
-        
-
-        // THEN SET UP TIMER TRIGGER TO SAVE THE RECORDS TO THE DATABASE
         // Finalize the session and analyze the data
         public static void FinalizeSessionAndAnalyzeData()
         {

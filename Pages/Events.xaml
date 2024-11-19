@@ -7,32 +7,19 @@
     xmlns:local="clr-namespace:MVA_poe.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Events"
-    d:DesignHeight="500"
-    d:DesignWidth="1200"
+    Margin="30"
     Unloaded="Page_Unloaded"
     mc:Ignorable="d">
 
     <Grid>
-        <Border
-            Margin="3"
-            Background="{DynamicResource SecundaryBackgroundColor}"
-            CornerRadius="5">
+        <Border CornerRadius="5">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
-                <!--  Title for the Page  -->
-                <TextBlock
-                    Grid.Row="0"
-                    Margin="0,10,0,5"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    FontSize="35"
-                    FontWeight="Bold"
-                    Foreground="{DynamicResource PrimaryTextColor}"
-                    Text="{DynamicResource LocalEventsAndAnnouncements}" />
+
 
                 <!--  Main Content Area  -->
                 <StackPanel
@@ -40,11 +27,20 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Orientation="Vertical">
-
+                    <!--  Title for the Page  -->
+                    <TextBlock
+                        Grid.Row="0"
+                        Margin="0,10,0,5"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        FontSize="35"
+                        FontWeight="Bold"
+                        Foreground="{DynamicResource PrimaryTextColor}"
+                        Text="{DynamicResource LocalEventsAndAnnouncements}" />
                     <Border
                         Width="Auto"
                         Height="Auto"
-                        Margin="0,0,0,15"
+                        Margin="0,0,0,20"
                         Padding="10,20,10,0"
                         Background="{DynamicResource TextFourthColor}"
                         CornerRadius="10">

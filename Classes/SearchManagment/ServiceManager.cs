@@ -11,24 +11,25 @@ namespace MVA_poe.Classes.SearchManagment
 {
     public class ServiceRequestManager
     {
-        // DependencyGraph to manage dependencies between service requests
-        public static DependencyGraph graph;
-        // MinHeap to manage the priority of service requests
-        public static MinHeap minHeap;
         // Dictionary to store service requests by their ID
         public static Dictionary<int, ServiceRequest> serviceRequests;
-        public static MaxHeap maxHeap;
+        // DependencyGraph to manage dependencies between service requests
+        public static DependencyGraph graph;
+        // MinHeap to manage the priority of service requests FOR MTS
+        public static MinHeap minHeap;
         public static MSTGraph graphMTS;
+       
+        public static MaxHeap maxHeap;
         public static AVLTree<ServiceRequest> avlTree;
 
         // Constructor to initialize the ServiceRequestManager
         public ServiceRequestManager()
         {
-            graph = new DependencyGraph(); // Initialize the dependency graph
-            minHeap = new MinHeap(); // Initialize the min heap
-            serviceRequests = new Dictionary<int, ServiceRequest>(); // Initialize the dictionary for service requests
-            maxHeap = new MaxHeap(); 
-            graphMTS = new MSTGraph(); // Initialize the MST graph
+            graph = new DependencyGraph();
+            minHeap = new MinHeap(); 
+            serviceRequests = new Dictionary<int, ServiceRequest>(); 
+            maxHeap = new MaxHeap();
+            graphMTS = new MSTGraph();
             avlTree = new AVLTree<ServiceRequest>();
             PullData();
          
@@ -58,6 +59,10 @@ namespace MVA_poe.Classes.SearchManagment
 
                     // Update the current serviceRequests dictionary
                     serviceRequests = newServiceRequests;
+                    foreach(var request in serviceRequests.Values)
+                    {
+                        request.AssignPriority();
+                    }
 
                     // Add all service requests to the graph
                     //foreach (var request in serviceRequests.Values)
@@ -82,7 +87,6 @@ namespace MVA_poe.Classes.SearchManagment
             {
                 ServiceRequest request = kvp.Value;
 
-                // Add each service request to the AVL tree
                 avlTree.Insert(request);
                 maxHeap.Insert(request);
                 request.requestDate = request.report.reportDate;
@@ -123,34 +127,53 @@ namespace MVA_poe.Classes.SearchManagment
 
         // Add a dependency between service requests        
         // Method to add a dependency between two service requests
-        public void AddDependency(int fromId, int toId)
-        {
-            graph.AddServiceRequest(serviceRequests[fromId]);
-            // Add the dependency to the graph
-            graph.AddDependency(fromId, toId);           
-           
-        }
+        //public void AddDependency(int fromId, int toId)
+        //{
+        //    graph.AddServiceRequest(serviceRequests[fromId]);
+        //    // Add the dependency to the graph
+        //    graph.AddDependency(fromId, toId);           
+
+        //}
         // Method to automatically add dependencies based on category and priority
         public void AddCategoryBasedDependencies()
         {
-            var categoryGroups = serviceRequests.Values.GroupBy(r => r.report.reportCat); // Group requests by category
+            GetAVL();
+            // Group requests by their report category
+            // var categoryGroups = serviceRequests.Values.GroupBy(r => r.report.reportCat);
+            var categoryGroups = maxHeap.ToDictionary().Values.GroupBy(r => r.report.reportCat);
+
             foreach (var group in categoryGroups)
             {
-                // Sort requests by priority
+                // Sort requests by priority within each category
                 var sortedRequests = group.OrderBy(r => r.requestPri).ToList();
+
                 for (int i = 0; i < sortedRequests.Count - 1; i++)
                 {
                     var currentRequest = sortedRequests[i];
                     var nextRequest = sortedRequests[i + 1];
 
-                    // Check and add dependency if not already present
+                    // Add the requests to the DependencyGraph if not already present
+                    graph.AddServiceRequest(currentRequest);
+                    graph.AddServiceRequest(nextRequest);
+
+                    // Add the dependency to the DependencyGraph
+                    try
+                    {
+                        if (graph.AddDependency(currentRequest.requestId, nextRequest.requestId))
+                        {
+                            Console.WriteLine($"Added dependency: Request {currentRequest.requestId} -> Request {nextRequest.requestId}");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Failed to add dependency: {ex.Message}");
+                    }
+
+                    // Also update the self-referencing collections for UI or logic purposes
                     if (!currentRequest.Dependencies.Contains(nextRequest))
                     {
                         currentRequest.Dependencies.Add(nextRequest);
                         nextRequest.DependentOn.Add(currentRequest);
-
-                        // Optionally log or track the dependency creation
-                        Console.WriteLine($"Added dependency: Request {currentRequest.requestId} -> Request {nextRequest.requestId}");
                     }
                 }
             }
@@ -161,8 +184,8 @@ namespace MVA_poe.Classes.SearchManagment
         {
             return graph.TopologicalSort();
         }
-
-        // Prioritize tasks using MinHeap and return a Queue
+        
+        // Prioritize tasks using MinHeap and return a Queue - MTS
         public Queue<ServiceRequest> PrioritizeTasks(IEnumerable<int> taskOrder)
         {
             // Enqueue requests in the minHeap based on task order
@@ -183,6 +206,7 @@ namespace MVA_poe.Classes.SearchManagment
 
             return prioritizedTasksQueue;
         }
+        //MTS
         public bool IsGraphConnected(HashSet<int> visited, Queue<ServiceRequest> toProcess, ServiceRequest startingRequest)
         {
             if (startingRequest == null)
@@ -212,8 +236,6 @@ namespace MVA_poe.Classes.SearchManagment
             // If the visited count is not equal to the total number of requests, graph is disconnected
             return visited.Count == serviceRequests.Count;
         }
-
-
 
         // Add the GetMST method to calculate the Minimum Spanning Tree (MST)
         // Method to get the Minimum Spanning Tree (MST) and return it as a Queue
@@ -279,16 +301,7 @@ namespace MVA_poe.Classes.SearchManagment
             PrioritizeTasks(taskOrder);
             return serviceRequests;
         }
-        public ServiceRequest GetServiceRequest()
-        {
-
-            return maxHeap.GetTopPriority();
-        }
-
-        public DependencyGraph GetDependencyGraph()
-        {
-            return graph;
-        }
+       
         private void UpdateMST()
         {
             try
@@ -312,10 +325,7 @@ namespace MVA_poe.Classes.SearchManagment
             {
                 Console.WriteLine($"Error updating MST: {ex.Message}");
             }
-        }       
-       
-
-
+        }   
 
     }
 }

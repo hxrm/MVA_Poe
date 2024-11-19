@@ -213,5 +213,7 @@ namespace MVA_poe.Classes.SearchManagment
                 InOrderTraversal(node.RightHand, result);
             }
         }
+
     }
+
 }

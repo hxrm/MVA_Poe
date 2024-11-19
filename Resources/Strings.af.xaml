@@ -15,7 +15,10 @@
     <sys:String x:Key="Close">Maak toe</sys:String>
     <sys:String x:Key="Register">Registreer</sys:String>
     <sys:String x:Key="Login">Teken in</sys:String>
-    <sys:String x:Key="ForgotGmail">Vergeet Gmail?</sys:String>
+    <sys:String x:Key="Home">Huis</sys:String>
+    <sys:String x:Key="SR_BTN_VISUAL">Sien Visuele Vertoning</sys:String>
+    <sys:String x:Key="SR_BTN_STATUS">Sorteer Status</sys:String>
+    <sys:String x:Key="SR_BTN_PRIOR">Sorteer Prioriteit</sys:String>
 
     <!--  Prompts  -->
     <sys:String x:Key="EnterName">Voer jou naam in</sys:String>
@@ -38,6 +41,7 @@
     <sys:String x:Key="Location">Ligging</sys:String>
     <sys:String x:Key="Description">Beskrywing</sys:String>
     <sys:String x:Key="Category">Kategorie</sys:String>
+    <sys:String x:Key="Language">Taal</sys:String>
     <sys:String x:Key="Date">Datum</sys:String>
     <sys:String x:Key="IssueDetails">Probleem Besonderhede</sys:String>
     <sys:String x:Key="ReportTitle">Verslagtitel</sys:String>
@@ -86,6 +90,14 @@
     <sys:String x:Key="S_MSG">Ons is opgewonde om aan te kondig dat Diensversoeke binnekort beskikbaar sal wees op die Munisipale Dienste Aansoek!</sys:String>
     <sys:String x:Key="Default_MSG">Kies asseblief 'n verslag om besonderhede te sien.</sys:String>
     <sys:String x:Key="UPD_MSG">Gebruikersprofiel Besonderhede</sys:String>
+    <sys:String x:Key="LE_REC">Gebeurtenisse aanbeveel soos jy gesoek het</sys:String>
+    <sys:String x:Key="LE_REL">Verwante gebeure...</sys:String>
+    <sys:String x:Key="LE_CAT1">gebeure van</sys:String>
+    <sys:String x:Key="LE_CAT2">gebeure wat val op</sys:String>
+    <sys:String x:Key="LE_CAT3">en</sys:String>
+
+ 
+
 
     <sys:String x:Key="EventHeader">Alle Gebeure</sys:String>
     <sys:String x:Key="RecEventHeader1">Gebeure wat vir jou aanbeveel word...</sys:String>

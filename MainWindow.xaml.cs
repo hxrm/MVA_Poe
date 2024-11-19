@@ -29,6 +29,7 @@ namespace MVA_Poe
     {
         // Instance of DBHelper
         DBHelper dBHelper;
+        
 
         // Constructor for MainWindow
         public MainWindow(DBHelper db)
@@ -41,7 +42,7 @@ namespace MVA_Poe
             SetLanguage(DBHelper.lang);
 
             // Assign the passed DBHelper instance to the class member
-            this.dBHelper = db;
+            this.dBHelper = db;  
 
             // Check if the frame container has no current source
             if (fContainer.CurrentSource == null)
@@ -70,6 +71,10 @@ namespace MVA_Poe
             }
         }
 
+        public void ResetLang()
+        {
+           SetLanguage(DBHelper.lang);
+        }
         //----------------------------------------------------------------------------//
 
         // Method: SetLanguage
@@ -103,34 +108,8 @@ namespace MVA_Poe
             this.Resources.MergedDictionaries.Add(dict);
         }
 
-        //----------------------------------------------------------------------------//
-
-        // Event handler for the background preview mouse left button down event
-        private void BG_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            // Uncheck the toggle button
-            Tg_Btn.IsChecked = false;
-        }
 
         //----------------------------------------------------------------------------//
-
-        // Event handler for mouse enter on btnCreateReport
-        private void btnCreateReport_MouseEnter(object sender, MouseEventArgs e)
-        {
-            // If the toggle button is not checked
-            if (Tg_Btn.IsChecked == false)
-            {
-                // Set the placement target and mode for the popup
-                Popup.PlacementTarget = btnCreateReport;
-                Popup.Placement = PlacementMode.Right;
-
-                // Open the popup
-                Popup.IsOpen = true;
-
-                // Set the popup text
-                Header.PopupText.Text = (string)FindResource("CreateNewReport");
-            }
-        }
 
         // Event handler for mouse leave on btnCreateReport
         private void btnCreateReport_MouseLeave(object sender, MouseEventArgs e)
@@ -142,24 +121,7 @@ namespace MVA_Poe
 
         //----------------------------------------------------------------------------//
 
-        // Event handler for mouse enter on btnViewReport
-        private void btnViewReport_MouseEnter(object sender, MouseEventArgs e)
-        {
-            // If the toggle button is not checked
-            if (Tg_Btn.IsChecked == false)
-            {
-                // Set the placement target and mode for the popup
-                Popup.PlacementTarget = btnViewReport;
-                Popup.Placement = PlacementMode.Right;
-
-                // Open the popup
-                Popup.IsOpen = true;
-
-                // Set the popup text
-                Header.PopupText.Text = (string)FindResource("Reports");
-            }
-        }
-
+       
         // Event handler for mouse leave on btnViewReport
         private void btnViewReport_MouseLeave(object sender, MouseEventArgs e)
         {
@@ -170,23 +132,7 @@ namespace MVA_Poe
 
         //----------------------------------------------------------------------------//
 
-        // Event handler for mouse enter on btnLocal
-        private void btnLocal_MouseEnter(object sender, MouseEventArgs e)
-        {
-            // If the toggle button is not checked
-            if (Tg_Btn.IsChecked == false)
-            {
-                // Set the placement target and mode for the popup
-                Popup.PlacementTarget = btnLocal;
-                Popup.Placement = PlacementMode.Right;
-
-                // Open the popup
-                Popup.IsOpen = true;
-
-                // Set the popup text
-                Header.PopupText.Text = (string)FindResource("LocalEvents");
-            }
-        }
+        
 
         // Event handler for mouse leave on btnLocal
         private void btnLocal_MouseLeave(object sender, MouseEventArgs e)
@@ -206,23 +152,7 @@ namespace MVA_Poe
             Popup.IsOpen = false;
         }
 
-        // Event handler for mouse enter on btnServiceRequest
-        private void btnServiceRequest_MouseEnter(object sender, MouseEventArgs e)
-        {
-            // If the toggle button is not checked
-            if (Tg_Btn.IsChecked == false)
-            {
-                // Set the placement target and mode for the popup
-                Popup.PlacementTarget = btnServiceRequest;
-                Popup.Placement = PlacementMode.Right;
-
-                // Open the popup
-                Popup.IsOpen = true;
-
-                // Set the popup text
-                Header.PopupText.Text = (string)FindResource("ServiceRequest");
-            }
-        }
+        
 
         //----------------------------------------------------------------------------//
 
@@ -236,23 +166,6 @@ namespace MVA_Poe
 
         //----------------------------------------------------------------------------//
 
-        // Event handler for mouse enter on btnLogout
-        private void btnLogout_MouseEnter(object sender, MouseEventArgs e)
-        {
-            // If the toggle button is not checked
-            if (Tg_Btn.IsChecked == false)
-            {
-                // Set the placement target and mode for the popup
-                Popup.PlacementTarget = btnLogout;
-                Popup.Placement = PlacementMode.Right;
-
-                // Open the popup
-                Popup.IsOpen = true;
-
-                // Set the popup text
-                Header.PopupText.Text = (string)FindResource("Logout");
-            }
-        }
 
         // Event handler for mouse leave on btnLogout
         private void btnLogout_MouseLeave(object sender, MouseEventArgs e)
@@ -264,23 +177,7 @@ namespace MVA_Poe
 
         //----------------------------------------------------------------------------//
 
-        // Event handler for mouse enter on btnProfile
-        private void btnProfile_MouseEnter(object sender, MouseEventArgs e)
-        {
-            // If the toggle button is not checked
-            if (Tg_Btn.IsChecked == false)
-            {
-                // Set the placement target and mode for the popup
-                Popup.PlacementTarget = btnProfile;
-                Popup.Placement = PlacementMode.Right;
-
-                // Open the popup
-                Popup.IsOpen = true;
-
-                // Set the popup text
-                Header.PopupText.Text = (string)FindResource("Profile");
-            }
-        }
+        
 
         // Event handler for mouse leave on btnProfile
         private void btnProfile_MouseLeave(object sender, MouseEventArgs e)

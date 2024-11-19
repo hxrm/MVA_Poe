@@ -6,8 +6,7 @@
     xmlns:local="clr-namespace:MVA_Poe.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Dashboard"
-    Width="997"
-    Height="645"
+    Margin="180,20,7,0"
     mc:Ignorable="d">
     <Grid Margin="0,0,0,2">
         <Grid.RowDefinitions>
@@ -30,7 +29,6 @@
         <!--  Text Discover section  -->
         <TextBlock
             Grid.Row="3"
-            Width="996"
             Height="52"
             Margin="20,10,0,0"
             DockPanel.Dock="Bottom"

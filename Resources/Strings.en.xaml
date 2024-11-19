@@ -15,7 +15,10 @@
     <sys:String x:Key="Close">Close</sys:String>
     <sys:String x:Key="Register">Register</sys:String>
     <sys:String x:Key="Login">Login</sys:String>
-    <sys:String x:Key="ForgotGmail">Forgot Gmail?</sys:String>
+    <sys:String x:Key="Home">Home</sys:String>
+    <sys:String x:Key="SR_BTN_VISUAL">See Visual Display</sys:String>
+    <sys:String x:Key="SR_BTN_STATUS">Sort Status</sys:String>
+    <sys:String x:Key="SR_BTN_PRIOR">Sort Priority</sys:String>
 
 
 
@@ -41,6 +44,7 @@
     <sys:String x:Key="Description">Description</sys:String>
     <sys:String x:Key="Category">Category</sys:String>
     <sys:String x:Key="Date">Date</sys:String>
+    <sys:String x:Key="Language">Language</sys:String>
     <sys:String x:Key="IssueDetails">Issue Details</sys:String>
     <sys:String x:Key="ReportTitle">Report Title</sys:String>
 
@@ -89,6 +93,10 @@
     <sys:String x:Key="S_MSG">We’re thrilled to announce that Service Requests will soon be live on the Municipal Services Application!</sys:String>
     <sys:String x:Key="Default_MSG">Please select a report to view details.</sys:String>
     <sys:String x:Key="UPD_MSG">User Profile Details</sys:String>
+    <sys:String x:Key="LE_REC">Events recommended as you searched</sys:String>
+    <sys:String x:Key="LE_REL">Related Events...</sys:String>
+    <sys:String x:Key="LE_NON">No specific preferences</sys:String>
+
 
     <sys:String x:Key="EventHeader">All Events</sys:String>
     <sys:String x:Key="RecEventHeader1">Events recommended for you...</sys:String>

@@ -66,9 +66,12 @@ namespace MVA_Poe.Pages
         // Declare a string for error messages
         string tErrorMessage;
 
-    
+
         // use to pull data ?
-        private readonly AVLTree<ServiceRequest> requestTree = new AVLTree<ServiceRequest>();
+        //private readonly AVLTree<ServiceRequest> requestTree = new AVLTree<ServiceRequest>();
+        // Assuming you want to use CompareToStat for comparison
+        AVLTree<ServiceRequest> avlTree = new AVLTree<ServiceRequest>((x, y) => x.CompareToStat(y));
+
 
         // Constructor for the CreateReport class
         public CreateReport()

@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace MVA_poe.Classes.SearchManagment
 {
+    // DependencyGraph class represents a directed graph to manage dependencies between service requests
     public class DependencyGraph
     {
         // Adjacency list to represent the graph
@@ -14,14 +15,20 @@ namespace MVA_poe.Classes.SearchManagment
         // Map to store the ServiceRequest objects by their requestId
         public ConcurrentDictionary<int, ServiceRequest> serviceRequests;
 
-        // Constructor to initialize the graph
+        //----------------------------------------------------------------------------//
+
+        // Constructor: DependencyGraph
+        // Initializes a new instance of the DependencyGraph class
         public DependencyGraph()
         {
             adjacencyList = new ConcurrentDictionary<int, List<int>>();
             serviceRequests = new ConcurrentDictionary<int, ServiceRequest>();
         }
 
-        // Add a new service request to the graph
+        //----------------------------------------------------------------------------//
+
+        // Method: AddServiceRequest
+        // Adds a new service request to the graph
         public void AddServiceRequest(ServiceRequest request)
         {
             // Ensure the request is added to the serviceRequests dictionary
@@ -31,7 +38,10 @@ namespace MVA_poe.Classes.SearchManagment
             adjacencyList.TryAdd(request.requestId, new List<int>());
         }
 
-        // Add a dependency between two requests
+        //----------------------------------------------------------------------------//
+
+        // Method: AddDependency
+        // Adds a dependency between two requests
         public bool AddDependency(int fromRequestId, int toRequestId)
         {
             // Ensure both requests exist in the graph
@@ -56,13 +66,19 @@ namespace MVA_poe.Classes.SearchManagment
             adjacencyList[fromRequestId].Add(toRequestId);
             return true;
         }
-        // Get all dependencies of a service request
+        //----------------------------------------------------------------------------//
+
+        // Method: GetDependencies
+        // Gets all dependencies of a service request
         public List<int> GetDependencies(int requestId)
         {
             return adjacencyList.TryGetValue(requestId, out var dependencies) ? dependencies : new List<int>();
         }
 
-        // Perform a topological sort to resolve tasks in dependency order
+        //----------------------------------------------------------------------------//
+
+        // Method: ResolveOrder
+        // Performs a topological sort to resolve tasks in dependency order
         public List<int> ResolveOrder()
         {
             var visited = new HashSet<int>();
@@ -76,9 +92,12 @@ namespace MVA_poe.Classes.SearchManagment
                 }
             }
 
-            return resultStack.Reverse().ToList(); // Return the resolved order
+            return resultStack.Reverse().ToList(); 
         }
 
+        //----------------------------------------------------------------------------//
+
+        // Method: TopologicalSortHelper
         // Helper method for topological sort
         private void TopologicalSortHelper(int requestId, HashSet<int> visited, Stack<int> resultStack)
         {
@@ -94,9 +113,15 @@ namespace MVA_poe.Classes.SearchManagment
 
             resultStack.Push(requestId);
         }
+
+        //----------------------------------------------------------------------------//
+
+        // Method: TopologicalSort
+        // Performs a topological sort to resolve tasks in dependency order
         public List<int> TopologicalSort()
         {
-            var inDegree = new Dictionary<int, int>(); // Dictionary to track the number of incoming edges for each node.
+            // Dictionary to track the number of incoming edges for each node.
+            var inDegree = new Dictionary<int, int>(); 
 
             // Initialize in-degree for all nodes in the graph as 0.
             foreach (var node in adjacencyList.Keys)
@@ -110,8 +135,8 @@ namespace MVA_poe.Classes.SearchManagment
                 foreach (var toId in edges)
                 {
                     if (inDegree.ContainsKey(toId))
-                    {
-                        inDegree[toId]++; // Increment in-degree for each target node.
+                    {// Increment in-degree for each target node.
+                        inDegree[toId]++; 
                     }
                 }
             }
@@ -143,10 +168,13 @@ namespace MVA_poe.Classes.SearchManagment
             {
                 throw new InvalidOperationException("Graph contains a cycle, topological sorting is not possible.");
             }
-
-            return sortedOrder; // Return the topological order of the nodes.
+            // Return the topological order of the nodes.
+            return sortedOrder; 
         }
-        // Check for cycles in the graph
+        //----------------------------------------------------------------------------//
+
+        // Method: HasCycle
+        // Checks for cycles in the graph
         private bool HasCycle(int fromRequestId, int toRequestId)
         {
             var visited = new HashSet<int>();
@@ -154,7 +182,10 @@ namespace MVA_poe.Classes.SearchManagment
 
             return HasCycleHelper(fromRequestId, toRequestId, visited, stack);
         }
+        //----------------------------------------------------------------------------//
 
+        // Method: HasCycleHelper
+        // Helper method to check for cycles in the graph
         private bool HasCycleHelper(int current, int target, HashSet<int> visited, HashSet<int> stack)
         {
             if (stack.Contains(current)) return true;
@@ -177,3 +208,4 @@ namespace MVA_poe.Classes.SearchManagment
         }
     }
 }
+//__---____---____---____---____---____---____---__.ooo END OF FILE ooo.__---____---____---____---____---____---____---__\\

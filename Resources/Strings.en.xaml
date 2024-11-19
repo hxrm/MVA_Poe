@@ -86,12 +86,21 @@
     <sys:String x:Key="Contribute">Contribute</sys:String>
     <sys:String x:Key="DiscoverMore">Discover More</sys:String>
 
+    <sys:String x:Key="Pending">Pending</sys:String>
+    <sys:String x:Key="Completed">Completed</sys:String>
+    <sys:String x:Key="Active">Active</sys:String>
+
+
+
+
     <!--  Announcement Messages  -->
     <sys:String x:Key="EA_MSG">We’re thrilled to announce that Local Events and Announcements will soon be live on the Municipal Services Application!</sys:String>
     <sys:String x:Key="EA_MSG1">Stay up to date with the latest happenings in your community, including festivals, meetings, and important municipal announcements.</sys:String>
     <sys:String x:Key="S_MSG1">Track and manage your service requests with ease, whether it's for garbage collection, street repairs, or other municipal services.</sys:String>
     <sys:String x:Key="S_MSG">We’re thrilled to announce that Service Requests will soon be live on the Municipal Services Application!</sys:String>
     <sys:String x:Key="Default_MSG">Please select a report to view details.</sys:String>
+    <sys:String x:Key="Default_MSG2">Please select catgory to view sevices report's status and priority order.</sys:String>
+
     <sys:String x:Key="UPD_MSG">User Profile Details</sys:String>
     <sys:String x:Key="LE_REC">Events recommended as you searched</sys:String>
     <sys:String x:Key="LE_REL">Related Events...</sys:String>

@@ -25,34 +25,32 @@ namespace MVA_poe.Pages
     /// Interaction logic for Service.xaml
     /// </summary>
     public partial class Service : Page
-    {
-        private AVLTree<ServiceRequest> requestTree = new AVLTree<ServiceRequest>();
+    {    // Declare fields
+        private AVLTree<ServiceRequest> requestTree = new AVLTree<ServiceRequest>((x, y) => x.CompareTo(y));
         private MaxHeap requestHeap = new MaxHeap();
         private ServiceRequestManager sm;
 
+        // Constructor
         public Service()
         {
             InitializeComponent();
+            // Set the language based on the user's preference
             SetLanguage(DBHelper.lang);
-            GetData();
-        
-
-            //using (var context = new AppDbContext())
-            //{
-            //    var dependencyUpdater = new DependencyUpdater(context);
-            //    dependencyUpdater.AddDependenciesToExistingData();
-
-            //    Console.WriteLine("Dependencies added successfully.");
-            //}
-
-
+            // Retrieve data from the database
+            GetData();  
         }
+        //----------------------------------------------------------------------------//
+
+        // Method: VisualizeDependencies_Click
+        // Navigates to the DependencyVisual page when the button is clicked
         private void VisualizeDependencies_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new DependencyVisual());
         }
+        //----------------------------------------------------------------------------//
 
-
+        // Method: SetLanguage
+        // Sets the language for the application based on the culture code
         private void SetLanguage(string cultureCode)
         {
             CultureInfo.CurrentUICulture = new CultureInfo(cultureCode);
@@ -72,36 +70,23 @@ namespace MVA_poe.Pages
             this.Resources.MergedDictionaries.Add(dict);
         }
 
-        // Retrieves data from the database
+        //----------------------------------------------------------------------------//
+
+        // Method: GetData
+        // Retrieves data from the database and populates the AVL tree and MaxHeap
         private void GetData()
-        {
-            //// Use a database context to access the database
-            //using (var db = new AppDbContext())
-            //{
-            //    // Retrieve all service requests from the database and include their associated reports
-            //    var requestList = db.ServiceRequests.Include("report").ToList();
-            //    requestHeap = new MaxHeap();
-            //    // Clear the existing AVL tree
-            //    requestTree = new AVLTree<ServiceRequest>();
-
-            //    // Iterate through each service request in the list
-            //    foreach (ServiceRequest request in requestList)
-            //    {
-            //        // Add each service request to the AVL tree
-            //        requestTree.Insert(request);
-            //        requestHeap.Insert(request);
-            //        request.requestDate = request.report.reportDate;
-            //    }            
-
-            //}
+        {           
             sm = new ServiceRequestManager();
             sm.GetAVL();
             requestHeap = ServiceRequestManager.maxHeap;
             requestTree = ServiceRequestManager.avlTree;
-
+            // Display the service requests in the data grid
             DisplayServiceRequests();
         }
+        //----------------------------------------------------------------------------//
 
+        // Method: SearchServiceRequestById
+        // Searches for service requests by ID
         private IEnumerable<DisplayRequest> SearchServiceRequestById(int requestId)
         {
             var serviceRequests = requestTree.InOrderTraversal();
@@ -110,6 +95,10 @@ namespace MVA_poe.Pages
                .Select(sr => GetDisplayItem(sr))
                .ToList();
         }
+        //----------------------------------------------------------------------------//
+
+        // Method: SearchServiceRequestsByPriority
+        // Searches for service requests by priority
         private IEnumerable<DisplayRequest> SearchServiceRequestsByPriority(string priority)
         {
             var serviceRequests = requestHeap.ToArray();
@@ -117,7 +106,11 @@ namespace MVA_poe.Pages
                 .Where(sr => sr.requestPri.GetString().IndexOf(priority, StringComparison.OrdinalIgnoreCase) >= 0)
                 .Select(sr => GetDisplayItem(sr))
                 .ToList();
-        }        
+        }
+        //----------------------------------------------------------------------------//
+
+        // Method: SearchServiceRequestsByStatus
+        // Searches for service requests by status
         private IEnumerable<DisplayRequest> SearchServiceRequestsByStatus(string status)
         {
             var serviceRequests = requestTree.InOrderTraversal();
@@ -127,7 +120,10 @@ namespace MVA_poe.Pages
                 .Select(sr => GetDisplayItem(sr))
                 .ToList();
         }
+        //----------------------------------------------------------------------------//
 
+        // Method: DisplayServiceRequests
+        // Displays the service requests in the data grid
         private void DisplayServiceRequests()
         {
             var serviceRequests = requestTree.InOrderTraversal();
@@ -137,7 +133,11 @@ namespace MVA_poe.Pages
                 var displayRequest = GetDisplayItem(request);    
                 dataGrid.Items.Add(displayRequest);
             }
-        }        
+        }
+        //----------------------------------------------------------------------------//
+
+        // Method: GetDisplayItem
+        // Converts a ServiceRequest to a DisplayRequest for display in the data grid
         private DisplayRequest GetDisplayItem(ServiceRequest request)
         {
             var displayRequest = new DisplayRequest
@@ -153,6 +153,10 @@ namespace MVA_poe.Pages
 
             return displayRequest;
         }
+        //----------------------------------------------------------------------------//
+
+        // Method: GetEmployee
+        // Retrieves the employee name based on the employee ID
         private string GetEmployee(int employeeId)
         {// Cast the employeeId to the Employee enum type
             Employee employeeEnumValue = (Employee)employeeId;
@@ -167,16 +171,40 @@ namespace MVA_poe.Pages
             // Return null if the employeeId is not defined in the Employee enum
             return null;
         }
+        //----------------------------------------------------------------------------//
+
+        // Method: PriorizeButton_Click
+        // Displays service requests in priority order when the button is clicked
         private void PriorizeButton_Click(object sender, RoutedEventArgs e)
-        {
+        {// get all services in the max heap list 
             var serviceRequests = requestHeap.ToArray();
             dataGrid.Items.Clear();
+            //foreach service create display object and add to display grid
             foreach (var request in serviceRequests)
             {
                 var displayRequest = GetDisplayItem(request);
                 dataGrid.Items.Add(displayRequest);
             }
         }
+        //----------------------------------------------------------------------------//
+
+        // Method: OrderByStatusButton_Click
+        // Displays service requests in priority order when the button is clicked
+        private void StatusButton_Click(object sender, RoutedEventArgs e)
+        {// get all services in the max heap list 
+           var serviceRequests = requestHeap.ToStatusArrayUsingAVL();
+            dataGrid.Items.Clear();
+            //foreach service create display object and add to display grid
+            foreach (var request in serviceRequests)
+            {
+                var displayRequest = GetDisplayItem(request);
+                dataGrid.Items.Add(displayRequest);
+            }
+        }
+        //----------------------------------------------------------------------------//
+
+        // Method: SearchButton_Click
+        // Searches for service requests based on the selected search type and search text
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             var searchType = (searchTypeComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
@@ -253,39 +281,17 @@ namespace MVA_poe.Pages
                     break;
             }
         }
+        //----------------------------------------------------------------------------//
+
+        // Method: SearchServiceRequest
+        // Searches for a single service request by ID
         private ServiceRequest SearchServiceRequest(int requestId)
         {
             var serviceRequests = requestTree.InOrderTraversal();
             return serviceRequests.FirstOrDefault(sr => sr.requestId == requestId);
         }
-        private void UpdateServiceRequest(ServiceRequest updatedRequest)
-        {
-            // Find the existing request in the AVL tree
-            var existingRequest = SearchServiceRequest(updatedRequest.requestId);
-            if (existingRequest != null)
-            {
-                // Update the properties of the existing request
-                existingRequest.requestStat = updatedRequest.requestStat;
-                existingRequest.requestPri = updatedRequest.requestPri;
-                existingRequest.requestUpdate = updatedRequest.requestUpdate;
-                existingRequest.employeeId = updatedRequest.employeeId;
-
-                // Update the database
-                using (var db = new AppDbContext())
-                {
-                   // db.ServiceRequests.Update(existingRequest);
-                    db.SaveChanges();
-                }
-
-                // Refresh the AVL tree
-                GetData();
-            }
-            else
-            {
-                MessageBox.Show("Service request not found.", "Update Result", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-        }
-
+        
     }
 
 }
+//__---____---____---____---____---____---____---__.ooo END OF FILE ooo.__---____---____---____---____---____---____---__\\

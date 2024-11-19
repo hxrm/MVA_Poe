@@ -313,8 +313,6 @@
     <Compile Include="Classes\SearchManagment\AVLTree.cs" />
     <Compile Include="Classes\SearchManagment\DependencyGraph.cs" />
     <Compile Include="Classes\SearchManagment\MaxHeap.cs" />
-    <Compile Include="Classes\SearchManagment\MinHeap.cs" />
-    <Compile Include="Classes\SearchManagment\MTSGraph.cs" />
     <Compile Include="Classes\SearchManagment\Node.cs" />
     <Compile Include="Classes\SearchManagment\PatternFrequency.cs" />
     <Compile Include="Classes\SearchManagment\RecommendationEngine.cs" />

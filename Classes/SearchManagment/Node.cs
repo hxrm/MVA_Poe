@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MVA_poe.Classes.SearchManagment
 {
-    public class Node<T> where T : IComparable<T>
+    public class Node<T>
     {
         // The Data property holds the value stored in the node.
         public T Data { get; set; }
@@ -34,3 +34,4 @@ namespace MVA_poe.Classes.SearchManagment
     }
 
 }
+//__---____---____---____---____---____---____---__.ooo END OF FILE ooo.__---____---____---____---____---____---____---__\\

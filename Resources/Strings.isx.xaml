@@ -83,4 +83,31 @@
     <sys:String x:Key="Progress">Inqununu</sys:String>
     <sys:String x:Key="Contribute">Nika igalelo</sys:String>
     <sys:String x:Key="DiscoverMore">Fumana Okuninzi</sys:String>
+
+    <sys:String x:Key="Pending">Kulindwe</sys:String>
+    <sys:String x:Key="Completed">Gqityiwe</sys:String>
+    <sys:String x:Key="Active">Iyasebenza</sys:String>
+
+    <!--  Announcement Messages  -->
+    <sys:String x:Key="EA_MSG">Siyavuya ukwazisa ukuba Izehlo kunye Nezaziso Zasekuhlaleni ziza kufumaneka kungekudala kwisicelo senkonzo kamasipala!</sys:String>
+    <sys:String x:Key="EA_MSG1">Hlala uhlaziywa ngeziganeko zamva nje zoluntu lwakho, kuquka iifestile, iintlanganiso, kunye nezaziso ezibalulekileyo zikamasipala.</sys:String>
+    <sys:String x:Key="S_MSG1">Landela kwaye ulawule izicelo zakho zonkonzo ngokulula, nokuba kungokuhlanjwa kokukhupha inkunkuma, ukulungiswa kweendlela, okanye ezinye iinkonzo zikamasipala.</sys:String>
+    <sys:String x:Key="S_MSG">Siyavuya ukwazisa ukuba izicelo zonkonzo ziza kufumaneka kungekudala kwisicelo senkonzo kamasipala!</sys:String>
+    <sys:String x:Key="Default_MSG2">Nceda ukhethe udidi ukuze ubone imeko nengqwalaselo yokubaluleka yengxelo yeenkonzo.</sys:String>
+    <sys:String x:Key="Default_MSG">Nceda ukhethe ingxelo ukuze ubone iinkcukacha.</sys:String>
+    <sys:String x:Key="UPD_MSG">Iinkcukacha Zomsebenzisi</sys:String>
+
+    <sys:String x:Key="EventHeader">Zonke Izehlo</sys:String>
+    <sys:String x:Key="RecEventHeader1">Iziganeko ezincomelwayo kuwe...</sys:String>
+    <sys:String x:Key="RecEventHeader2">Iziganeko Zalapha</sys:String>
+    <sys:String x:Key="Search">Khangela</sys:String>
+    <sys:String x:Key="Filter">Hlunga</sys:String>
+    <sys:String x:Key="Reset">Setha Kwakhona</sys:String>
+    <sys:String x:Key="eName">Igama Lesiganeko:</sys:String>
+    <sys:String x:Key="eDecscrip">Inkcazo Yesiganeko:</sys:String>
+    <sys:String x:Key="eDate">Umhla Wesiganeko:</sys:String>
+    <sys:String x:Key="eCategory">Udidi Lwesiganeko:</sys:String>
+    <sys:String x:Key="eLoc">Indawo Yesiganeko:</sys:String>
+
+
 </ResourceDictionary>

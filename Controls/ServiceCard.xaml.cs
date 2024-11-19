@@ -135,13 +135,13 @@ namespace MVA_poe.Controls
             switch (status)
             {
                 case Status.Pending:
-                    StatNode = Brushes.Yellow;
-                    break;
-                case Status.Active:
                     StatNode = Brushes.Orange;
                     break;
+                case Status.Active:
+                    StatNode = Brushes.GreenYellow;
+                    break;
                 case Status.Completed:
-                    StatNode = Brushes.Green;
+                    StatNode = Brushes.Blue;
                     break;
                 default:
                     StatNode = Brushes.Gray;

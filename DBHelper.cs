@@ -27,7 +27,7 @@ namespace MVA_poe
      //   public static RecordPattern trackSearch = new RecordPattern();
         public static List<SearchRecord>trackSearch = new List<SearchRecord>();
      
-        private static AVLTree<MVA_Poe.Classes.ServiceRequest> requestTree = new AVLTree<MVA_Poe.Classes.ServiceRequest>();
+        private static AVLTree<MVA_Poe.Classes.ServiceRequest> requestTree = new  AVLTree<MVA_Poe.Classes.ServiceRequest>((x, y) => x.CompareTo(y));
         // Default constructor
         public DBHelper() { }
 

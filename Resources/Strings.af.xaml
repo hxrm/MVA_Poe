@@ -83,12 +83,17 @@
     <sys:String x:Key="Progress">Vordering</sys:String>
     <sys:String x:Key="Contribute">Dra by</sys:String>
     <sys:String x:Key="DiscoverMore">Ontdek meer</sys:String>
+    <sys:String x:Key="Pending">Hangende</sys:String>
+    <sys:String x:Key="Completed">Voltooi</sys:String>
+    <sys:String x:Key="Active">Aktief</sys:String>
+
 
     <sys:String x:Key="EA_MSG">Ons is opgewonde om aan te kondig dat Plaaslike Geleenthede en Aankondigings binnekort beskikbaar sal wees op die Munisipale Dienste Aansoek!</sys:String>
     <sys:String x:Key="EA_MSG1">Bly op hoogte van die nuutste gebeure in jou gemeenskap, insluitend feeste, vergaderings, en belangrike munisipale aankondigings.</sys:String>
     <sys:String x:Key="S_MSG1">Volg en bestuur jou diensversoeke met gemak, of dit nou vir vullisverwydering, straatherstelwerk, of ander munisipale dienste is.</sys:String>
     <sys:String x:Key="S_MSG">Ons is opgewonde om aan te kondig dat Diensversoeke binnekort beskikbaar sal wees op die Munisipale Dienste Aansoek!</sys:String>
     <sys:String x:Key="Default_MSG">Kies asseblief 'n verslag om besonderhede te sien.</sys:String>
+    <sys:String x:Key="Default_MSG2">Kies asseblief 'n kategorië om die diensverslag se status en prioriteitsvolgorde te sien.</sys:String>
     <sys:String x:Key="UPD_MSG">Gebruikersprofiel Besonderhede</sys:String>
 
 

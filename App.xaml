@@ -20,12 +20,6 @@
 
             </ResourceDictionary.MergedDictionaries>
 
-            <!--  fgfdgs  -->
-
-
-
-
-            <!--  Custom Calendar Style  -->
             <!--  Custom Calendar Style  -->
             <Style x:Key="DatePickerCalendarStyle1" TargetType="{x:Type Calendar}">
                 <!--  Text color  -->

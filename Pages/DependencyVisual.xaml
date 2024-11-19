@@ -12,37 +12,89 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <StackPanel
+            Grid.Row="0"
             Margin="10"
             HorizontalAlignment="Center"
             Orientation="Horizontal">
             <ComboBox
                 x:Name="cmbCategory"
-                Width="250"
+                Width="670"
                 Height="39"
-                Margin="10 0 20 0">
-                <ComboBoxItem Content="All" IsSelected="True" />
-                <ComboBoxItem Content="Water Leakage" />
-                <ComboBoxItem Content="Electrical Issue" />
-                <ComboBoxItem Content="Other" />
-            </ComboBox>
+                Margin="10,0,20,0" />
             <Button
-                Margin="10 0 0 0"
                 Width="150"
                 Height="39"
+                Margin="10,0,0,0"
                 Click="ShowDependencyGraph_Click"
-                    Content="{DynamicResource Search}" />
-            <Button
-                Margin="5"
-                Click="MTS_Click"
-                Content="Show MTS Graph" />
+                Content="{DynamicResource Search}" />
+
+
+        </StackPanel>
+        <StackPanel
+            Grid.Row="1"
+            Width="700"
+            Margin="10"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+
+            <StackPanel Margin="60,5,20,0" Orientation="Horizontal">
+                <Ellipse
+                    Width="30"
+                    Height="30"
+                    Margin="6"
+                    Fill="Blue" />
+                <TextBlock
+                    Width="auto"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource TextFourthColor}"
+                    Text="{DynamicResource Completed}" />
+
+            </StackPanel>
+            <StackPanel Margin="60,5,20,0" Orientation="Horizontal">
+                <Ellipse
+                    Width="30"
+                    Height="30"
+                    Margin="6"
+                    Fill="GreenYellow" />
+                <TextBlock
+                    Width="auto"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource TextFourthColor}"
+                    Text="{DynamicResource Active}" />
+
+            </StackPanel>
+            <StackPanel Margin="60,5,20,0" Orientation="Horizontal">
+                <Ellipse
+                    Width="30"
+                    Height="30"
+                    Margin="6"
+                    Fill="Orange" />
+                <TextBlock
+                    Width="auto"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource TextFourthColor}"
+                    Text="{DynamicResource Pending}" />
+
+            </StackPanel>
+
+
+
         </StackPanel>
 
+
         <ScrollViewer
-            Grid.Row="1"
+            Grid.Row="2"
             HorizontalScrollBarVisibility="Auto"
             VerticalScrollBarVisibility="Auto">
             <Canvas
@@ -51,7 +103,18 @@
                 Height="800"
                 MinWidth="1000"
                 Margin="0,50,0,0"
-                Background="White" />
+                Background="White">
+
+                <TextBlock
+                    x:Name="DefaultMessage"
+                    Margin="180,100,0,120"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    Foreground="{DynamicResource TextSecundaryColor}"
+                    Text="{DynamicResource Default_MSG2}"
+                    Visibility="Visible" />
+            </Canvas>
         </ScrollViewer>
     </Grid>
 </Page>

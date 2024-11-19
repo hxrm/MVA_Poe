@@ -37,23 +37,22 @@ namespace MVA_Poe.Classes
         // Last updated date of the service request
         public DateTime requestDate { get; set; }
 
-        // Self-referencing relationship for dependencies
-
-        //this request must be completed before can start
+        // referencing relationship for dependencies
         public virtual ICollection<ServiceRequest> Dependencies { get; set; }
-        // this request can start after   
+         
         public virtual ICollection<ServiceRequest> DependentOn { get; set; }
 
-        // 
-        // Add this property to the ServiceRequest class to store the weight of the request.
-        public double RequestAgeWeight => (DateTime.Now - requestDate).TotalDays; // This will give us the number of days the request has been unresolved.
+
+        // store the weight of the request.
+        // This will give us the number of days the request has been unresolved.
+        public double RequestAgeWeight => (DateTime.Now - requestDate).TotalDays; 
 
         // Constructor for initializing properties
         public ServiceRequest()
         {
-            // Set the last updated time to the current date and time
-          //  requestUpdate = DateTime.Now;
+         
         }
+        // Constructor for initializing properties
         public void SetData(Report report)
         {
             AssignPriority();
@@ -76,6 +75,14 @@ namespace MVA_Poe.Classes
 
             // Compare based on requestId or any other property you prefer
             return this.requestId.CompareTo(other.requestId);
+        }
+        public int CompareToStat(ServiceRequest other)
+        {
+            int pass; 
+            if (other == null)
+                pass = 1;
+             pass = string.Compare(this.requestStat.GetString(), other.requestStat.GetString(), StringComparison.Ordinal);
+            return pass;
         }
 
         // Assign priority based on status and age of request
@@ -121,4 +128,4 @@ namespace MVA_Poe.Classes
         }
         
     }
-}
+}//__---____---____---____---____---____---____---__.ooo END OF FILE ooo.__---____---____---____---____---____---____---__\\

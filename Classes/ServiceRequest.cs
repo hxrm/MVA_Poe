@@ -68,7 +68,24 @@ namespace MVA_Poe.Classes
         }
 
         ///AVL 
-       // Implement the CompareTo method
+        // Implement the CompareTo method
+        public int Compare(ServiceRequest x, ServiceRequest y)
+        {
+            if (x == null && y == null)
+                return 0;
+            if (x == null)
+                return -1;
+            if (y == null)
+                return 1;
+
+            // Compare based on status first (convert to int for numeric comparison)
+            int statusComparison = ((int)x.requestStat).CompareTo((int)y.requestStat);
+            if (statusComparison != 0)
+                return statusComparison;
+
+            // If statuses are equal, compare by RequestId
+            return x.requestId.CompareTo(y.reportId);
+        }
         public int CompareTo(ServiceRequest other)
         {
             if (other == null) return 1;

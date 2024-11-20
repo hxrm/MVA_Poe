@@ -1,4 +1,5 @@
-﻿using MVA_Poe.Classes;
+﻿using MVA_poe.Data;
+using MVA_Poe.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,27 +82,51 @@ namespace MVA_poe.Classes.SearchManagment
         //----------------------------------------------------------------------------//
         // Method: ToStatusArray
         // Method to convert the heap into an array, sorted by status
+        //public ServiceRequest[] ToStatusArrayUsingAVL()
+        //{
+        //    // Create an AVL Tree to store the service requests, using CompareToStat for comparisons
+        //    AVLTree<int> avlTree = new AVLTree<int>();
+
+        //    // Insert all service requests from the heap into the AVL Tree
+        //    foreach (var request in heap.Values)
+        //    {
+        //        avlTree.Insert(request.requestStat,request);
+        //        Console.WriteLine($"Inserted request with ID: {request.requestId} and Status: {request.requestStat}");
+        //    }
+
+        //    // Perform an in-order traversal of the AVL Tree to get the sorted list
+        //    var sortedList = avlTree.InOrderTraversal().ToList();
+
+        //    // Debugging: Print the sorted list
+        //    foreach (var request in sortedList)
+        //    {
+        //        Console.WriteLine($"Sorted request with ID: {request.requestId} and Status: {request.requestStat}");
+        //    }
+
+        //    // Convert the sorted list to an array and return it
+        //    return sortedList.ToArray();
+        //}
         public ServiceRequest[] ToStatusArrayUsingAVL()
         {
-            // Create an AVL Tree to store the service requests, using CompareToStat for comparisons
-            AVLTree<ServiceRequest> avlTree = new AVLTree<ServiceRequest>((x, y) => x.CompareToStat(y));
+            // Create an AVL Tree to store the service requests, using the integer value of Status for comparisons
+            AVLTree<int> avlTree = new AVLTree<int>();
+            AVLTree<int>.status = true;
 
             // Insert all service requests from the heap into the AVL Tree
             foreach (var request in heap.Values)
             {
-                avlTree.Insert(request);
-                Console.WriteLine($"Inserted request with ID: {request.requestId} and Status: {request.requestStat}");
+                Status status1 = request.requestStat;
+                // Insert the integer value of the Status enum (requestStat)
+                int status = (int)request.requestStat;
+               // avlTree.Insert((int)request.requestStat, request.requestId);  // Convert Status to its integer value
+                 avlTree.AddServiceRequest((int)request.requestStat, request.requestId, request);
+                Console.WriteLine($"Inserted request with ID: {request.requestId} and Status: {(int)request.requestStat}");
             }
 
             // Perform an in-order traversal of the AVL Tree to get the sorted list
-            var sortedList = avlTree.InOrderTraversal().ToList();
-
-            // Debugging: Print the sorted list
-            foreach (var request in sortedList)
-            {
-                Console.WriteLine($"Sorted request with ID: {request.requestId} and Status: {request.requestStat}");
-            }
-
+          //  var sortedList = avlTree.InOrderTraversal();
+            var sortedList = avlTree.GetSortedServiceRequests();
+            AVLTree<int>.status = false;
             // Convert the sorted list to an array and return it
             return sortedList.ToArray();
         }

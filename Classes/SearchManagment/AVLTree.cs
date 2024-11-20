@@ -1,60 +1,176 @@
-﻿using System;
+﻿using MVA_Poe.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
+using System.Xml.Linq;
 
 namespace MVA_poe.Classes.SearchManagment
 {
     // AVLTree class represents a self-balancing binary search tree.
-    public class AVLTree<T>
+    //public class AVLTree<T>
+    //{
+    public class AVLTree<T> where T : IComparable<T>
     {
         private Node<T> root; // Root node of the AVL tree
-        private readonly Comparison<T> comparison; // Comparison delegate to compare node values
+        private  List <ServiceRequest> avlRequests;
+        public static bool status;
+        //private readonly Comparison<T> comparison; // Comparison delegate to compare node values
 
         // Constructor: AVLTree
         // Initializes a new instance of the AVLTree class with a specified comparison delegate
-        public AVLTree(Comparison<T> comparison)
+        public AVLTree()
         {
-            this.comparison = comparison;
+            avlRequests = new List<ServiceRequest>();
         }
-
+        
+        public void AddServiceRequest(T key, int serviceID, ServiceRequest request)
+        {
+            Insert(key, serviceID, request); // Insert into AVL tree
+            avlRequests.Add(request);
+        }
         //----------------------------------------------------------------------------//
 
         // Method: Insert
         // Inserts a new value into the AVL tree
-        public void Insert(T value)
+        public void Insert(T key, int requestID, ServiceRequest service)
         {
-            root = Insert(root, value);
+            root = Insert(root, key, requestID, service);
         }
-
         //----------------------------------------------------------------------------//
 
         // Method: Insert (private)
         // Recursively inserts a new value into the AVL tree and balances the tree
-        private Node<T> Insert(Node<T> node, T data)
+        //private Node<T> Insert(Node<T> node, T data)
+        //{
+        //    if (node == null)
+        //        return new Node<T>(data); // Create a new node if the current node is null
+
+        //    int compare = data.CompareTo(node.Data);
+        //    if (compare < 0)
+        //        node.LeftHand = Insert(node.LeftHand, data); // Insert into the left subtree
+        //    else if (compare > 0)
+        //        node.RightHand = Insert(node.RightHand, data); // Insert into the right subtree
+        //    else
+        //        return node; // Duplicate values are not allowed
+
+        //    // Update the height and count of the current node
+        //    node.Height = 1 + Math.Max(Height(node.LeftHand), Height(node.RightHand));
+        //    node.Count = 1 + GetCount(node.LeftHand) + GetCount(node.RightHand);
+
+        //    // Print the balance factor of the current node
+        //    Console.WriteLine($"Node with data {node.Data}: Balance Factor = {BalanceFactor(node)}");
+
+        //    return Balance(node); // Balance the tree
+        //}
+           
+       private Node<T> Insert(Node<T> node, T key, int requestID, ServiceRequest service)
         {
             if (node == null)
-                return new Node<T>(data); // Create a new node if the current node is null
+            {
+                Console.WriteLine($"Inserting new node with key: {key}");
+                return new Node<T>(key, requestID, service);
+            }
 
-            int compare = comparison(data, node.Data);
-            if (compare < 0)
-                node.LeftHand = Insert(node.LeftHand, data); // Insert into the left subtree
-            else if (compare > 0)
-                node.RightHand = Insert(node.RightHand, data); // Insert into the right subtree
-            else
-                return node; // Duplicate values are not allowed
 
-            // Update the height and count of the current node
-            node.Height = 1 + Math.Max(Height(node.LeftHand), Height(node.RightHand));
-            node.Count = 1 + GetCount(node.LeftHand) + GetCount(node.RightHand);
+            Console.WriteLine($"Inserting node with key: {key}. Current node key: {node.Key}");
 
-            // Print the balance factor of the current node
-            Console.WriteLine($"Node with data {node.Data}: Balance Factor = {BalanceFactor(node)}");
+            // Log the state of left and right children before insertion
+            Console.WriteLine($"Left child of {node.Key}: {(node.LeftHand == null ? "null" : node.LeftHand.Key.ToString())}");
+            Console.WriteLine($"Right child of {node.Key}: {(node.RightHand == null ? "null" : node.RightHand.Key.ToString())}");
 
-            return Balance(node); // Balance the tree
+            int comparison = key.CompareTo(node.Key);
+           
+            if (status)
+            {
+                comparison = service.Compare(service, node.Requests[0]);
+            }
+
+            if (comparison < 0)
+            {
+                node.LeftHand = Insert(node.LeftHand, key, requestID, service); // Recursively insert into left subtree
+
+            }
+            else if (comparison > 0)
+            {
+                node.RightHand = Insert(node.RightHand, key, requestID, service); // Recursively insert into right subtree
+            }
+
+            // After insertion, log the children of the node again
+            Console.WriteLine($"After insertion, left child of {node.Key}: {(node.LeftHand == null ? "null" : node.LeftHand.Key.ToString())}");
+            Console.WriteLine($"After insertion, right child of {node.Key}: {(node.RightHand == null ? "null" : node.RightHand.Key.ToString())}");
+
+            // Balance the tree after insertion
+            node = Balance(node);
+
+            return node;
         }
 
+        // Private helper method to delete a value into the AVL tree.
+        public void Delete(T value)
+        {
+            root = Delete(root, value);
+        }
+
+        private Node<T> Delete(Node<T> node, T data)
+        {
+            if (node == null)
+                return node;
+
+            int compare = data.CompareTo(node.Key);
+            if (compare < 0)
+            {
+                node.LeftHand = Delete(node.LeftHand, data);
+            }
+            else if (compare > 0)
+            {
+                node.RightHand = Delete(node.RightHand, data);
+            }
+            else
+            {
+                if (node.LeftHand == null || node.RightHand == null)
+                {
+                    Node<T> temp = node.LeftHand ?? node.RightHand;
+                    if (temp == null)
+                    {
+                        temp = node;
+                        node = null;
+                    }
+                    else
+                    {
+                        node = temp;
+                    }
+                }
+                else
+                {
+                    Node<T> temp = MinValueNode(node.RightHand);
+                    node.Key = temp.Key;
+                    node.RightHand = Delete(node.RightHand, temp.Key);
+                }
+            }
+
+            if (node == null)
+                return node;
+
+            node.Height = 1 + Math.Max(Height(node.LeftHand), Height(node.RightHand));
+       //     node.Count = 1 + GetCount(node.LeftHand) + GetCount(node.RightHand); // Update Count
+
+            return Balance(node);
+        }
+        // Private helper method to get the min value of a node.
+        private Node<T> MinValueNode(Node<T> node)
+        {
+            Node<T> current = node;
+            while (current.LeftHand != null)
+                current = current.LeftHand;
+            return current;
+        }
+        private int GetHeight(Node<T> node)
+        {
+            return node == null ? 0 : node.Height;
+        }
         //----------------------------------------------------------------------------//
 
         // Method: Height
@@ -63,44 +179,53 @@ namespace MVA_poe.Classes.SearchManagment
         {
             return node?.Height ?? 0;
         }
-
-        //----------------------------------------------------------------------------//
-
-        // Method: GetCount
-        // Returns the count of nodes in the subtree rooted at the given node
-        private int GetCount(Node<T> node)
+        private void UpdateHeight(Node<T> node)
         {
-            return node?.Count ?? 0;
+            node.Height = 1 + Math.Max(GetHeight(node.LeftHand), GetHeight(node.RightHand));
         }
-
+        
         //----------------------------------------------------------------------------//
 
         // Method: Balance
         // Balances the AVL tree at the given node
+        // Private helper method to balance a node.
         private Node<T> Balance(Node<T> node)
         {
-            if (BalanceFactor(node) > 1)
+            int balanceFactor = BalanceFactor(node);
+            // If the node is left-heavy.
+            if (balanceFactor > 1)
             {
+                // If the left child is right-heavy, perform a left rotation on the left child.
                 if (BalanceFactor(node.LeftHand) < 0)
                 {
-                    Console.WriteLine($"Left-Right rotation needed at node with data {node.Data}");
-                    node.LeftHand = RotateLeft(node.LeftHand); // Perform left rotation on left child
+                    if (node.LeftHand == null || node.LeftHand.RightHand == null)
+                    {
+                        throw new InvalidOperationException("Left child or its right child is null during rotation.");
+                    }
+                    node.LeftHand = RotateLeft(node.LeftHand);
                 }
-                Console.WriteLine($"Right rotation needed at node with data {node.Data}");
-                return RotateRight(node); // Perform right rotation
+                // Perform a right rotation on the current node.
+                return RotateRight(node);
             }
-            if (BalanceFactor(node) < -1)
+            // If the node is right-heavy.
+            if (balanceFactor < -1)
             {
+                // If the right child is left-heavy, perform a right rotation on the right child.
                 if (BalanceFactor(node.RightHand) > 0)
                 {
-                    Console.WriteLine($"Right-Left rotation needed at node with data {node.Data}");
-                    node.RightHand = RotateLeft(node.RightHand); // Perform left rotation on right child
+                    if (node.RightHand == null || node.RightHand.LeftHand == null)
+                    {
+                        throw new InvalidOperationException("Right child or its left child is null during rotation.");
+                    }
+                    node.RightHand = RotateLeft(node.RightHand);
                 }
-                Console.WriteLine($"Left rotation needed at node with data {node.Data}");
-                return RotateLeft(node); // Perform left rotation
+                // Perform a left rotation on the current node.
+                return RotateLeft(node);
             }
-            return node; // Return the balanced node
+            // Already balanced
+            return node;
         }
+
 
         //----------------------------------------------------------------------------//
 
@@ -108,7 +233,7 @@ namespace MVA_poe.Classes.SearchManagment
         // Returns the balance factor of a node
         private int BalanceFactor(Node<T> node)
         {
-            return Height(node.LeftHand) - Height(node.RightHand);
+            return node == null ? 0 : GetHeight(node.LeftHand) - GetHeight(node.RightHand);
         }
 
         //----------------------------------------------------------------------------//
@@ -117,23 +242,22 @@ namespace MVA_poe.Classes.SearchManagment
         // Performs a right rotation on the given node
         private Node<T> RotateRight(Node<T> y)
         {
-            Node<T> x = y.LeftHand;
-            Node<T> T2 = x.RightHand;
+            Node<T> newRoot = y.LeftHand; // New root is the left child
+            if (newRoot == null)
+            {
+                throw new InvalidOperationException("Left child is null during right rotation.");
+            }
 
-            // Perform rotation
-            x.RightHand = y;
-            y.LeftHand = T2;
+            y.LeftHand = newRoot.RightHand; // Shift subtree
+            newRoot.RightHand = y;         // Update parent-child relationship
 
             // Update heights
-            y.Height = Math.Max(Height(y.LeftHand), Height(y.RightHand)) + 1;
-            x.Height = Math.Max(Height(x.LeftHand), Height(x.RightHand)) + 1;
+            y.Height = Math.Max(GetHeight(y.LeftHand), GetHeight(y.RightHand)) + 1;
+            newRoot.Height = Math.Max(GetHeight(newRoot.LeftHand), GetHeight(newRoot.RightHand)) + 1;
 
-            // Update counts
-            y.Count = 1 + GetCount(y.LeftHand) + GetCount(y.RightHand);
-            x.Count = 1 + GetCount(x.LeftHand) + GetCount(x.RightHand);
-
-            return x; // Return the new root
+            return newRoot; // Return new root
         }
+
 
         //----------------------------------------------------------------------------//
 
@@ -141,48 +265,75 @@ namespace MVA_poe.Classes.SearchManagment
         // Performs a left rotation on the given node
         private Node<T> RotateLeft(Node<T> x)
         {
-            Node<T> y = x.RightHand;
-            Node<T> T2 = y.LeftHand;
+            Node<T> newRoot = x.RightHand; // New root is the right child
+            if (newRoot == null)
+            {
+                throw new InvalidOperationException("Right child is null during left rotation.");
+            }
 
-            // Perform rotation
-            y.LeftHand = x;
-            x.RightHand = T2;
+            x.RightHand = newRoot.LeftHand; // Shift subtree
+            newRoot.LeftHand = x;          // Update parent-child relationship
 
             // Update heights
-            x.Height = Math.Max(Height(x.LeftHand), Height(x.RightHand)) + 1;
-            y.Height = Math.Max(Height(y.LeftHand), Height(y.RightHand)) + 1;
+            x.Height = Math.Max(GetHeight(x.LeftHand), GetHeight(x.RightHand)) + 1;
+            newRoot.Height = Math.Max(GetHeight(newRoot.LeftHand), GetHeight(newRoot.RightHand)) + 1;
 
-            // Update counts
-            x.Count = 1 + GetCount(x.LeftHand) + GetCount(x.RightHand);
-            y.Count = 1 + GetCount(y.LeftHand) + GetCount(y.RightHand);
-
-            return y; // Return the new root
+            return newRoot; // Return new root
         }
 
-        //----------------------------------------------------------------------------//
-
-        // Method: InOrderTraversal
-        // Performs an in-order traversal of the AVL tree and returns the elements
-        public IEnumerable<T> InOrderTraversal()
+        private void InOrderTraversal(Node<T> node, List<ServiceRequest> result)
         {
-            var result = new List<T>();
-            InOrderTraversal(root, result);
-            return result;
-        }
+            if (node == null)
+                return;
 
-        //----------------------------------------------------------------------------//
+            InOrderTraversal(node.LeftHand, result);
 
-        // Method: InOrderTraversal (private)
-        // Recursively performs an in-order traversal of the AVL tree
-        private void InOrderTraversal(Node<T> node, List<T> result)
-        {
-            if (node != null)
-            {
-                InOrderTraversal(node.LeftHand, result); // Traverse the left subtree
-                result.Add(node.Data); // Visit the node
-                InOrderTraversal(node.RightHand, result); // Traverse the right subtree
+            // if the node.Result report id is null then continue
+            foreach(ServiceRequest request in node.Requests)
+            { 
+                if (request.reportId == 0)
+                {
+                    continue;
+                }
+
+                result.Add(request);
             }
+            // Add all service requests from the current node
+           
+
+            InOrderTraversal(node.RightHand, result);
         }
+
+        //----------------------------------------------------------------------------//
+        // Method to create a sorted list of service requests based on IDs
+        public List<ServiceRequest> GetSortedServiceRequests()
+        {
+            //list of sorted id's
+           // List<int> sortedIDs = InOrderTraversal();
+            // list to hold service for the id's 
+         //   List<ServiceRequest> sortedRequests = new List<ServiceRequest>();
+            //for each id in the sorted list 
+            //foreach (int id in sortedIDs)
+            //{
+            //    // Find the matching service request in the global list
+            //   // var request = avlRequests.FirstOrDefault(r => r.requestId == id);
+            //   foreach (ServiceRequest request in avlRequests)
+            //    {
+            //        if (request.requestId == id)
+            //        {
+            //            sortedRequests.Add(request);
+            //            break;
+            //        }
+            //    }
+
+            //}
+            List<ServiceRequest> sortedRequests = new List<ServiceRequest>();
+            InOrderTraversal(root, sortedRequests);
+
+            return sortedRequests;
+        }
+
+        
     }
 
     //----------------------------------------------------------------------------//

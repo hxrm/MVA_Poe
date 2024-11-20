@@ -26,8 +26,8 @@ namespace MVA_poe
         // List to store current session records
      //   public static RecordPattern trackSearch = new RecordPattern();
         public static List<SearchRecord>trackSearch = new List<SearchRecord>();
-     
-        private static AVLTree<MVA_Poe.Classes.ServiceRequest> requestTree = new  AVLTree<MVA_Poe.Classes.ServiceRequest>((x, y) => x.CompareTo(y));
+
+        private static AVLTree<MVA_Poe.Classes.ServiceRequest> requestTree = new AVLTree<MVA_Poe.Classes.ServiceRequest>();
         // Default constructor
         public DBHelper() { }
 
@@ -59,7 +59,7 @@ namespace MVA_poe
                 var serviceRequest = new MVA_Poe.Classes.ServiceRequest();
                     serviceRequest.SetData(report);
                     context.ServiceRequests.Add(serviceRequest);
-                    requestTree.Insert(serviceRequest);
+                    requestTree.Insert(serviceRequest, serviceRequest.requestId, serviceRequest);
                     context.SaveChanges();             
                 
                     }

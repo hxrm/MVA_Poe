@@ -26,7 +26,7 @@ namespace MVA_poe.Pages
     /// </summary>
     public partial class Service : Page
     {    // Declare fields
-        private AVLTree<ServiceRequest> requestTree = new AVLTree<ServiceRequest>((x, y) => x.CompareTo(y));
+        private AVLTree<ServiceRequest> requestTree = new AVLTree<ServiceRequest>();
         private MaxHeap requestHeap = new MaxHeap();
         private ServiceRequestManager sm;
 
@@ -89,7 +89,8 @@ namespace MVA_poe.Pages
         // Searches for service requests by ID
         private IEnumerable<DisplayRequest> SearchServiceRequestById(int requestId)
         {
-            var serviceRequests = requestTree.InOrderTraversal();
+            // var serviceRequests = requestTree.InOrderTraversal();
+            var serviceRequests = requestTree.GetSortedServiceRequests();
             return serviceRequests
                .Where(sr => sr.requestId.ToString().IndexOf(requestId.ToString()) >= 0)
                .Select(sr => GetDisplayItem(sr))
@@ -113,7 +114,8 @@ namespace MVA_poe.Pages
         // Searches for service requests by status
         private IEnumerable<DisplayRequest> SearchServiceRequestsByStatus(string status)
         {
-            var serviceRequests = requestTree.InOrderTraversal();
+            //  var serviceRequests = requestTree.InOrderTraversal();
+            var serviceRequests = requestTree.GetSortedServiceRequests();
             return serviceRequests
                 .Where(sr => sr.requestStat.ToString().IndexOf(status, StringComparison.OrdinalIgnoreCase) >= 0)
                 .OrderBy(sr => sr.requestStat) // Sort by status
@@ -126,7 +128,8 @@ namespace MVA_poe.Pages
         // Displays the service requests in the data grid
         private void DisplayServiceRequests()
         {
-            var serviceRequests = requestTree.InOrderTraversal();
+           // var serviceRequests = requestTree.InOrderTraversal();
+           var serviceRequests = requestTree.GetSortedServiceRequests();
             dataGrid.Items.Clear();
             foreach (var request in serviceRequests)
             {                
@@ -280,16 +283,7 @@ namespace MVA_poe.Pages
                     MessageBox.Show("Invalid search type selected.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
                     break;
             }
-        }
-        //----------------------------------------------------------------------------//
-
-        // Method: SearchServiceRequest
-        // Searches for a single service request by ID
-        private ServiceRequest SearchServiceRequest(int requestId)
-        {
-            var serviceRequests = requestTree.InOrderTraversal();
-            return serviceRequests.FirstOrDefault(sr => sr.requestId == requestId);
-        }
+        }       
         
     }
 

@@ -22,7 +22,7 @@ namespace MVA_poe.Classes.SearchManagment
             graph = new DependencyGraph();
             serviceRequests = new Dictionary<int, ServiceRequest>();
             maxHeap = new MaxHeap();
-            avlTree = new AVLTree<ServiceRequest>((x, y) => x.CompareTo(y));
+            avlTree = new AVLTree<ServiceRequest>();
             PullData();
 
         }
@@ -78,7 +78,8 @@ namespace MVA_poe.Classes.SearchManagment
             {
                 ServiceRequest request = kvp.Value;
 
-                avlTree.Insert(request);
+               // avlTree.Insert(request, request.requestId);
+                avlTree.AddServiceRequest(request,request.requestId,request);
                 maxHeap.Insert(request);
                 request.requestDate = request.report.reportDate;
             }

@@ -14,16 +14,75 @@ The MVA_poe (also known as Civic Connect) application is a C# WPF application de
 - **User Registration**: Required on startup.
 - **Create New Report**: Users can submit details about various issues, including location and category. Image and document attachments are supported.
 - **Local Events and Announcements**: Allows users to view and search for events, receive personalized recommendations, and filter events by category or date.
-- **Service Request Status**: To be implemented.
+- **Service Request Status**: Allows users to view and track the status of service requests and track progress over time.
 
-### Local Events and Announcements
+## Installation Instructions
 
-Users can access the "Local Events and Announcements" section from the Dashboard home screen via the navigation bar. Upon selection, they will be presented with a list of all events.
+### Clone the Project from GitHub
 
-- **View Events**: Users can click on an event to view full details, including time, location, and description.
-- **Search Feature**: Users can search for events by entering a keyword related to the event name or category. To reset the search and view all events again, click the "Reset" button.
-- **Advanced Search**: Clicking the filter button next to the reset option opens an advanced search panel. This allows users to refine their search by selecting a category from a dropdown and specifying a date range using a calendar.
-- **Personalized Recommendations**: The application generates personalized event recommendations based on previous searches. After the user's first search, they can revisit the Local Events and Announcements page to see suggested events tailored to their interests.
+1. **Clone the Repository**:  
+   Open your terminal (or command prompt) and run the following command:
+   ```bash
+   git clone  https://github.com/ST10158643/MVA_Poe.git
+   ```
+
+2. **Navigate to the Project Directory**:  
+   Once the repository is cloned, navigate to the project directory:
+   ```bash
+   cd MVA_poe
+   ```
+
+3. **Open the Project**:  
+   Open the project in your preferred IDE (e.g., Visual Studio, Rider, or Visual Studio Code).
+
+4. **Install Dependencies**:  
+   If there are any dependencies listed in the project, install them via your IDE's package manager.
+
+5. **Build the Application**:  
+   Build the project within your IDE to ensure all configurations are correct.
+---
+---
+
+### Download the Application Project as a ZIP Folder
+
+1. **Download the ZIP File**:  
+   Go to the [GitHub Repository](https://github.com/ST10158643/MVA_Poe) and click on the **Code** button. Select **Download ZIP**.
+
+2. **Extract the ZIP File**:  
+   Once downloaded, extract the ZIP file to a folder on your local machine.
+
+3. **Open the Project**:  
+   Open the extracted folder in your preferred IDE (e.g., Visual Studio, Rider, or Visual Studio Code).
+
+4. **Install Dependencies**:  
+   Ensure that all required dependencies are correctly installed. The project may require certain libraries or NuGet packages. Visual Studio will automatically manage this through the NuGet Package Manager.
+
+5. **Build the Application**:  
+   Build the project within your IDE to ensure all configurations are correct.
+
+---
+
+### Compile and Run the Application
+
+After downloading and installing the application, here’s how to compile and run it:
+
+1. **Open the Project in Visual Studio**:
+   - If you don’t have Visual Studio, download and install it from [here](https://visualstudio.microsoft.com/downloads/).
+   - Open the downloaded project or files in Visual Studio.
+
+2. **Check Dependencies**:  
+   Ensure that all required dependencies are correctly installed. The project may require certain libraries or NuGet packages. Visual Studio will automatically manage this through the NuGet Package Manager.
+
+3. **Compile the Application**:
+   - In Visual Studio, click on the **Build** menu.
+   - Select **Build Solution** (or press `Ctrl + Shift + B`).
+   - This will compile the application and ensure there are no errors.
+
+4. **Run the Application**:
+   - Once the build is successful, click **Start** (green play button) or press `F5` to run the application.
+   - The application will open, and you can start using it as described in the features section.
+
+---
 
 ### Creating Reports
 
@@ -39,6 +98,49 @@ Users can access the "Local Events and Announcements" section from the Dashboard
 
 - **Navigate to "View Report"**: Access this feature via the navigation bar.
 - **Select Report**: Choose the desired report from the dropdown menu to view details.
+  
+### Local Events and Announcements
+
+Users can access the "Local Events and Announcements" section from the Dashboard home screen via the navigation bar. Upon selection, they will be presented with a list of all events.
+- **Navigate to the Local Events and Announcements Section:**: After logging in, go to the Dashboard and select Local Events and Announcements from the navigation bar.
+- **View Events**: Users can click on an event to view full details, including time, location, and description.
+- **Search Feature**: Users can search for events by entering a keyword related to the event name or category. To reset the search and view all events again, click the "Reset" button.
+- **Advanced Search**: Clicking the filter button next to the reset option opens an advanced search panel. This allows users to refine their search by selecting a category from a dropdown and specifying a date range using a calendar.
+- **Personalized Recommendations**: The application will suggest events based on your past search patterns. These recommendations will be shown after you perform your first search. The system may also suggest related events from other categories associated with your preferences.
+
+
+### Service Request Status
+
+To track the status of a service requests, follow these steps:
+
+1. **Navigate to the Service Request Status Section**:  
+   After logging in, go to the **Dashboard** and select **Service Request Status** from the navigation bar.
+
+2. **View Service Requests**:  
+   A list of all your submitted service requests will be displayed. Each request includes:
+   - **Unique Identifier (ID)**: A unique ID for each service request.
+   - **Current Status**: The current status of the request, such as **Pending**, **In Progress**, or **Completed**.
+   - **Priority**: The priority of the service request (e.g., Low, Medium, High) is also displayed to help identify the urgency of each request.
+
+3. **Track Progress**:  
+   - Each service request will show its progress alongside its status (e.g., Pending, In Progress, Completed). This allows you to easily track the progress of any open requests.
+
+4. **Search and Filter**:  
+   - **Search by ID**: Use the search bar to search for service requests by their unique identifier (ID).
+   - **Filter by Status**: You can filter service requests by their current status (e.g., Pending, In Progress, Completed) to find specific requests.
+   - **Filter by Priority**: Filter service requests based on their priority (Low, Medium, High) to identify urgent requests.
+   - The list will be organized to provide clear visibility into each service request's current status and priority.
+
+5. **Sort the List**:  
+   You can sort the service requests list by either **Priority** or **Status** for better organization:
+   - **Sort by Priority**: Click on the "Sort by Priority" button to sort the service requests in order of priority (Low to High or High to Low).
+   - **Sort by Status**: Click on the "Sort by Status" button to organize the service requests based on their current status (Pending, In Progress, Completed).
+
+6. **Visual Display**:  
+   - To get a visual overview of your service requests, you can view a **Visual Display** by clicking the **"See Visual Display"** button.
+   - This will show a graphical representation of your service requests' status distribution across different categories.
+   - **Category Filter**: On the **Visual Display** page, you can select a category from the dropdown list and click **Search** to filter the visual representation by the selected category.
+
 
 ## Application Behavior
 
@@ -46,6 +148,13 @@ Users can access the "Local Events and Announcements" section from the Dashboard
 - **User Registration and Password Management**: User passwords are securely hashed before storage.
 - **Exiting the Application**: Users can log out or exit the application securely.
 
+## Data Structures 
+
+1. **DependencyGraph graph**:  
+ 
+2. **MaxHeap maxHeap**:
+3. **AVLTree avlTree**:  
+   
 ## References
 
 - Payload (2021). WPF C# Professional Modern Flat UI Tutorial. Available at: [YouTube](https://www.youtube.com/watch?v=PzP8mw7JUzI&t=1946s) (Accessed: 9 September 2024).

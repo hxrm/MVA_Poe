@@ -19,8 +19,7 @@
     <sys:String x:Key="SR_BTN_VISUAL">See Visual Display</sys:String>
     <sys:String x:Key="SR_BTN_STATUS">Sort Status</sys:String>
     <sys:String x:Key="SR_BTN_PRIOR">Sort Priority</sys:String>
-
-
+    <sys:String x:Key="SR_BTN_USER">My Requests</sys:String>
 
     <!--  Prompts  -->
     <sys:String x:Key="EnterName">Enter your name</sys:String>

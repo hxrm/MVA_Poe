@@ -287,6 +287,9 @@ namespace MVA_poe.Classes
 
         //----------------------------------------------------------------------------
 
+        // Method: PopulateEventRelated
+        // Private method to curate related events according to the user's favored event categories
+        // and populate the related events list.
         private void PopulateEventRelated()
         {
             // List to store all events
@@ -302,6 +305,7 @@ namespace MVA_poe.Classes
             // List to store related events based on category preference
             List<Event> relatedEvents = new List<Event>();
 
+            // Iterate through each preferred category
             foreach (EventCategory cat in categoryPreference)
             {
                 switch (cat)
@@ -321,42 +325,49 @@ namespace MVA_poe.Classes
                         break;
 
                     case EventCategory.FoodCraftMarkets:
+                        // Combine related events for Food Craft Markets
                         relatedEvents = relatedEvents
                             .Union(allEvents.Where(e => e.EventCat == EventCategory.MusicFestivals))
                             .ToList();
                         break;
 
                     case EventCategory.SportsEvents:
+                        // Combine related events for Sports Events
                         relatedEvents = relatedEvents
                             .Union(allEvents.Where(e => e.EventCat == EventCategory.HealthWellnessWorkshops))
                             .ToList();
                         break;
 
                     case EventCategory.CharityEvents:
+                        // Combine related events for Charity Events
                         relatedEvents = relatedEvents
                             .Union(allEvents.Where(e => e.EventCat == EventCategory.EducationalSeminars))
                             .ToList();
                         break;
 
                     case EventCategory.HealthWellnessWorkshops:
+                        // Combine related events for Health & Wellness Workshops
                         relatedEvents = relatedEvents
                             .Union(allEvents.Where(e => e.EventCat == EventCategory.SportsEvents))
                             .ToList();
                         break;
 
                     case EventCategory.EducationalSeminars:
+                        // Combine related events for Educational Seminars
                         relatedEvents = relatedEvents
                             .Union(allEvents.Where(e => e.EventCat == EventCategory.CharityEvents))
                             .ToList();
                         break;
 
                     case EventCategory.LocalGovernmentAnnouncements:
+                        // Combine related events for Local Government Announcements
                         relatedEvents = relatedEvents
                             .Union(allEvents.Where(e => e.EventCat == EventCategory.CommunityMeetings))
                             .ToList();
                         break;
 
                     case EventCategory.CommunityMeetings:
+                        // Combine related events for Community Meetings
                         relatedEvents = relatedEvents
                             .Union(allEvents.Where(e => e.EventCat == EventCategory.LocalGovernmentAnnouncements))
                             .ToList();
@@ -382,7 +393,9 @@ namespace MVA_poe.Classes
         {
             return eventRecommendations;
         }
-        // Method to return the event recommendations queue
+
+        //----------------------------------------------------------------------------
+        // Method to return the related even queue
         public Queue<Event> ReturnRelatedEvents()
         {
             return eventRelated;

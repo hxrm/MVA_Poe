@@ -19,6 +19,8 @@
     <sys:String x:Key="SR_BTN_VISUAL">Jonga Umboniso</sys:String>
     <sys:String x:Key="SR_BTN_STATUS">Hlela Isimo</sys:String>
     <sys:String x:Key="SR_BTN_PRIOR">Hlela Phambili</sys:String>
+    <sys:String x:Key="SR_BTN_USER">Izicelo Zam</sys:String>
+
 
     <!--  Prompts  -->
     <sys:String x:Key="EnterName">Faka igama lakho</sys:String>

@@ -1,8 +1,6 @@
-﻿using MVA_poe.Classes;
-using MVA_poe.Classes.SearchManagment;
+﻿using MVA_poe.Classes.SearchManagment;
+using MVA_poe.Classes;
 using MVA_poe.Data;
-using MVA_Poe.Classes;
-using MVA_Poe.Data;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -18,25 +16,30 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MVA_Poe.Classes;
 
 namespace MVA_poe.Pages
 {
     /// <summary>
-    /// Interaction logic for Service.xaml
+    /// Interaction logic for UserServices.xaml
     /// </summary>
-    public partial class Service : Page
+    public partial class UserServices : Page
     {    // Declare fields
         private AVLTree<ServiceRequest> requestTree = new AVLTree<ServiceRequest>();
+        private List<ServiceRequest> serviceRequests;
         private ServiceRequestManager sm;
 
         // Constructor
-        public Service()
+        public UserServices()
         {
             InitializeComponent();
             // Set the language based on the user's preference
             SetLanguage(DBHelper.lang);
+            // instialize the service request list
+            serviceRequests = new List<ServiceRequest>();
+
             // Retrieve data from the database
-            GetData();  
+            GetData();
         }
         //----------------------------------------------------------------------------//
 
@@ -74,50 +77,82 @@ namespace MVA_poe.Pages
         // Method: GetData
         // Retrieves data from the database and populates the AVL tree 
         private void GetData()
-        {           
+        {
             sm = new ServiceRequestManager();
             sm.GetAVL();
-            requestTree = ServiceRequestManager.avlTree;
-            // Display the service requests in the data grid
+            requestTree = ServiceRequestManager.avlTree; 
+            serviceRequests = requestTree.GetSortedServiceRequests();
+            PopulateServiceList();           
             DisplayServiceRequests();
+        }
+        private void PopulateServiceList()
+        {
+            List<ServiceRequest> toRemove = new List<ServiceRequest>();
+            //foreach service create display object and add to display grid
+            foreach (var request in serviceRequests)
+            {                
+                if (request.report.userId != DBHelper.userID)
+                {
+                    toRemove.Add(request); // Don't modify the collection here
+                }
+
+            }
+            foreach (var request in toRemove)
+            {
+                serviceRequests.Remove(request);
+            }
+        }
+        private List<ServiceRequest> GetServiceRequests(List<MVA_Poe.Classes.ServiceRequest> serviceRequests)
+        {
+            List<ServiceRequest> toRemove = new List<ServiceRequest>();
+            //foreach service create display object and add to display grid
+            foreach (var request in serviceRequests)
+            {
+                if (request.report.userId != DBHelper.userID)
+                {
+                    toRemove.Add(request); // Don't modify the collection here
+                }
+
+            }
+            foreach (var request in toRemove)
+            {
+                serviceRequests.Remove(request);
+            }
+            return serviceRequests;
         }
         //----------------------------------------------------------------------------//
 
         // Method: SearchServiceRequestById
         // Searches for service requests by ID
-        private IEnumerable<DisplayRequest> SearchServiceRequestById(int requestId)
+        private IEnumerable<ServiceRequest> SearchServiceRequestById(int requestId)
         {
             // var serviceRequests = requestTree.InOrderTraversal();
             var serviceRequests = requestTree.GetSortedServiceRequests();
             return serviceRequests
                .Where(sr => sr.requestId.ToString().IndexOf(requestId.ToString()) >= 0)
-               .Select(sr => GetDisplayItem(sr))
                .ToList();
         }
         //----------------------------------------------------------------------------//
 
         // Method: SearchServiceRequestsByPriority
         // Searches for service requests by priority
-        private IEnumerable<DisplayRequest> SearchServiceRequestsByPriority(string priority)
+        private IEnumerable<ServiceRequest> SearchServiceRequestsByPriority(string priority)
         {
             var serviceRequests = requestTree.GetSortedServiceRequests();
             return serviceRequests
                 .Where(sr => sr.requestPri.GetString().IndexOf(priority, StringComparison.OrdinalIgnoreCase) >= 0)
-                .Select(sr => GetDisplayItem(sr))
                 .ToList();
         }
         //----------------------------------------------------------------------------//
 
         // Method: SearchServiceRequestsByStatus
         // Searches for service requests by status
-        private IEnumerable<DisplayRequest> SearchServiceRequestsByStatus(string status)
+        private IEnumerable<ServiceRequest> SearchServiceRequestsByStatus(string status)
         {
             //  var serviceRequests = requestTree.InOrderTraversal();
             var serviceRequests = requestTree.GetSortedServiceRequests();
             return serviceRequests
                 .Where(sr => sr.requestStat.ToString().IndexOf(status, StringComparison.OrdinalIgnoreCase) >= 0)
-                .OrderBy(sr => sr.requestStat) // Sort by status
-                .Select(sr => GetDisplayItem(sr))
                 .ToList();
         }
         //----------------------------------------------------------------------------//
@@ -126,12 +161,10 @@ namespace MVA_poe.Pages
         // Displays the service requests in the data grid
         private void DisplayServiceRequests()
         {
-           // var serviceRequests = requestTree.InOrderTraversal();
-           var serviceRequests = requestTree.GetSortedServiceRequests();
             dataGrid.Items.Clear();
             foreach (var request in serviceRequests)
-            {                
-                var displayRequest = GetDisplayItem(request);    
+            {
+                var displayRequest = GetDisplayItem(request);
                 dataGrid.Items.Add(displayRequest);
             }
         }
@@ -176,9 +209,9 @@ namespace MVA_poe.Pages
 
         // Method: UserRequestsButton_Click
         // Displays service requests in priority order when the button is clicked
-        private void UserRequestsButton_Click(object sender, RoutedEventArgs e)
+        private void ServiceButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new UserServices());
+            NavigationService.Navigate(new Service());
         }
         //----------------------------------------------------------------------------//
 
@@ -186,23 +219,25 @@ namespace MVA_poe.Pages
         // Displays service requests in priority order when the button is clicked
         private void PriorizeButton_Click(object sender, RoutedEventArgs e)
         {
-            var serviceRequests = sm.ToPriorityArrayUsingAVL();
+            var srList = sm.ToPriorityArrayUsingAVL();
             dataGrid.Items.Clear();
+            serviceRequests = GetServiceRequests(srList.ToList());
             //foreach service create display object and add to display grid
             foreach (var request in serviceRequests)
             {
                 var displayRequest = GetDisplayItem(request);
                 dataGrid.Items.Add(displayRequest);
-            }
-        }      
+            }            
+        }
         //----------------------------------------------------------------------------//
 
         // Method: OrderByStatusButton_Click
         // Displays service requests in priority order when the button is clicked
         private void StatusButton_Click(object sender, RoutedEventArgs e)
         {
-           var serviceRequests = sm.ToStatusArrayUsingAVL();
+            var srList = sm.ToStatusArrayUsingAVL();
             dataGrid.Items.Clear();
+            serviceRequests = GetServiceRequests(srList.ToList());
             //foreach service create display object and add to display grid
             foreach (var request in serviceRequests)
             {
@@ -234,9 +269,11 @@ namespace MVA_poe.Pages
                         var results = SearchServiceRequestById(requestId);
                         if (results.Any())
                         {
-                            foreach (var result in results)
+                            serviceRequests = GetServiceRequests(results.ToList());
+                            foreach (var request in serviceRequests)
                             {
-                                dataGrid.Items.Add(result);
+                                var displayRequest = GetDisplayItem(request);
+                                dataGrid.Items.Add(displayRequest);
                             }
                         }
                         else
@@ -256,9 +293,11 @@ namespace MVA_poe.Pages
                     var priorityResults = SearchServiceRequestsByPriority(searchText);
                     if (priorityResults.Any())
                     {
-                        foreach (var result in priorityResults)
+                        serviceRequests = GetServiceRequests(priorityResults.ToList());
+                        foreach (var request in serviceRequests)
                         {
-                            dataGrid.Items.Add(result);
+                            var displayRequest = GetDisplayItem(request);
+                            dataGrid.Items.Add(displayRequest);
                         }
                     }
                     else
@@ -272,9 +311,11 @@ namespace MVA_poe.Pages
                     var statusResults = SearchServiceRequestsByStatus(searchText);
                     if (statusResults.Any())
                     {
-                        foreach (var result in statusResults)
+                        serviceRequests = GetServiceRequests(statusResults.ToList());
+                        foreach (var request in serviceRequests)
                         {
-                            dataGrid.Items.Add(result);
+                            var displayRequest = GetDisplayItem(request);
+                            dataGrid.Items.Add(displayRequest);
                         }
                     }
                     else
@@ -289,8 +330,8 @@ namespace MVA_poe.Pages
                     MessageBox.Show("Invalid search type selected.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
                     break;
             }
-        }       
-        
+        }
+
     }
 
 }

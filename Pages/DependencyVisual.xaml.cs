@@ -23,19 +23,25 @@ namespace MVA_poe.Pages
     {
         // ServiceRequestManager to manage service requests and dependencies
         private ServiceRequestManager sm;
-        private Dictionary<int, int> nodeLevels = new Dictionary<int, int>(); 
+        // Dictionary to store the levels of nodes
+        private Dictionary<int, int> nodeLevels = new Dictionary<int, int>();
+        // Variables to track the maximum X and Y coordinates for canvas resizing
         private double maxX = 0, maxY = 0;
+        // Index to help with node positioning
         private int index = 0;
-       private Dictionary<int, Point> positions = new Dictionary<int, Point>();
-        //private List<ServiceRequest> allRequests;
+        // Dictionary to store the positions of nodes
+        private Dictionary<int, Point> positions = new Dictionary<int, Point>();
+        //----------------------------------------------------------------------------//
+        // Constructor: DependencyVisual
+        // Initializes a new instance of the DependencyVisual class
         public DependencyVisual()
         {
             InitializeComponent();
-            // Populate the category combo box
+            // Initialize the ServiceRequestManager
             sm = new ServiceRequestManager();
+            // Populate the category combo box
             PopulateCategoryComboBox();
         }
-      
         //----------------------------------------------------------------------------//
 
         // Method: PopulateCategoryComboBox
@@ -48,16 +54,14 @@ namespace MVA_poe.Pages
                 // Use the GetString extension method to get the description
                 string catItem = category.GetString();
 
-                // Skip adding the "All" category
-                if (catItem.Equals("All", StringComparison.OrdinalIgnoreCase))
-                {
-                    continue;
-                }
-                if (catItem.Equals("Other", StringComparison.OrdinalIgnoreCase))
+
+                // Skip adding the "All" and "Other" categories
+                if (catItem.Equals("All", StringComparison.OrdinalIgnoreCase) || catItem.Equals("Other", StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
                 }
 
+                // Add the category to the combo box
                 cmbCategory.Items.Add(catItem);
             }
         }
@@ -87,14 +91,22 @@ namespace MVA_poe.Pages
             return selectedCategory;
         }
 
+        //----------------------------------------------------------------------------//
+        // Method: ShowDependencyGraph_Click
+        // Event handler for the "Show Dependency Graph" button click
         private void ShowDependencyGraph_Click(object sender, RoutedEventArgs e)
         {
+            // Clear the canvas before drawing the graph
             visualizationCanvas.Children.Clear();
+            // Draw the dependency graph
             DrawDependencyGraph();
-        }      
-       
+        }
+        //----------------------------------------------------------------------------//
+        // Method: DrawDependencyGraph
+        // Draws the dependency graph on the canvas
         private void DrawDependencyGraph()
         {
+            // Reinitialize variables
             sm = new ServiceRequestManager();
             index = 0;
             positions.Clear();
@@ -105,7 +117,7 @@ namespace MVA_poe.Pages
             var selectedCategory = GetSelectedCategory();
 
             // Filter requests based on the selected category
-            if (GetSelectedCategory() != ReportCategory.All)
+            if (selectedCategory != ReportCategory.All)
             {
                 requests = new ConcurrentDictionary<int, ServiceRequest>(
                     requests.Where(r => r.Value.report.reportCat == selectedCategory)
@@ -113,14 +125,16 @@ namespace MVA_poe.Pages
                 );
             }
 
-            //Lay out the nodes dynamically (with levels in DAG)
+            // Lay out the nodes dynamically (with levels in DAG)
             GetLevels(requests);
+
             // Check if nodeLevels is empty
             if (!nodeLevels.Any())
             {
                 MessageBox.Show("No node levels found. Cannot draw the graph.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+
             GetPositions(requests);
 
             // Draw dependencies (arrows) between nodes 
@@ -134,12 +148,12 @@ namespace MVA_poe.Pages
                     {
                         var start = positions[fromId];
                         var end = positions[toId];
-                        //Add the arrow
+                        // Add the arrow
                         DrawArrow(start, end);
                     }
                 }
-               
             }
+
             // Draw nodes (ServiceRequest) 
             foreach (var requestId in positions.Keys)
             {
@@ -155,8 +169,11 @@ namespace MVA_poe.Pages
             // Resize the canvas 
             visualizationCanvas.Width = maxX + 50;
             visualizationCanvas.Height = maxY + 50;
-        }        
-        
+        }
+
+        //----------------------------------------------------------------------------//
+        // Method: GetLevels
+        // Calculates the levels of nodes in the graph
         private void GetLevels(ConcurrentDictionary<int, ServiceRequest> requests)
         {
             foreach (var requestId in requests.Keys)
@@ -165,6 +182,10 @@ namespace MVA_poe.Pages
                 nodeLevels[requestId] = level;
             }
         }
+
+        //----------------------------------------------------------------------------//
+        // Method: GetPositions
+        // Calculates the positions of nodes based on their levels
         private void GetPositions(ConcurrentDictionary<int, ServiceRequest> requests)
         {
             // Find the maximum level to invert the Y-coordinates
@@ -182,6 +203,8 @@ namespace MVA_poe.Pages
             }
         }
 
+        //----------------------------------------------------------------------------//
+        // Method: DrawArrow
         // Helper method to draw an arrow between two points
         private void DrawArrow(Point start, Point end)
         {
@@ -225,6 +248,5 @@ namespace MVA_poe.Pages
             };
             visualizationCanvas.Children.Add(arrow);
         }
-
     }
 }//__---____---____---____---____---____---____---__.ooo END OF FILE ooo.__---____---____---____---____---____---____---__\\

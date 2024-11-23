@@ -15,13 +15,13 @@ namespace MVA_poe
     public class DBHelper
     {
         // Declare a public static integer variable named 'userID'
-        public static int userID = 1;
+        public static int userID;
 
         // Declare a public static string variable named 'lang'
-        public static string lang = "af";
+        public static string lang;
 
         // Declare a public static string variable named 'email'
-        public static string email = "h@gmail.com";
+        public static string email;
 
         // List to store current session records
      //   public static RecordPattern trackSearch = new RecordPattern();
@@ -53,17 +53,23 @@ namespace MVA_poe
         }
         public static void NewRequest(Report report)
         {
-            // Fetch data from the database
             using (var context = new AppDbContext())
             {
+                // Pull the report by its ID to ensure it is not added again
+                var existingReport = context.Reports.Find(report.reportID);
+                if (existingReport == null)
+                {
+                    throw new InvalidOperationException("Report not found in the database.");
+                }
+
                 var serviceRequest = new MVA_Poe.Classes.ServiceRequest();
-                    serviceRequest.SetData(report);
-                    context.ServiceRequests.Add(serviceRequest);
-                    requestTree.Insert(serviceRequest, serviceRequest.requestId, serviceRequest);
-                    context.SaveChanges();             
-                
-                    }
-                }  
+                serviceRequest.SetData(existingReport);
+                context.ServiceRequests.Add(serviceRequest);
+                requestTree.Insert(serviceRequest, serviceRequest.requestId, serviceRequest);
+                context.SaveChanges();
+            }
+        }
+
         // Finalize the session and analyze the data
         public static void FinalizeSessionAndAnalyzeData()
         {

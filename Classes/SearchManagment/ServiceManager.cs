@@ -13,7 +13,6 @@ namespace MVA_poe.Classes.SearchManagment
         public static Dictionary<int, ServiceRequest> serviceRequests;
         // DependencyGraph to manage dependencies between service requests
         public static DependencyGraph graph;
-        public static MaxHeap maxHeap;
         public static AVLTree<ServiceRequest> avlTree;
 
         // Constructor to initialize the ServiceRequestManager
@@ -21,7 +20,6 @@ namespace MVA_poe.Classes.SearchManagment
         {
             graph = new DependencyGraph();
             serviceRequests = new Dictionary<int, ServiceRequest>();
-            maxHeap = new MaxHeap();
             avlTree = new AVLTree<ServiceRequest>();
             PullData();
 
@@ -56,7 +54,7 @@ namespace MVA_poe.Classes.SearchManagment
                     // Update the current serviceRequests dictionary
                     serviceRequests = newServiceRequests;
                     foreach (var request in serviceRequests.Values)
-                    {
+                    {  // Assign service request status priority 
                         request.AssignPriority();
                     }
                     AddCategoryBasedDependencies();
@@ -70,7 +68,7 @@ namespace MVA_poe.Classes.SearchManagment
         //----------------------------------------------------------------------------//
 
         // Method: GetAVL
-        // Inserts service requests into AVL tree and max heap
+        // Inserts service requests into AVL tree 
 
         public void GetAVL()
         {
@@ -80,7 +78,6 @@ namespace MVA_poe.Classes.SearchManagment
 
                // avlTree.Insert(request, request.requestId);
                 avlTree.AddServiceRequest(request,request.requestId,request);
-                maxHeap.Insert(request);
                 request.requestDate = request.report.reportDate;
             }
         }
@@ -114,13 +111,70 @@ namespace MVA_poe.Classes.SearchManagment
             return level;
         }
         //----------------------------------------------------------------------------//
+        // Method: ToStatusArrayUsingAVL
+        // Method to convert the avl into an array, sorted by status using an AVL tree
+        public ServiceRequest[] ToStatusArrayUsingAVL()
+        {
+            // Create an AVL Tree to store the service requests, using the integer value of Status for comparisons
+             AVLTree<int> avlTree = new AVLTree<int>();          
+            
+            foreach(var kvp in serviceRequests)
+            {
+                // Access the ServiceRequest object from the dictionary
+                ServiceRequest request = kvp.Value; 
+               // Convert the Status enum to its integer value
+                int status = (int)request.requestStat;
+                avlTree.status = true;
+
+                //    // Add the service request to the AVL tree with the status as the key
+                avlTree.AddServiceRequest(status, request.requestId, request);
+
+                // Optional: Output to the console for debugging purposes
+                Console.WriteLine($"Inserted request with ID: {request.requestId} and Status: {status}");
+            }
+
+
+            // Perform an in-order traversal of the AVL Tree to get the sorted list of service requests
+            var sortedList = avlTree.GetSortedServiceRequests();
+            avlTree.status = false;
+
+            // Convert the sorted list to an array and return it
+            return sortedList.ToArray();
+        }
+        //----------------------------------------------------------------------------//
+        // Method: ToStatusArrayUsingAVL
+        // Method to convert the avl to into an array, sorted by status using an AVL tree
+        public ServiceRequest[] ToPriorityArrayUsingAVL()
+        {
+            // Create an AVL Tree to store the service requests, using the integer value of Status for comparisons
+            AVLTree<int> avlTree = new AVLTree<int>();
+
+            foreach (var kvp in serviceRequests)
+            {
+                // Access the ServiceRequest object from the dictionary
+                ServiceRequest request = kvp.Value; 
+                // Convert the Status enum to its integer value
+                int prior = (int)request.requestPri;
+                avlTree.priority= true;
+
+                //Add the service request to the AVL tree with the status as the key
+                avlTree.AddServiceRequest(prior, request.requestId, request);
+            }
+            // Perform an in-order traversal of the AVL Tree to get the sorted list of service requests
+            var sortedList = avlTree.GetSortedServiceRequests();
+            avlTree.priority = false;
+
+            // Convert the sorted list to an array and return it
+            return sortedList.ToArray();
+        }
+        //----------------------------------------------------------------------------//
 
         // Method: AddCategoryBasedDependencies
         // Adds dependencies between service requests based on their categories and priorities
         public void AddCategoryBasedDependencies()
         {
             GetAVL();
-            var categoryGroups = maxHeap.ToDictionary().Values.GroupBy(r => r.report.reportCat);
+            var categoryGroups = serviceRequests.Values.GroupBy(r => r.report.reportCat);           
 
             foreach (var group in categoryGroups)
             {
@@ -159,14 +213,14 @@ namespace MVA_poe.Classes.SearchManagment
             }
         }
 
-        //----------------------------------------------------------------------------//
+        ////----------------------------------------------------------------------------//
 
-        // Method: TraverseGraph
-        // Traverses the graph to resolve task order using topological sort
-        public List<int> TraverseGraph()
-        {
-            return graph.TopologicalSort();
-        }      
+        //// Method: TraverseGraph
+        //// Traverses the graph to resolve task order using topological sort
+        //public List<int> TraverseGraph()
+        //{
+        //    return graph.TopologicalSort();
+        //}      
 
     }
 }//__---____---____---____---____---____---____---__.ooo END OF FILE ooo.__---____---____---____---____---____---____---__\\

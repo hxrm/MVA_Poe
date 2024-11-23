@@ -75,26 +75,7 @@ namespace MVA_poe.Classes.SearchManagment
             return adjacencyList.TryGetValue(requestId, out var dependencies) ? dependencies : new List<int>();
         }
 
-        //----------------------------------------------------------------------------//
-
-        // Method: ResolveOrder
-        // Performs a topological sort to resolve tasks in dependency order
-        public List<int> ResolveOrder()
-        {
-            var visited = new HashSet<int>();
-            var resultStack = new Stack<int>();
-
-            foreach (var requestId in adjacencyList.Keys)
-            {
-                if (!visited.Contains(requestId))
-                {
-                    TopologicalSortHelper(requestId, visited, resultStack);
-                }
-            }
-
-            return resultStack.Reverse().ToList(); 
-        }
-
+      
         //----------------------------------------------------------------------------//
 
         // Method: TopologicalSortHelper

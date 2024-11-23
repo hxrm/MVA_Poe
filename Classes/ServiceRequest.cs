@@ -86,6 +86,24 @@ namespace MVA_Poe.Classes
             // If statuses are equal, compare by RequestId
             return x.requestId.CompareTo(y.reportId);
         }
+       
+        public int CompareToPrior(ServiceRequest x, ServiceRequest y)
+        {
+            if (x == null && y == null)
+                return 0;
+            if (x == null)
+                return -1;
+            if (y == null)
+                return 1;
+
+            // Compare based on status first (convert to int for numeric comparison)
+            int priorComparison = ((int)x.requestPri).CompareTo((int)y.requestPri);
+            if (priorComparison != 0)
+                return priorComparison;
+
+            // If statuses are equal, compare by RequestId
+            return x.requestId.CompareTo(y.reportId);
+        }
         public int CompareTo(ServiceRequest other)
         {
             if (other == null) return 1;
@@ -93,19 +111,12 @@ namespace MVA_Poe.Classes
             // Compare based on requestId or any other property you prefer
             return this.requestId.CompareTo(other.requestId);
         }
-        public int CompareToStat(ServiceRequest other)
-        {
-            int pass; 
-            if (other == null)
-                pass = 1;
-             pass = string.Compare(this.requestStat.GetString(), other.requestStat.GetString(), StringComparison.Ordinal);
-            return pass;
-        }
 
         // Assign priority based on status and age of request
         public void AssignPriority()
         {
             var age = DateTime.Now - requestDate;
+            Priority p;
 
             // Calculate the weight based on the age
             double weight = age.TotalDays;
@@ -114,20 +125,21 @@ namespace MVA_Poe.Classes
             if (requestStat == Status.Pending && weight > 7)
             {
                 // If unresolved for more than a week, assign top priority and high weight
-                requestPri = Priority.High;
+                this.requestPri = Priority.High;
             }
             else if (requestStat == Status.Completed)
             {
                 // If completed, assign no priority
-                requestPri = Priority.Low;
+                this.requestPri = Priority.Low;
             }
             else
             {
                 // Default priority for unresolved tasks less than a week old
-                requestPri = Priority.Medium;
+                this.requestPri = Priority.Medium;
             }
-
+            p = requestPri;
             weight = this.RequestAgeWeight;
+            Console.WriteLine($"Request ID: {requestId}, Priority: {p}, Weight: {weight}");
         }
         //MTS
         // Method to calculate edge weight between two requests.

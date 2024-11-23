@@ -56,7 +56,7 @@
                             Padding="5,0"
                             FontSize="10"
                             FontWeight="Bold"
-                            Text="Priority:" />
+                            Text="Request ID:" />
                         <TextBlock
                             Grid.Column="1"
                             MaxHeight="100"
@@ -107,7 +107,7 @@
                             x:Name="txtStat"
                             Grid.Column="1"
                             Padding="5,0"
-                            FontSize="10"/>
+                            FontSize="10" />
                     </Grid>
 
                     <!--  Priority  -->

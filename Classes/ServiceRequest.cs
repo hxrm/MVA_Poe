@@ -117,29 +117,31 @@ namespace MVA_Poe.Classes
         {
             var age = DateTime.Now - requestDate;
             Priority p;
-
             // Calculate the weight based on the age
             double weight = age.TotalDays;
 
-            // Prioritize based on status and weight
-            if (requestStat == Status.Pending && weight > 7)
-            {
-                // If unresolved for more than a week, assign top priority and high weight
-                this.requestPri = Priority.High;
+            // Assign priority based on request status and weight thresholds
+            if (requestStat == Status.Completed)
+            {// Completed requests have low priority
+                this.requestPri = Priority.Low; 
             }
-            else if (requestStat == Status.Completed)
+            else if (requestStat == Status.Pending)
             {
-                // If completed, assign no priority
-                this.requestPri = Priority.Low;
+                if (weight > 7)
+                {// Pending for more than a week
+                    this.requestPri = Priority.High; 
+                }
+                else
+                {// Pending but less than a week old
+                    this.requestPri = Priority.Medium; 
+                }
             }
             else
-            {
-                // Default priority for unresolved tasks less than a week old
-                this.requestPri = Priority.Medium;
+            {// Default case
+                this.requestPri = Priority.Medium; 
             }
-            p = requestPri;
             weight = this.RequestAgeWeight;
-            Console.WriteLine($"Request ID: {requestId}, Priority: {p}, Weight: {weight}");
+            
         }
         //MTS
         // Method to calculate edge weight between two requests.

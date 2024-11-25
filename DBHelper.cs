@@ -15,13 +15,13 @@ namespace MVA_poe
     public class DBHelper
     {
         // Declare a public static integer variable named 'userID'
-        public static int userID;
+        public static int userID = 1009;
 
         // Declare a public static string variable named 'lang'
-        public static string lang;
+        public static string lang = "af";
 
         // Declare a public static string variable named 'email'
-        public static string email;
+        public static string email = "h@gmail.com";
 
         // List to store current session records
      //   public static RecordPattern trackSearch = new RecordPattern();

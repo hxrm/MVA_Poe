@@ -2,8 +2,9 @@
 # MVA_poe - Civic Connect
 
 ## Login Credentials
-- **Email**: demo@gmail.com
+- **Email**: demo@gmail.com or h@gmail.com
 - **Password**: Shalom78*
+
 
 ## Overview
 
@@ -150,29 +151,48 @@ To track the status of a service requests, follow these steps:
 
 ## Data Structures 
 
-1. **DependencyGraph graph**:  
- 
-2. **MaxHeap maxHeap**:
-3. **AVLTree avlTree**:  
+1. **DependencyGraph graph**:   The Dependency Graph class represents a directed graph where each node corresponds to a service request and each edge to its dependencies. The role that the dependency graph plays in the management of service request status is tracking service request as nodes related to edges that represent the service request’s dependencies. The dependency graphs help to ensure that service nodes are displayed in the correct order according to the status and in consecutive relation to the services that the node either depends on or service request is dependent on the current node. A directed acyclic graph (DAG) structure has been employed to manage the dependency relations as not to incur cycles that would lead to lead to logical errors and thus a DFS-based cycle detection algorithm is used during dependency addition or validate graph remains acyclic. The graph plays a significant role visual display of service request and theirs statuses.   
+
+2. **AVLTree avlTree**:  
    
 ## References
 
-- Payload (2021). WPF C# Professional Modern Flat UI Tutorial. Available at: [YouTube](https://www.youtube.com/watch?v=PzP8mw7JUzI&t=1946s) (Accessed: 9 September 2024).
-- CodeCraks (2023). How to Create a Modern Splash Screen in WPF using C#. Available at: [YouTube](https://www.youtube.com/watch?v=XM_I1y1mh7k&t=2s) (Accessed: 16 September 2024).
-- Coding Under Pressure (2020). How to Let User Browse and Upload Files in WPF C#. Available at: [YouTube](https://www.youtube.com/watch?v=DKYssZ8JUx0) (Accessed: 16 September 2024).
-- Jd’s Code Lab (2021). WPF C# | Drag & Drop to Upload File UI. Available at: [YouTube](https://www.youtube.com/watch?v=eEa_Fl3ZguA&t=2s) (Accessed: 16 September 2024).
-- Jeyderht (2021). C# WPF - Modern Vertical Menu. Available at: [YouTube](https://www.youtube.com/watch?v=Et-QcvwKzY4&t=4s) (Accessed: 16 September 2024).
-- Jeyderht (2021). Jeyderht/WPFMODERNVERTICALMENU. Available at: [GitHub](https://github.com/Jeyderht/WPFModernVerticalMenu) (Accessed: 16 September 2024).
-- OpenAI (2024). ChatGPT (Version 4.0). [Large language model]. Available at: [OpenAI](https://chat.openai.com/).
-- OpenAI (2024). Afrikaans Resource File Setup. Available at: [OpenAI](https://chat.openai.com/).
-- OpenAI (2024). Complete Strings and Referencing. Available at: [OpenAI](https://chat.openai.com/).
-- OpenAI (2024). Translate Resource Dictionary. Available at: [OpenAI](https://chat.openai.com/).
-- OpenAI. (2024). PROG7312- LOGIC CONVO. Available at: https://chatgpt.com/share/670ec6c0-884c-800b-8e1d-eccda71c1fbc [Accessed: 15 October 2024].
-- OpenAI. (2024). Translate. Available at: https://chatgpt.com/share/670ec683-7ca0-800b-9699-8525ed348388 [Accessed: 15 October 2024].
-- OpenAI. (2024). Custom Scroll Bar. Available at: https://chatgpt.com/share/670ec719-e504-800b-811b-44fe386c95d9 [Accessed: 15 October 2024].
-- OpenAI. (2024). Dummy Data. Available at: https://chatgpt.com/share/670ec6c0-884c-800b-8e1d-eccda71c1fbc [Accessed: 15 October 2024].
-- JD’s Code Lab (2020) WPF C# | Online Education Dashboard UI | UI Design in Wpf C# (Jd’s Code Lab), YouTube. Available at: https://www.youtube.com/watch?v=JrjBb9VC5Yk (Accessed: 15 October 2024).
-- JD's Code Lab (2020) WPF C# | E-Course Dashboard UI | WPF UI Designs C# (Jd’s Code Lab), YouTube. Available at: https://www.youtube.com/watch?v=JrjBb9VC5Yk (Accessed: 15 October 2024).
+Payload (2021). WPF C# Professional Modern Flat UI Tutorial. Available at: [YouTube](https://www.youtube.com/watch?v=PzP8mw7JUzI&t=1946s) (Accessed: 9 September 2024). 
+CodeCraks (2023). How to Create a Modern Splash Screen in WPF using C#. Available at: [YouTube](https://www.youtube.com/watch?v=XM_I1y1mh7k&t=2s) (Accessed: 16 September 2024).
+Coding Under Pressure (2020). How to Let User Browse and Upload Files in WPF C#. Available at: [YouTube](https://www.youtube.com/watch?v=DKYssZ8JUx0) (Accessed: 16 September 2024).
+Jd’s Code Lab (2021). WPF C# | Drag & Drop to Upload File UI. Available at: [YouTube](https://www.youtube.com/watch?v=eEa_Fl3ZguA&t=2s) (Accessed: 16 September 2024).
+Jeyderht (2021). C# WPF - Modern Vertical Menu. Available at: [YouTube](https://www.youtube.com/watch?v=Et-QcvwKzY4&t=4s) (Accessed: 16 September 2024).
+Jeyderht (2021). Jeyderht/WPFMODERNVERTICALMENU. Available at: [GitHub](https://github.com/Jeyderht/WPFModernVerticalMenu) (Accessed: 16 September 2024).
+OpenAI (2024). ChatGPT (Version 4.0). [Large language model]. Available at: [OpenAI](https://chat.openai.com/).
+OpenAI (2024a). Afrikaans Resource File Setup. Available at: [OpenAI](https://chat.openai.com/).
+OpenAI (2024b). Complete Strings and Referencing. Available at: [OpenAI](https://chat.openai.com/).
+OpenAI (2024c). Translate Resource Dictionary. Available at: [OpenAI](https://chat.openai.com/).
+OpenAI. (2024d). PROG7312- LOGIC CONVO. Available at: https://chatgpt.com/share/670ec6c0-884c-800b-8e1d-eccda71c1fbc [Accessed: 15 October 2024].
+OpenAI. (2024e). Translate. Available at: https://chatgpt.com/share/670ec683-7ca0-800b-9699-8525ed348388 [Accessed: 15 October 2024].
+OpenAI. (2024f). Custom Scroll Bar. Available at: https://chatgpt.com/share/670ec719-e504-800b-811b-44fe386c95d9 [Accessed: 15 October 2024].
+OpenAI. (2024g). Dummy Data. Available at: https://chatgpt.com/share/670ec6c0-884c-800b-8e1d-eccda71c1fbc [Accessed: 15 October 2024].
+JD’s Code Lab (2020) WPF C# | Online Education Dashboard UI | UI Design in Wpf C# (Jd’s Code Lab), YouTube. Available at: https://www.youtube.com/watch?v=JrjBb9VC5Yk (Accessed: 15 October 2024).
+JD's Code Lab (2020) WPF C# | E-Course Dashboard UI | WPF UI Designs C# (Jd’s Code Lab), YouTube. Available at: https://www.youtube.com/watch?v=JrjBb9VC5Yk (Accessed: 15 October 2024).
+Ghosh, A.K. (2024) AVL tree in data structures with examples, Learn to Code, Prepare for Interviews, and Get Hired. Available at: https://www.scholarhat.com/tutorial/datastructures/avl-tree-in-data-structures (Accessed: 17 November 2024). 
+Smith, J. (2009) Latest updates, CodeProject. Available at: https://www.codeproject.com/script/Articles/Latest.aspx (Accessed: 17 November  2024). 
+Smith, J. (2009) Using WPF to visualize a graph with circular dependencies, CodeProject. Available at: https://www.codeproject.com/Articles/43776/Using-WPF-to-Visualize-a-Graph-with-Circular-Depen (Accessed: 17 November 2024). 
+Tutorialspoint (2019) Tree Data Structure, Tutorialspoint. Available at: https://www.tutorialspoint.com/data_structures_algorithms/tree_data_structure.htm (Accessed: 17 November 2024). 
+Tutorialspoint (2024a) Avl Trees, Tutorialspoint. Available at: https://www.tutorialspoint.com/data_structures_algorithms/avl_tree_algorithm.htm (Accessed: 17 November 2024). 
+Sambol, M. (2023a). AVL trees in 5 minutes — Intro & Search. YouTube. Available at: https://www.youtube.com/watch?v=DB1HFCEdLxA (Accessed: 17 November 2024).
+Sambol, M. (2023b). AVL trees in 9 minutes — Insertions. YouTube. Available at: https://www.youtube.com/watch?v=JPI-DPizQYk (Accessed: 17 November 2024).
+Simplilearn (2021). Trees In Data Structure | Introduction To Trees | Data Structures & Algorithms Tutorial |Simplilearn. [online] YouTube. Available at: https://www.youtube.com/watch?v=9oTV7fDEaCY (Accessed: 17 November 2024).
+Simplilearn (2022). C# Trees and Graphs Explained | Data Structures and Algorithms in C# | C# Tutorial | Simplilearn. [online] YouTube. Available at: https://www.youtube.com/watch?v=IqQ7QpmiBJ0 (Accessed: 17 November 2024).
+TechWebDots (2021). Graph Data Structure | Traversal | Depth | Breadth First Search | C#. [online] YouTube. Available at: https://www.youtube.com/watch?v=-xdKCoYrfZE(Accessed: 17 November 2024).
+Branscombe, M. (2024) How microsoft bing maps API features compare to google maps, Grey Matter. Available at: https://greymatter.com/content-hub/how-microsoft-bing-maps-api-features-compare-to-google-maps/ (Accessed: 21 November 2024). 
+Justwebdevelopment (2022) Geolocation API: How to use it and what benefits it provides: Others development, Justwebdevelopment. Available at: https://www.justwebdevelopment.com/blog/geolocation-api-how-to-use-it-and-what-benefits-it-provides/ (Accessed: 21 November 2024).
+ OpenAI. (2024h). ReadMe Update Part 3. Available at: https://chatgpt.com/share/674484e3-7354-800b-87b0-db10bd0d24ed [Accessed: 25 November 2024].
+OpenAI. (2024i). Data Insertion Discussion. Available at: https://chatgpt.com/share/674484e3-7354-800b-87b0-db10bd0d24ed [Accessed: 25 November 2024].
+OpenAI. (2024j). Translate Feature Chat. Available at: https://chatgpt.com/share/674484dc-ac90-800b-a6a5-26e6488366b5 [Accessed: 25 November 2024]
+OpenAI. (2024k). Graph Drawing Guidance. Available at: https://chatgpt.com/share/674485bc-d12c-800b-8083-99eadb2868d4 [Accessed: 25 November 2024].
+Ambrož, P. (2024) AVL-trees/AVL/avltree.cs at master · Petrambroz/AVL-Trees, GitHub. Available at: https://github.com/petrambroz/AVL-Trees/blob/master/AVL/AVLTree.cs (Accessed: 21 November 2024). 
+Exercism (2022) Prajakta2022’s solution for go counting in C# on exercism, Exercism. Available at: https://exercism.org/tracks/csharp/exercises/go-counting/solutions/prajakta2022 (Accessed: 22 November 2024). 
+Tutorialspoint (2023) Breadth first search (BFS) algorithm, Tutorialspoint. Available at: https://www.tutorialspoint.com/data_structures_algorithms/breadth_first_traversal.htm (Accessed: 22 November 2024). 
+Tutorialspoint (2024) Depth first search (DFS) algorithm, Tutorialspoint. Available at: https://www.tutorialspoint.com/data_structures_algorithms/depth_first_traversal.htm (Accessed: 21 November 2024).
 
 
 ## License
@@ -184,4 +204,3 @@ Copyright (c) 2024 Hannah Michaelson
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-

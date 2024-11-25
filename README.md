@@ -153,7 +153,7 @@ To track the status of a service requests, follow these steps:
 
 1. **DependencyGraph graph**:   The Dependency Graph class represents a directed graph where each node corresponds to a service request and each edge to its dependencies. The role that the dependency graph plays in the management of service request status is tracking service request as nodes related to edges that represent the service request’s dependencies. The dependency graphs help to ensure that service nodes are displayed in the correct order according to the status and in consecutive relation to the services that the node either depends on or service request is dependent on the current node. A directed acyclic graph (DAG) structure has been employed to manage the dependency relations as not to incur cycles that would lead to lead to logical errors and thus a DFS-based cycle detection algorithm is used during dependency addition or validate graph remains acyclic. The graph plays a significant role visual display of service request and theirs statuses.   
 
-2. **AVLTree avlTree**:  
+2. **AVLTree avlTree**:  The AVLTree classis an example of a self-balancing binary search tree (BST).The AVLTree class and its associated data structures play a crucial role in efficiently managing and retrieving service requests based on their status or priority. In an AVL tree, the heights of the two child subtrees of any node differ by at most one, ensuring that the tree remains balanced. This balance is maintained through rotations during insertions and deletions. 
    
 ## References
 

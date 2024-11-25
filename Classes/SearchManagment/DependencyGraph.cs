@@ -124,13 +124,16 @@ namespace MVA_poe.Classes.SearchManagment
 
             // Queue to store all nodes with in-degree 0 (no dependencies).
             var queue = new Queue<int>(inDegree.Where(kv => kv.Value == 0).Select(kv => kv.Key));
-            var sortedOrder = new List<int>(); // List to store the topological order.
+            // List to store the topological order.
+            var sortedOrder = new List<int>();
 
             // Process the nodes in the queue.
             while (queue.Count > 0)
             {
-                var current = queue.Dequeue(); // Dequeue a node with in-degree 0.
-                sortedOrder.Add(current); // Add it to the topological order.
+                // Dequeue a node with in-degree 0.
+                var current = queue.Dequeue();
+                // Add it to the topological order.
+                sortedOrder.Add(current); 
 
                 // Decrease the in-degree of its neighbors.
                 foreach (var neighbor in adjacencyList[current])
@@ -169,24 +172,33 @@ namespace MVA_poe.Classes.SearchManagment
         // Helper method to check for cycles in the graph
         private bool HasCycleHelper(int current, int target, HashSet<int> visited, HashSet<int> stack)
         {
+            // If the current node is already in the recursion stack, a cycle is detected
             if (stack.Contains(current)) return true;
 
+            // If the current node has already been visited, no cycle is detected from this path
             if (visited.Contains(current)) return false;
 
+            // Mark the current node as visited
             visited.Add(current);
+            // Add the current node to the recursion stack
             stack.Add(current);
 
+            // Iterate through all the dependencies of the current node
             foreach (var dependent in adjacencyList[current])
             {
+                // If the dependent node is the target or if a cycle is detected in the dependent's path, return true
                 if (dependent == target || HasCycleHelper(dependent, target, visited, stack))
                 {
                     return true;
                 }
             }
 
+            // Remove the current node from the recursion stack before returning
             stack.Remove(current);
+            // No cycle detected from this path
             return false;
         }
+
     }
 }
 //__---____---____---____---____---____---____---__.ooo END OF FILE ooo.__---____---____---____---____---____---____---__\\

@@ -23,20 +23,20 @@ namespace MVA_poe.Controls
     /// </summary>
     public partial class ServiceCard : UserControl
     {
-        // Property to hold the event data
+        // Property to hold the service request data
         public ServiceRequest ServiceData { get; private set; }
         public Brush StatNode { get; private set; }
         public Brush PriorNode { get; private set; }
-      
+
 
         // Constructor for the ServiceCard class
-        // Takes an Event object as a parameter
+        // Takes an Service Request object as a parameter
         public ServiceCard(ServiceRequest serviceData)
         {
             // Initialize the components defined in the XAML file
             InitializeComponent();
 
-            // Set the EventData property to the provided event data
+            // Set the ServiceData property to the provided service request data
             ServiceData = serviceData;
 
             // Set the ServiceId property 
@@ -52,9 +52,9 @@ namespace MVA_poe.Controls
             ServiceCategory = ServiceData.report.reportCat.GetString();
 
             GetNodeColor(serviceData.requestStat, serviceData.requestPri);
-            statNode.Fill = StatNode;    
-            
-            //set 
+            statNode.Fill = StatNode;
+
+            // Set the text for priority and status
             txtPrior.Text = RequestPriority;
             txtStat.Text = RequestStatus;
 

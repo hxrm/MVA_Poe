@@ -160,8 +160,7 @@ namespace MVA_poe.Classes.SearchManagment
         private int GetHeight(Node<T> node)
         {
             return node == null ? 0 : node.Height;
-        }
-        
+        }      
        
 
 
@@ -246,21 +245,21 @@ namespace MVA_poe.Classes.SearchManagment
 
         // Method: RotateLeft
         // Performs a left rotation on the given node
-        private Node<T> RotateLeft(Node<T> x)
+        private Node<T> RotateLeft(Node<T> node)
         {
             // New root is the right child
-            Node<T> newRoot = x.RightHand; 
+            Node<T> newRoot = node.RightHand; 
             if (newRoot == null)
             {
                 throw new InvalidOperationException("Right child is null during left rotation.");
             }
             // Shift subtree
-            x.RightHand = newRoot.LeftHand; 
+            node.RightHand = newRoot.LeftHand; 
             // Update parent-child relationship
-            newRoot.LeftHand = x;          
+            newRoot.LeftHand = node;          
 
             // Update heights
-            x.Height = Math.Max(GetHeight(x.LeftHand), GetHeight(x.RightHand)) + 1;
+            node.Height = Math.Max(GetHeight(node.LeftHand), GetHeight(node.RightHand)) + 1;
             newRoot.Height = Math.Max(GetHeight(newRoot.LeftHand), GetHeight(newRoot.RightHand)) + 1;
             // Return new root
             return newRoot;

@@ -1,5 +1,5 @@
 
-# MVA_poe - Civic Connect
+# Municipal Services Application. - Civic Connect
 
 ## Login Credentials
 - **Email**: demo@gmail.com or h@gmail.com
@@ -8,7 +8,7 @@
 
 ## Overview
 
-The MVA_poe (also known as Civic Connect) application is a C# WPF application developed for municipal use. It aims to facilitate citizen engagement by enabling users to report issues and service requests efficiently. The application is designed to be user-friendly, providing a seamless experience for residents to interact with municipal services.
+The  Civic Connect application is a C# WPF application developed for municipal use. It aims to facilitate citizen engagement by enabling users to report issues and service requests efficiently. The application is designed to be user-friendly, providing a seamless experience for residents to interact with municipal services.
 
 ## Features
 

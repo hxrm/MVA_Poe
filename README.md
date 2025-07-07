@@ -16,6 +16,7 @@ The  Civic Connect application is a C# WPF application developed for municipal u
 - **Create New Report**: Users can submit details about various issues, including location and category. Image and document attachments are supported.
 - **Local Events and Announcements**: Allows users to view and search for events, receive personalized recommendations, and filter events by category or date.
 - **Service Request Status**: Allows users to view and track the status of service requests and track progress over time.
+- **Multilingual Interface**: Users can choose from **English**, **Afrikaans**, or **Xhosa** as their preferred language to navigate the application, making it more accessible for a diverse group of users.
 
 ## Installation Instructions
 
@@ -109,37 +110,36 @@ At the Login Page and enter your credentials:
 -	![image](https://github.com/user-attachments/assets/8fa747e1-ddbf-4104-9bee-37cde1fe21d6)
 
 ### Creating Reports
-
 - **Launch the Application**: After login, navigate to the "Create New Report" section via the dashboard or navigation bar.
 - **Enter Report Details**:
   - **Location**: Specify the issue's location.
   - **Description**: Describe the issue.
   - **Category**: Choose the issue category.
+  - ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032625.png)
   - **Attachments**: Optionally attach images or documents related to the issue.
+  - ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032540.png)
 - **Submit Report**: Click "Submit" to save the report.
 
 ### Viewing Reports
-
+- ![image](
 - **Navigate to "View Report"**: Access this feature via the navigation bar.
 - **Select Report**: Choose the desired report from the dropdown menu to view details.
   
 ### Local Events and Announcements
-
 Users can access the "Local Events and Announcements" section from the Dashboard home screen via the navigation bar. Upon selection, they will be presented with a list of all events.
 - **Navigate to the Local Events and Announcements Section:**: After logging in, go to the Dashboard and select Local Events and Announcements from the navigation bar.
+- ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20030553.png)
 - **View Events**: Users can click on an event to view full details, including time, location, and description.
 - **Search Feature**: Users can search for events by entering a keyword related to the event name or category. To reset the search and view all events again, click the "Reset" button.
 - **Advanced Search**: Clicking the filter button next to the reset option opens an advanced search panel. This allows users to refine their search by selecting a category from a dropdown and specifying a date range using a calendar.
+- ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20030726.png)
 - **Personalized Recommendations**: The application will suggest events based on your past search patterns. These recommendations will be shown after you perform your first search. The system may also suggest related events from other categories associated with your preferences.
 
-
 ### Service Request Status
-
 To track the status of a service requests, follow these steps:
-
 1. **Navigate to the Service Request Status Section**:  
    After logging in, go to the **Dashboard** and select **Service Request Status** from the navigation bar.
-
+![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032734.png)
 2. **View Service Requests**:  
    A list of all your submitted service requests will be displayed. Each request includes:
    - **Unique Identifier (ID)**: A unique ID for each service request.
@@ -164,6 +164,15 @@ To track the status of a service requests, follow these steps:
    - To get a visual overview of your service requests, you can view a **Visual Display** by clicking the **"See Visual Display"** button.
    - This will show a graphical representation of your service requests' status distribution across different categories.
    - **Category Filter**: On the **Visual Display** page, you can select a category from the dropdown list and click **Search** to filter the visual representation by the selected category.
+   - ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032936.png)
+### Multilingual Support
+- **Navigate to User Profile**: From the navigation bar, select **"User Profile"** to access your profile settings.
+- ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20030946.png)
+- **Edit Profile**: Click the **"Edit"** button to begin updating your settings.
+- **Select Language Preference**: Under the language options, tick the checkbox next to the language you would like to use (**English**, **Afrikaans**, or **Xhosa**).
+- **Save Changes**:
+  After selecting your preferred language, click **"Save"**. The application interface will update to reflect your chosen language, providing a more personalized and accessible user experience.
+- ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20031137.png)
 
 
 ## Application Behavior

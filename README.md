@@ -100,7 +100,7 @@ After downloading and installing the application, here’s how to compile and ru
 At the Login Page and enter your credentials:
 -	Input your registered email address and password in the respective fields.
 -	Click Login."
--	![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032258.png)
+![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032258.png)
 
 ### Creating Reports
 - **Launch the Application**: After login, navigate to the "Create New Report" section via the dashboard or navigation bar.
@@ -111,10 +111,10 @@ At the Login Page and enter your credentials:
    ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032625.png)
   - **Attachments**: Optionally attach images or documents related to the issue.
    ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032540.png)
-- **Submit Report**: Click "Submit" to save the report.
+  - **Submit Report**: Click "Submit" to save the report.
 
 ### Viewing Reports
-![image]((https://raw.githubusercontent.com/hxrm/MVA_Poe/c3c593037d6561f7ff26416986b2bdc119398aa4/r.png)
+![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/c3c593037d6561f7ff26416986b2bdc119398aa4/r.png)
 - **Navigate to "View Report"**: Access this feature via the navigation bar.
 - **Select Report**: Choose the desired report from the dropdown menu to view details.
   

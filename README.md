@@ -5,7 +5,6 @@
 - **Email**: demo@gmail.com 
 - **Password**: Shalom78*
 
-
 ## Overview
 
 The  Civic Connect application is a C# WPF application developed for municipal use. It aims to facilitate citizen engagement by enabling users to report issues and service requests efficiently. The application is designed to be user-friendly, providing a seamless experience for residents to interact with municipal services.
@@ -86,28 +85,20 @@ After downloading and installing the application, here’s how to compile and ru
 
 ---
 ### Account Creation
-![image](https://github.com/user-attachments/assets/ad999f14-c608-4595-9a18-e6b5d9e34319)
+- **Navigating to Registration:** Find and click on the "Register" link on the login page.
+- **Complete Registration Form:** Fill in the required information and click on register to create your account.\
+  Enter your name, surname, email address, and choose a secure password.
+- **Submission:** Click the "Register" button to create your account.
 
-### Navigating to Registration:
-   - Find and click on the "Register" link on the login page. 
-
-### Complete Registration Form:
--	Fill in the required information and click on register to create your account.
--	Enter your name, surname, email address, and choose a secure password.
 ![image](https://github.com/hxrm/MVA_Poe/blob/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20030124.png?raw=true)
 
-### Submission:
-   - Click the "Register" button to create your account.
-
-![image](https://github.com/user-attachments/assets/a849837d-f72d-40a0-a13f-9406c0d02269)
-
 ## Logging In
-![image](https://github.com/user-attachments/assets/7ecbfde8-0ef2-4a9f-9942-9ca82eb8d03a)
+![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20024612.png)
 
 At the Login Page and enter your credentials:
 -	Input your registered email address and password in the respective fields.
 -	Click Login."
--	![image](https://github.com/user-attachments/assets/8fa747e1-ddbf-4104-9bee-37cde1fe21d6)
+-	![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032258.png)
 
 ### Creating Reports
 - **Launch the Application**: After login, navigate to the "Create New Report" section via the dashboard or navigation bar.
@@ -121,25 +112,25 @@ At the Login Page and enter your credentials:
 - **Submit Report**: Click "Submit" to save the report.
 
 ### Viewing Reports
-- ![image](
+![image](](https://raw.githubusercontent.com/hxrm/MVA_Poe/c3c593037d6561f7ff26416986b2bdc119398aa4/r.png)
 - **Navigate to "View Report"**: Access this feature via the navigation bar.
 - **Select Report**: Choose the desired report from the dropdown menu to view details.
   
 ### Local Events and Announcements
 Users can access the "Local Events and Announcements" section from the Dashboard home screen via the navigation bar. Upon selection, they will be presented with a list of all events.
 - **Navigate to the Local Events and Announcements Section:**: After logging in, go to the Dashboard and select Local Events and Announcements from the navigation bar.
-- ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20030553.png)
+  ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20030553.png)
 - **View Events**: Users can click on an event to view full details, including time, location, and description.
 - **Search Feature**: Users can search for events by entering a keyword related to the event name or category. To reset the search and view all events again, click the "Reset" button.
 - **Advanced Search**: Clicking the filter button next to the reset option opens an advanced search panel. This allows users to refine their search by selecting a category from a dropdown and specifying a date range using a calendar.
-- ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20030726.png)
+   ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20030726.png)
 - **Personalized Recommendations**: The application will suggest events based on your past search patterns. These recommendations will be shown after you perform your first search. The system may also suggest related events from other categories associated with your preferences.
 
 ### Service Request Status
 To track the status of a service requests, follow these steps:
 1. **Navigate to the Service Request Status Section**:  
    After logging in, go to the **Dashboard** and select **Service Request Status** from the navigation bar.
-![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032734.png)
+   ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032734.png)
 2. **View Service Requests**:  
    A list of all your submitted service requests will be displayed. Each request includes:
    - **Unique Identifier (ID)**: A unique ID for each service request.
@@ -164,15 +155,15 @@ To track the status of a service requests, follow these steps:
    - To get a visual overview of your service requests, you can view a **Visual Display** by clicking the **"See Visual Display"** button.
    - This will show a graphical representation of your service requests' status distribution across different categories.
    - **Category Filter**: On the **Visual Display** page, you can select a category from the dropdown list and click **Search** to filter the visual representation by the selected category.
-   - ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032936.png)
+   ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032936.png)
 ### Multilingual Support
 - **Navigate to User Profile**: From the navigation bar, select **"User Profile"** to access your profile settings.
-- ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20030946.png)
+![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20030946.png)
 - **Edit Profile**: Click the **"Edit"** button to begin updating your settings.
 - **Select Language Preference**: Under the language options, tick the checkbox next to the language you would like to use (**English**, **Afrikaans**, or **Xhosa**).
 - **Save Changes**:
   After selecting your preferred language, click **"Save"**. The application interface will update to reflect your chosen language, providing a more personalized and accessible user experience.
-- ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20031137.png)
+![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20031137.png)
 
 
 ## Application Behavior

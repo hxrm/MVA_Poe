@@ -1,14 +1,14 @@
 
-# MVA_poe - Civic Connect
+# Municipal Services Application. - Civic Connect
 
 ## Login Credentials
-- **Email**: demo@gmail.com or h@gmail.com
+- **Email**: demo@gmail.com 
 - **Password**: Shalom78*
 
 
 ## Overview
 
-The MVA_poe (also known as Civic Connect) application is a C# WPF application developed for municipal use. It aims to facilitate citizen engagement by enabling users to report issues and service requests efficiently. The application is designed to be user-friendly, providing a seamless experience for residents to interact with municipal services.
+The  Civic Connect application is a C# WPF application developed for municipal use. It aims to facilitate citizen engagement by enabling users to report issues and service requests efficiently. The application is designed to be user-friendly, providing a seamless experience for residents to interact with municipal services.
 
 ## Features
 
@@ -84,6 +84,29 @@ After downloading and installing the application, here’s how to compile and ru
    - The application will open, and you can start using it as described in the features section.
 
 ---
+### Account Creation
+![image](https://github.com/user-attachments/assets/ad999f14-c608-4595-9a18-e6b5d9e34319)
+
+### Navigating to Registration:
+   - Find and click on the "Register" link on the login page. 
+
+### Complete Registration Form:
+-	Fill in the required information and click on register to create your account.
+-	Enter your name, surname, email address, and choose a secure password.
+![image](https://github.com/hxrm/MVA_Poe/blob/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20030124.png?raw=true)
+
+### Submission:
+   - Click the "Register" button to create your account.
+
+![image](https://github.com/user-attachments/assets/a849837d-f72d-40a0-a13f-9406c0d02269)
+
+## Logging In
+![image](https://github.com/user-attachments/assets/7ecbfde8-0ef2-4a9f-9942-9ca82eb8d03a)
+
+At the Login Page and enter your credentials:
+-	Input your registered email address and password in the respective fields.
+-	Click Login."
+-	![image](https://github.com/user-attachments/assets/8fa747e1-ddbf-4104-9bee-37cde1fe21d6)
 
 ### Creating Reports
 
@@ -153,7 +176,7 @@ To track the status of a service requests, follow these steps:
 
 1. **DependencyGraph graph**:   The Dependency Graph class represents a directed graph where each node corresponds to a service request and each edge to its dependencies. The role that the dependency graph plays in the management of service request status is tracking service request as nodes related to edges that represent the service request’s dependencies. The dependency graphs help to ensure that service nodes are displayed in the correct order according to the status and in consecutive relation to the services that the node either depends on or service request is dependent on the current node. A directed acyclic graph (DAG) structure has been employed to manage the dependency relations as not to incur cycles that would lead to lead to logical errors and thus a DFS-based cycle detection algorithm is used during dependency addition or validate graph remains acyclic. The graph plays a significant role visual display of service request and theirs statuses.   
 
-2. **AVLTree avlTree**:  
+2. **AVLTree avlTree**:  The AVLTree classis an example of a self-balancing binary search tree (BST).The AVLTree class and its associated data structures play a crucial role in efficiently managing and retrieving service requests based on their status or priority. In an AVL tree, the heights of the two child subtrees of any node differ by at most one, ensuring that the tree remains balanced. This balance is maintained through rotations during insertions and deletions. 
    
 ## References
 

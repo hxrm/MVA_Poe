@@ -86,7 +86,7 @@ After downloading and installing the application, here’s how to compile and ru
 
 ---
 ---
-### Account Creation
+### **Account Creation**
 - **Navigating to Registration:** Find and click on the "Register" link on the login page.
 - **Complete Registration Form:** Fill in the required information and click on register to create your account.\
   Enter your name, surname, email address, and choose a secure password.
@@ -94,15 +94,15 @@ After downloading and installing the application, here’s how to compile and ru
 
 ![image](https://github.com/hxrm/MVA_Poe/blob/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20030124.png?raw=true)
 
-## Logging In
+### **Logging In**
 ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20024612.png)
 
 At the Login Page and enter your credentials:
 -	Input your registered email address and password in the respective fields.
--	Click Login."
+-	Click "Login".
 ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032258.png)
 
-### Creating Reports
+### **Creating Reports**
 - **Launch the Application**: After login, navigate to the "Create New Report" section via the dashboard or navigation bar.
 - **Enter Report Details**:
   - **Location**: Specify the issue's location.
@@ -113,12 +113,12 @@ At the Login Page and enter your credentials:
    ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032540.png)
   - **Submit Report**: Click "Submit" to save the report.
 
-### Viewing Reports
+### **Viewing Reports**
 ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/c3c593037d6561f7ff26416986b2bdc119398aa4/r.png)
 - **Navigate to "View Report"**: Access this feature via the navigation bar.
 - **Select Report**: Choose the desired report from the dropdown menu to view details.
   
-### Local Events and Announcements
+### **Local Events and Announcements**
 Users can access the "Local Events and Announcements" section from the Dashboard home screen via the navigation bar. Upon selection, they will be presented with a list of all events.
 - **Navigate to the Local Events and Announcements Section:**: After logging in, go to the Dashboard and select Local Events and Announcements from the navigation bar.
   ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20030553.png)
@@ -128,7 +128,7 @@ Users can access the "Local Events and Announcements" section from the Dashboard
    ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20030726.png)
 - **Personalized Recommendations**: The application will suggest events based on your past search patterns. These recommendations will be shown after you perform your first search. The system may also suggest related events from other categories associated with your preferences.
 
-### Service Request Status
+### **Service Request Status**
 To track the status of a service requests, follow these steps:
 1. **Navigate to the Service Request Status Section**:  
    After logging in, go to the **Dashboard** and select **Service Request Status** from the navigation bar.
@@ -158,7 +158,8 @@ To track the status of a service requests, follow these steps:
    - This will show a graphical representation of your service requests' status distribution across different categories.
    - **Category Filter**: On the **Visual Display** page, you can select a category from the dropdown list and click **Search** to filter the visual representation by the selected category.
    ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032936.png)
-### Multilingual Support
+
+### **Multilingual Support**
 - **Navigate to User Profile**: From the navigation bar, select **"User Profile"** to access your profile settings.
 ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20030946.png)
 - **Edit Profile**: Click the **"Edit"** button to begin updating your settings.

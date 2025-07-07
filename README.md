@@ -62,6 +62,7 @@ The  Civic Connect application is a C# WPF application developed for municipal u
    Build the project within your IDE to ensure all configurations are correct.
 
 ---
+---
 
 ### Compile and Run the Application
 
@@ -83,6 +84,7 @@ After downloading and installing the application, here’s how to compile and ru
    - Once the build is successful, click **Start** (green play button) or press `F5` to run the application.
    - The application will open, and you can start using it as described in the features section.
 
+---
 ---
 ### Account Creation
 - **Navigating to Registration:** Find and click on the "Register" link on the login page.
@@ -106,13 +108,13 @@ At the Login Page and enter your credentials:
   - **Location**: Specify the issue's location.
   - **Description**: Describe the issue.
   - **Category**: Choose the issue category.
-  - ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032625.png)
+   ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032625.png)
   - **Attachments**: Optionally attach images or documents related to the issue.
-  - ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032540.png)
+   ![image](https://raw.githubusercontent.com/hxrm/MVA_Poe/a3b8325398a3fa42cc6108d28312afa6ebaa8d18/Screenshot%202025-07-07%20032540.png)
 - **Submit Report**: Click "Submit" to save the report.
 
 ### Viewing Reports
-![image](](https://raw.githubusercontent.com/hxrm/MVA_Poe/c3c593037d6561f7ff26416986b2bdc119398aa4/r.png)
+![image]((https://raw.githubusercontent.com/hxrm/MVA_Poe/c3c593037d6561f7ff26416986b2bdc119398aa4/r.png)
 - **Navigate to "View Report"**: Access this feature via the navigation bar.
 - **Select Report**: Choose the desired report from the dropdown menu to view details.
   

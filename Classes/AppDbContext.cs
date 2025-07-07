@@ -23,7 +23,6 @@ namespace MVA_Poe.Classes
         public DbSet<Event> Events { get; set; }
 
         // Define a DbSet property named Attachments, which represents a collection of Attachment entities in the database.
-        // Define a DbSet property named Attachments, which represents a collection of Attachment entities in the database.
         public DbSet<Attachment> Attachments { get; set; }
 
         // Define a DbSet property named PatternFrequencies, which represents a collection of PatternFrequency entities in the database.

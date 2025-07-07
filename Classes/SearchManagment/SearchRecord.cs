@@ -31,7 +31,11 @@ namespace MVA_poe.Classes
         public DateTime? EndDate { get; set; }
 
         //----------------------------------------------------------------------------
-
+        public SearchRecord()
+        {
+            // Default constructor for Entity Framework
+        }
+        //----------------------------------------------------------------------------
         // Constructor for when only the user ID is known
         public SearchRecord(int Id)
         {

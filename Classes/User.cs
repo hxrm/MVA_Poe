@@ -32,7 +32,7 @@ namespace MVA_Poe.Classes
         // Property for the email address
         public string email { get; set; }
 
-        // Property for the user ID (could be a national ID or similar)
+        // Property for the user ID 
         public string ID { get; set; }
 
         // Property for the address

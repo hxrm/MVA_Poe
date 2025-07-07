@@ -161,8 +161,9 @@ namespace MVA_poe.Pages
                 ServiceCard serviceCard = new ServiceCard(request);
 
                 Canvas.SetLeft(serviceCard, positions[requestId].X);
+                // Add service cards after arrows
                 Canvas.SetTop(serviceCard, positions[requestId].Y);
-                visualizationCanvas.Children.Add(serviceCard); // Add service cards after arrows
+                visualizationCanvas.Children.Add(serviceCard); 
                 nodes[requestId] = serviceCard;
             }
 
@@ -195,8 +196,11 @@ namespace MVA_poe.Pages
             {
                 int level = nodeLevels[requestId];
                 // Invert the Y-coordinate based on the maximum level
-                positions[requestId] = new Point(100 + (index % 4) * 200, 100 + (maxLevel - level) * 200);
+                //positions[requestId] = new Point(100 + (index % 4) * 200, 100 + (maxLevel - level) * 200);
+                // index++;
+                positions[requestId] = new Point(100 + (index % 4) * 200, 100 + level * 200);
                 index++;
+
                 // Track max X and Y to adjust canvas size
                 maxX = Math.Max(maxX, positions[requestId].X + 50);
                 maxY = Math.Max(maxY, positions[requestId].Y + 50);
@@ -225,11 +229,12 @@ namespace MVA_poe.Pages
             visualizationCanvas.Children.Add(line);
 
             // Calculate the angle of the line
-            var angle = Math.Atan2(end.Y - start.Y, end.X - start.X);
+            var angle = Math.Atan2(start.Y - end.Y, start.X - end.X);
 
             // Define arrowhead points
             var arrowSize = 10;
-            var arrowAngle = Math.PI / 6; // 30 degrees
+            // 30 degrees
+            var arrowAngle = Math.PI / 6; 
 
             var arrowPoint1 = new Point(
                 midX - arrowSize * Math.Cos(angle - arrowAngle),
